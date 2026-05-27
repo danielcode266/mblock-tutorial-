@@ -1,745 +1,400 @@
-Aquí tienes el código HTML con todas las mejoras solicitadas: más retos, sistema de estrellas, pantalla de bienvenida y navegación mejorada.
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>🐼 Aprende mBlock con el Panda | Retos y Estrellas</title>
+<title>🐼 Aprende mBlock | 24 Retos Completos + Quiz Final por Nivel</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --green: #3CC87A;
-    --green-d: #1E7A49;
-    --green-l: #D6F5E6;
-    --orange: #FF7043;
-    --orange-d: #C44B22;
-    --orange-l: #FFE8DF;
-    --purple: #7B5CF5;
-    --purple-d: #4A2FB5;
-    --purple-l: #EDE8FF;
-    --teal: #00BFA5;
-    --teal-d: #007566;
-    --teal-l: #CCFFF8;
-    --sky: #29B6F6;
-    --star: #FFD600;
-    --bg: #F0F7FF;
-    --card: #FFFFFF;
-    --text: #1A1A2E;
-    --muted: #6B7280;
-    --border: rgba(0, 0, 0, 0.08);
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.13);
-    --radius: 20px;
-    --radius-sm: 12px;
+    --green: #3CC87A; --green-d: #1E7A49; --green-l: #D6F5E6;
+    --orange: #FF7043; --orange-d: #C44B22; --orange-l: #FFE8DF;
+    --purple: #7B5CF5; --purple-d: #4A2FB5; --purple-l: #EDE8FF;
+    --teal: #00BFA5; --teal-d: #007566; --teal-l: #CCFFF8;
+    --sky: #29B6F6; --star: #FFD600; --bg: #F0F7FF; --card: #FFFFFF;
+    --text: #1A1A2E; --muted: #6B7280; --border: rgba(0,0,0,0.08);
+    --radius: 20px; --radius-sm: 12px;
   }
-
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background: radial-gradient(circle at 15% 20%, rgba(123, 92, 245, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 85% 70%, rgba(0, 191, 165, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(41, 182, 246, 0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  /* overlay bienvenida */
-  .welcome-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(6px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease;
-  }
-
-  .welcome-card {
-    background: white;
-    max-width: 420px;
-    width: 90%;
-    border-radius: 48px;
-    padding: 2rem 1.8rem;
-    text-align: center;
-    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
-    animation: popIn 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
-  }
-
-  @keyframes popIn {
-    0% {
-      transform: scale(0.85);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  .welcome-card .hero-panda {
-    width: 100px;
-    margin: 0 auto 1rem;
-  }
-
-  .welcome-card h2 {
-    font-family: 'Fredoka One', sans-serif;
-    font-size: 1.9rem;
-    color: var(--purple);
-    margin-bottom: 0.5rem;
-  }
-
-  .welcome-card p {
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .start-buttons {
-    display: flex;
-    gap: 0.8rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-start {
-    background: var(--purple);
-    color: white;
-    border: none;
-    padding: 0.7rem 1.6rem;
-    border-radius: 60px;
-    font-weight: 800;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .btn-start-outline {
-    background: white;
-    color: var(--purple);
-    border: 2px solid var(--purple);
-  }
-
-  .btn-start:hover {
-    transform: translateY(-4px);
-  }
-
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 0.85rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .nav-logo {
-    font-family: 'Fredoka One', sans-serif;
-    font-size: 1.4rem;
-    color: var(--purple);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 0.6rem;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    font-weight: 800;
-    padding: 0.4rem 1rem;
-    border-radius: 99px;
-    color: var(--muted);
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-
-  main {
-    position: relative;
-    z-index: 1;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-  }
-
-  .section-title {
-    font-family: 'Fredoka One', sans-serif;
-    font-size: 1.8rem;
-    margin: 2rem 0 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .levels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-  }
-
-  .level-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 1.4rem;
-    cursor: pointer;
-    transition: all 0.25s;
-    position: relative;
-  }
-
-  .level-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .stars-container {
-    display: flex;
-    gap: 6px;
-    margin: 12px 0 6px;
-    font-size: 1.3rem;
-  }
-
-  .star-filled {
-    color: var(--star);
-    text-shadow: 0 0 2px gold;
-  }
-
-  .star-empty {
-    color: #ddd;
-  }
-
-  .locked-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: var(--radius);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(3px);
-    font-weight: 800;
-  }
-
-  .module-page {
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .module-page.active {
-    display: block;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  .step {
-    background: var(--card);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    padding: 1rem 1.2rem;
-    margin-bottom: 0.75rem;
-    display: flex;
-    gap: 1rem;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .step.done {
-    background: #F6FFF9;
-    border-color: var(--green);
-  }
-
-  .step-num {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    color: white;
-    flex-shrink: 0;
-  }
-
-  .progress-track {
-    height: 12px;
-    background: #E5E7EB;
-    border-radius: 99px;
-    overflow: hidden;
-    margin: 0.5rem 0;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--green), var(--sky));
-    width: 0%;
-    transition: width 0.4s;
-  }
-
-  .btn {
-    font-weight: 800;
-    padding: 0.6rem 1.5rem;
-    border-radius: 99px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  .btn-primary {
-    background: var(--purple);
-    color: white;
-  }
-
-  .back-btn {
-    background: white;
-    border: 1px solid var(--border);
-    margin-bottom: 1rem;
-    padding: 0.4rem 1rem;
-    border-radius: 60px;
-    cursor: pointer;
-  }
-
-  .quiz-box {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 1.2rem;
-    margin: 1rem 0;
-  }
-
-  .q-btn {
-    display: block;
-    width: 100%;
-    margin: 0.5rem 0;
-    padding: 0.7rem;
-    border-radius: 40px;
-    border: 1px solid var(--border);
-    background: #f9fafb;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.1s;
-  }
-
-  .challenge-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin: 1rem 0;
-  }
-
-  .challenge-item {
-    background: #fef7e0;
-    border-left: 5px solid var(--orange);
-    padding: 0.8rem 1rem;
-    border-radius: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .complete-challenge {
-    background: var(--teal);
-    color: white;
-    border: none;
-    border-radius: 60px;
-    padding: 0.3rem 1rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  #confetti-canvas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    display: none;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--muted);
-  }
-
-  @media (max-width: 600px) {
-    nav {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 15% 20%, rgba(123,92,245,.07) 0%, transparent 40%), radial-gradient(circle at 85% 70%, rgba(0,191,165,.07) 0%, transparent 40%); pointer-events: none; }
+  
+  .welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; }
+  .welcome-card { background: white; max-width: 520px; width: 90%; border-radius: 48px; padding: 2rem; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.2,0.64,1); }
+  @keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .start-buttons { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+  .btn-start { background: var(--purple); color: white; border: none; padding: 0.7rem 1.6rem; border-radius: 60px; font-weight: 800; cursor: pointer; transition: transform 0.2s; }
+  .btn-start-outline { background: white; color: var(--purple); border: 2px solid var(--purple); }
+  .btn-start:hover { transform: translateY(-4px); }
+  
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .nav-logo { font-family: 'Fredoka One', sans-serif; font-size: 1.4rem; color: var(--purple); cursor: pointer; }
+  .nav-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .nav-links a { text-decoration: none; font-weight: 800; padding: 0.4rem 1rem; border-radius: 99px; color: var(--muted); cursor: pointer; transition: 0.2s; }
+  .nav-links a:hover { background: var(--purple-l); color: var(--purple-d); }
+  
+  main { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .section-title { font-family: 'Fredoka One', sans-serif; font-size: 1.8rem; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+  .level-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.4rem; cursor: pointer; transition: all 0.25s; position: relative; }
+  .level-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
+  .stars-container { display: flex; gap: 6px; margin: 12px 0 6px; font-size: 1.3rem; }
+  .star-filled { color: var(--star); text-shadow: 0 0 2px gold; }
+  .star-empty { color: #ddd; }
+  .locked-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.9); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(3px); font-weight: 800; border-radius: 20px; }
+  
+  .module-page { display: none; animation: fadeIn 0.3s ease; }
+  .module-page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .step { background: var(--card); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 1rem 1.2rem; margin-bottom: 0.75rem; display: flex; gap: 1rem; cursor: pointer; transition: 0.2s; }
+  .step.done { background: #F6FFF9; border-color: var(--green); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; }
+  .progress-track { height: 12px; background: #E5E7EB; border-radius: 99px; overflow: hidden; margin: 0.5rem 0; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--sky)); width: 0%; transition: width 0.4s; }
+  .btn { font-weight: 800; padding: 0.6rem 1.5rem; border-radius: 99px; border: none; cursor: pointer; font-family: inherit; }
+  .btn-primary { background: var(--purple); color: white; }
+  .btn-secondary { background: var(--teal); color: white; }
+  .back-btn { background: white; border: 1px solid var(--border); margin-bottom: 1rem; padding: 0.4rem 1rem; border-radius: 60px; cursor: pointer; }
+  
+  .quiz-box { background: var(--card); border-radius: var(--radius); padding: 1.2rem; margin: 1rem 0; }
+  .q-btn { display: block; width: 100%; margin: 0.5rem 0; padding: 0.7rem; border-radius: 40px; border: 1px solid var(--border); background: #f9fafb; font-weight: 700; cursor: pointer; transition: 0.1s; }
+  .q-btn.correct { background: var(--green-l); border-color: var(--green); }
+  .q-btn.wrong { background: var(--orange-l); border-color: var(--orange); }
+  
+  .challenge-stats { background: linear-gradient(135deg, var(--purple), var(--teal)); color: white; border-radius: 60px; padding: 0.5rem 1rem; display: inline-block; margin-bottom: 1rem; font-weight: bold; }
+  .challenge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; margin: 1.5rem 0; background: rgba(255,255,255,0.5); padding: 1rem; border-radius: 28px; }
+  .challenge-item { background: white; border-left: 8px solid var(--orange); padding: 1rem; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.2s; }
+  .challenge-item:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .complete-challenge { background: var(--teal); color: white; border: none; border-radius: 60px; padding: 0.5rem 1.2rem; font-weight: bold; cursor: pointer; transition: 0.1s; }
+  .complete-challenge:disabled { background: #aaa; cursor: not-allowed; }
+  .code-block { background: #1A1A2E; color: #A8EDDB; font-family: monospace; padding: 0.5rem 1rem; border-radius: 12px; margin-top: 0.5rem; font-size: 0.85rem; white-space: pre-wrap; }
+  .panda-tip { display: flex; gap: 1rem; background: var(--purple-l); border-radius: 16px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--purple); }
+  .resource-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
+  .summary-card { background: white; border-radius: 24px; padding: 1.5rem; margin: 1rem 0; border: 1px solid var(--border); }
+  #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 9999; display: none; }
+  footer { text-align: center; padding: 2rem; color: var(--muted); }
+  @media (max-width: 600px) { nav { flex-direction: column; gap: 0.5rem; } .challenge-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <canvas id="confetti-canvas"></canvas>
 
-<!-- PANTALLA DE BIENVENIDA -->
 <div id="welcomeOverlay" class="welcome-overlay">
   <div class="welcome-card">
-    <div class="hero-panda">
-      <svg viewBox="0 0 120 120" fill="none" width="100">
-        <circle cx="26" cy="36" r="17" fill="#2C2C2A"/>
-        <circle cx="94" cy="36" r="17" fill="#2C2C2A"/>
-        <ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/>
-        <circle cx="60" cy="54" r="32" fill="#F5F5F5"/>
-        <ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
-        <ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
-        <circle cx="46" cy="46" r="4" fill="white"/>
-        <circle cx="78" cy="46" r="4" fill="white"/>
-        <ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/>
-        <path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <h2>🐼 ¡Bienvenido, programador!</h2>
-    <p>Aprende mBlock con el Panda, completa retos y gana estrellas ⭐ hasta convertirte en un experto.</p>
-    <div class="start-buttons">
-      <button id="btnStartTutorial" class="btn-start">📘 Comenzar Tutorial</button>
-      <button id="btnStartRetos" class="btn-start btn-start-outline">🏆 Ver Retos y Estrellas</button>
-    </div>
+    <svg viewBox="0 0 120 120" width="100"><circle cx="26" cy="36" r="17" fill="#2C2C2A"/><circle cx="94" cy="36" r="17" fill="#2C2C2A"/><ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/><circle cx="60" cy="54" r="32" fill="#F5F5F5"/><ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/><ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/><circle cx="46" cy="46" r="4" fill="white"/><circle cx="78" cy="46" r="4" fill="white"/><ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/><path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2"/></svg>
+    <h2>🐼 ¡Bienvenido, futuro programador!</h2>
+    <p>Aprende mBlock paso a paso, completa los <strong>24 RETOS</strong> (6 por nivel), supera el quiz final de cada nivel y desbloquea el siguiente. ¡Cada reto te da estrellas!</p>
+    <div class="start-buttons"><button id="btnStartTutorial" class="btn-start">📘 Comenzar Tutorial</button><button id="btnStartRetos" class="btn-start btn-start-outline">🏆 Ver 24 Retos</button></div>
   </div>
 </div>
 
-<nav>
-  <a href="#" id="navHomeLink" class="nav-logo">🐼 mBlock Aprende</a>
-  <div class="nav-links">
-    <a id="navLevelsLink">📚 Niveles</a>
-    <a id="navChallengesLink">⭐ Retos + Estrellas</a>
-  </div>
-</nav>
+<nav><span id="navHomeLink" class="nav-logo">🐼 mBlock Aprende</span><div class="nav-links"><a id="navLevelsLink">📚 Niveles</a><a id="navChallengesLink">⭐ 24 Retos</a><a id="navResourcesLink">🔗 Recursos</a></div></nav>
 
 <main id="appMain">
-  <!-- HOME = niveles + retos integrados en secciones -->
   <div id="view-home">
-    <section>
-      <div class="section-title">🗺️ Tus Niveles y Progreso ⭐</div>
-      <div class="levels-grid" id="levelsContainer"></div>
-    </section>
-
-    <section>
-      <div class="section-title">🏅 Retos Extra (Gana Estrellas)</div>
-      <div id="globalChallengesList" class="challenge-grid"></div>
-    </section>
-
-    <section class="ranger-banner" style="background: linear-gradient(135deg, #0D3B38, #1B6B5A); border-radius: 24px; padding: 1.5rem; margin-top: 1rem; color: white;">
-      <div>🤖</div>
-      <div><h3>mBot Ranger – Robot real</h3><p>Completa todos los niveles y desbloquea el módulo del robot físico.</p></div>
-    </section>
+    <div style="background:white; border-radius:60px; display:inline-block; padding:0.3rem 1.2rem; margin-bottom:1rem;" id="totalStarsDisplay">⭐ Estrellas Totales: 0</div>
+    <div class="summary-card">
+      <h3>📖 ¿Qué es mBlock? Tutorial completo</h3>
+      <p>mBlock es un entorno de programación visual basado en Scratch. Aprenderás desde movimientos básicos hasta programación de robots reales.</p>
+      <div class="resource-buttons">
+        <a href="https://mblock.cc" target="_blank" class="btn btn-primary">🌐 Sitio Oficial</a>
+        <a href="https://mblock.cc/download/" target="_blank" class="btn btn-secondary">⬇️ Descargar</a>
+        <a href="https://ide.mblock.cc/" target="_blank" class="btn btn-primary" style="background:var(--orange);">☁️ Versión Online</a>
+      </div>
+    </div>
+    <div class="section-title">🗺️ Niveles · Tutoriales completos</div>
+    <div class="levels-grid" id="levelsContainer"></div>
+    
+    <div class="section-title">🏅 24 RETOS EXTRA (¡Gana estrellas!)</div>
+    <div id="challengeStats" class="challenge-stats">📊 Retos completados: 0 / 24</div>
+    <div id="globalChallengesList" class="challenge-grid"></div>
+    
+    <div class="ranger-banner" style="background: linear-gradient(135deg, #0D3B38, #1B6B5A); border-radius: 24px; padding: 1.5rem; margin-top: 1rem; color: white;"><div style="display:flex; gap:1rem; align-items:center;"><span style="font-size:3rem;">🤖</span><div><h3>mBot Ranger – Robot real</h3><p>Completa el nivel Avanzado para desbloquear el módulo del robot físico.</p></div></div></div>
   </div>
-
-  <!-- Módulos de cada nivel (beginner, intermediate, advanced, ranger) igual que antes pero con sistema de estrellas y retos extra -->
   <div id="view-beginner" class="module-page"></div>
   <div id="view-intermediate" class="module-page"></div>
   <div id="view-advanced" class="module-page"></div>
   <div id="view-ranger" class="module-page"></div>
 </main>
-<footer>🐼 Hecho con 💜 para futuros genios de la robótica • mblock.cc</footer>
+<footer>🐼 24 Retos completos • Quiz final por nivel • Cada reto otorga estrellas</footer>
 
 <script>
-  // ESTADOS GLOBALES
-  let userStars = 0;           // estrellas totales acumuladas (máximo 10 por nivel? pero acumulativas)
-  let levelStars = { beginner: 0, intermediate: 0, advanced: 0, ranger: 0 }; // estrellas por nivel (0 a 5)
-  let unlocked = { beginner: true, intermediate: false, advanced: false, ranger: false };
-  let stepProgress = { beginner: 0, intermediate: 0, advanced: 0, ranger: 0 };
-  let stepTotals = { beginner: 4, intermediate: 4, advanced: 4, ranger: 5 };
-  let quizDoneLevel = { beginner: false, intermediate: false, advanced: false, ranger: false };
+  // ======================== 24 RETOS COMPLETOS (6 por nivel) ========================
   let extraChallenges = {
-    beginner: { done: false, stars: 1, desc: "✨ Reto: Haz que el Panda diga tu nombre y avance 100 pasos." },
-    intermediate: { done: false, stars: 1, desc: "🎵 Reto: Crea una secuencia de baile con sonido de 'maullido' y 3 disfraces." },
-    advanced: { done: false, stars: 2, desc: "🧠 Reto: Crea un contador que sume puntos al presionar espacio y muestre 'Ganaste' al llegar a 5." },
-    ranger: { done: false, stars: 2, desc: "🤖 Reto: Simula con bloques que el Ranger evite obstáculos y ponga LED rojo." }
+    beginner: [
+      { done: false, stars: 1, desc: "✨ Reto 1: Haz que el Panda diga '¡Me encanta programar!' y avance 80 pasos." },
+      { done: false, stars: 1, desc: "🎯 Reto 2: Crea un programa que mueva el Panda 100 pasos y luego diga 'Llegué'." },
+      { done: false, stars: 1, desc: "🔄 Reto 3: Usa 'repetir 3 veces' para que el Panda haga un triángulo." },
+      { done: false, stars: 1, desc: "🎨 Reto 4: Cambia el color del escenario usando el bloque 'cambiar fondo'." },
+      { done: false, stars: 1, desc: "🗣️ Reto 5: Agrega un sonido de 'aplauso' cuando el Panda termine de moverse." },
+      { done: false, stars: 1, desc: "🏁 Reto 6: Usa 'ir a x:0 y:0' y luego 'deslizar en 1 segs a x:200 y:0'." }
+    ],
+    intermediate: [
+      { done: false, stars: 1, desc: "🎵 Reto 7: Crea una rutina de baile: cambia disfraz 6 veces + sonido pop." },
+      { done: false, stars: 1, desc: "🌈 Reto 8: Cambia el efecto de color en un bucle 'por siempre' durante 3 segundos." },
+      { done: false, stars: 1, desc: "💬 Reto 9: Programa al Panda para que cuente del 1 al 5 usando 'decir'." },
+      { done: false, stars: 1, desc: "🎭 Reto 10: Alterna dos disfraces diferentes cada 0.5 segundos (5 veces)." },
+      { done: false, stars: 1, desc: "🔊 Reto 11: Reproduce una melodía de 3 sonidos diferentes secuencialmente." },
+      { done: false, stars: 1, desc: "✨ Reto 12: Agrega el efecto 'remolino' al Panda mientras se mueve." }
+    ],
+    advanced: [
+      { done: false, stars: 2, desc: "🧠 Reto 13: Crea variable 'score', suma 1 al presionar espacio, llega a 5 y muestra 'Ganaste'." },
+      { done: false, stars: 2, desc: "🕹️ Reto 14: Haz un contador regresivo de 10 a 0 usando 'repetir hasta que'." },
+      { done: false, stars: 2, desc: "⚡ Reto 15: Con 'si entonces', si el Panda toca el borde, que rebote." },
+      { done: false, stars: 2, desc: "🎲 Reto 16: Genera un número aleatorio entre 1 y 10 y muestra si es mayor a 5." },
+      { done: false, stars: 2, desc: "📊 Reto 17: Crea una lista con 3 nombres y muestra uno aleatorio." },
+      { done: false, stars: 2, desc: "🔄 Reto 18: Usa 'por siempre' y 'si' para que el Panda siga al mouse." }
+    ],
+    ranger: [
+      { done: false, stars: 2, desc: "🤖 Reto 19: Simula: si distancia < 20cm, girar izquierda y LED rojo." },
+      { done: false, stars: 2, desc: "🔦 Reto 20: Programa el Ranger para que siga una línea negra (sensor izquierdo/derecho)." },
+      { done: false, stars: 2, desc: "💡 Reto 21: Cambia el color del LED según la distancia: verde (>30), amarillo (15-30), rojo (<15)." },
+      { done: false, stars: 2, desc: "🎮 Reto 22: Controla el robot con las teclas de flecha." },
+      { done: false, stars: 2, desc: "📡 Reto 23: Usa el sensor ultrasónico para que el robot baile cuando detecte algo cerca." },
+      { done: false, stars: 2, desc: "🔄 Reto 24: Crea un patrón de movimiento: cuadrado usando motores." }
+    ]
   };
 
-  // Funciones auxiliares
-  function saveToLocal() {
-    localStorage.setItem('mblockStars', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, extraChallenges }));
-  }
-  function loadFromLocal() {
-    let data = localStorage.getItem('mblockStars');
+  // Estado global
+  let userStars = 0;
+  let levelStars = { beginner: 0, intermediate: 0, advanced: 0, ranger: 0 };
+  let unlocked = { beginner: true, intermediate: false, advanced: false, ranger: false };
+  let stepProgress = { beginner: 0, intermediate: 0, advanced: 0, ranger: 0 };
+  let stepTotals = { beginner: 5, intermediate: 5, advanced: 5, ranger: 5 };
+  let quizDoneLevel = { beginner: false, intermediate: false, advanced: false, ranger: false };
+
+  function saveData() { localStorage.setItem('mblockProgresoFinalV2', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, extraChallenges })); }
+  function loadData() {
+    let data = localStorage.getItem('mblockProgresoFinalV2');
     if (data) {
-      try {
-        let d = JSON.parse(data);
-        userStars = d.userStars || 0;
-        levelStars = d.levelStars || { beginner:0, intermediate:0, advanced:0, ranger:0 };
-        unlocked = d.unlocked || { beginner: true, intermediate: false, advanced: false, ranger: false };
-        stepProgress = d.stepProgress || { beginner:0, intermediate:0, advanced:0, ranger:0 };
-        quizDoneLevel = d.quizDoneLevel || { beginner:false, intermediate:false, advanced:false, ranger:false };
-        if (d.extraChallenges) extraChallenges = d.extraChallenges;
-      } catch(e) {}
+      let d = JSON.parse(data);
+      userStars = d.userStars || 0; levelStars = d.levelStars || { beginner:0, intermediate:0, advanced:0, ranger:0 };
+      unlocked = d.unlocked || { beginner: true, intermediate: false, advanced: false, ranger: false };
+      stepProgress = d.stepProgress || { beginner:0, intermediate:0, advanced:0, ranger:0 };
+      quizDoneLevel = d.quizDoneLevel || { beginner:false, intermediate:false, advanced:false, ranger:false };
+      if (d.extraChallenges) extraChallenges = d.extraChallenges;
     }
   }
-  function recalcStarsFromProgress(level) {
-    let totalSteps = stepTotals[level];
+
+  function getCompletedChallengesCount() {
+    let count = 0;
+    for (let lvl of ['beginner','intermediate','advanced','ranger']) {
+      count += extraChallenges[lvl].filter(c => c.done).length;
+    }
+    return count;
+  }
+
+  function recalcStarsAndUnlock(level) {
     let stepsDone = stepProgress[level];
-    let quizOK = quizDoneLevel[level] || false;
-    let extra = extraChallenges[level]?.done || false;
+    let totalSteps = stepTotals[level];
+    let quiz = quizDoneLevel[level];
+    let extraCount = extraChallenges[level].filter(c => c.done).length;
+    let extraStars = extraCount * (level === 'advanced' || level === 'ranger' ? 2 : 1);
     let stars = 0;
-    if (stepsDone >= totalSteps) stars += 2;        // completar pasos = 2 estrellas
-    if (quizOK) stars += 1;                         // quiz bien = 1 estrella
-    if (extra) stars += (level === 'advanced' || level === 'ranger' ? 2 : 1); // reto extra hasta 2 más
+    if (stepsDone >= totalSteps) stars += 2;
+    if (quiz) stars += 1;
+    stars += Math.min(extraStars, (level === 'advanced' || level === 'ranger' ? 12 : 6));
     stars = Math.min(stars, 5);
-    if (levelStars[level] !== stars) {
-      let diff = stars - levelStars[level];
-      userStars += diff;
-      levelStars[level] = stars;
+    if (levelStars[level] !== stars) { userStars += (stars - levelStars[level]); levelStars[level] = stars; }
+    
+    // Desbloqueo de niveles: necesita completar TODOS los pasos Y el quiz del nivel actual
+    if (level === 'beginner' && stepsDone >= totalSteps && quizDoneLevel.beginner && !unlocked.intermediate) {
+      unlocked.intermediate = true; launchConfettiMsg("🎉 ¡Nivel Principiante completado! Has desbloqueado INTERMEDIO");
     }
-    if (level === 'intermediate' && stars >= 3 && !unlocked.advanced) unlocked.advanced = true;
-    if (level === 'advanced' && stars >= 4 && !unlocked.ranger) unlocked.ranger = true;
-    saveToLocal();
-    renderHomeLevels();
-  }
-  function markStep(level, stepEl) {
-    if (stepEl.dataset.done === 'true') return;
-    stepEl.dataset.done = 'true';
-    stepEl.classList.add('done');
-    let h4 = stepEl.querySelector('h4');
-    if (h4 && !h4.querySelector('.check')) h4.insertAdjacentHTML('beforeend', ' ✅');
-    stepProgress[level]++;
-    updateProgressUI(level);
-    recalcStarsFromProgress(level);
-    if (stepProgress[level] >= stepTotals[level]) {
-      checkCompletion(level);
+    if (level === 'intermediate' && stepsDone >= totalSteps && quizDoneLevel.intermediate && !unlocked.advanced) {
+      unlocked.advanced = true; launchConfettiMsg("🎉 ¡Increíble! Desbloqueaste el nivel AVANZADO");
     }
+    if (level === 'advanced' && stepsDone >= totalSteps && quizDoneLevel.advanced && !unlocked.ranger) {
+      unlocked.ranger = true; launchConfettiMsg("🤖 ¡Felicidades! Desbloqueaste el módulo mBot RANGER");
+    }
+    saveData(); renderHomeLevels(); renderGlobalChallenges();
   }
+
+  function markStep(level, stepElement) {
+    if (stepElement.dataset.done === 'true') return;
+    stepElement.dataset.done = 'true'; stepElement.classList.add('done');
+    let h4 = stepElement.querySelector('h4');
+    if (h4 && !h4.querySelector('.check-mark')) h4.insertAdjacentHTML('beforeend', ' <span class="check-mark">✅</span>');
+    stepProgress[level]++; updateProgressUI(level); recalcStarsAndUnlock(level);
+    if (stepProgress[level] >= stepTotals[level] && quizDoneLevel[level]) showCompletion(level);
+  }
+
   function updateProgressUI(level) {
-    let pct = Math.round((stepProgress[level] / stepTotals[level]) * 100);
-    let bar = document.getElementById(`prog-${level}`);
-    let txt = document.getElementById(`prog-txt-${level}`);
+    let pct = (stepProgress[level] / stepTotals[level]) * 100;
+    let bar = document.getElementById(`prog-${level}`); let txt = document.getElementById(`prog-txt-${level}`);
     if (bar) bar.style.width = pct + '%';
     if (txt) txt.innerText = `${stepProgress[level]} / ${stepTotals[level]} pasos`;
   }
-  function checkCompletion(level) {
-    if (stepProgress[level] >= stepTotals[level] && quizDoneLevel[level]) {
-      let compDiv = document.getElementById(`comp-${level}`);
-      if (compDiv && !compDiv.classList.contains('show')) {
-        compDiv.classList.add('show');
-        launchConfetti();
+
+  function showCompletion(level) { let comp = document.getElementById(`comp-${level}`); if (comp && comp.style.display !== 'block') { comp.style.display = 'block'; launchConfetti(); } }
+  
+  // QUIZ ALEATORIO (respuestas en orden aleatorio)
+  function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+  
+  function renderQuiz(level) {
+    let quizData = {
+      beginner: { question: "¿Qué bloque inicia la ejecución del programa en mBlock?", correct: "al presionar bandera verde", options: ["al presionar tecla espacio", "al presionar bandera verde", "al hacer clic en el objeto", "al recibir mensaje"] },
+      intermediate: { question: "¿Qué bloque permite que el Panda hable con un globo de texto?", correct: "decir [texto] por N segundos", options: ["pensar [texto] por N segundos", "decir [texto] por N segundos", "mostrar mensaje [texto]", "escribir [texto]"] },
+      advanced: { question: "¿Qué estructura repetitiva ejecuta un bloque un número exacto de veces?", correct: "repetir N veces", options: ["por siempre", "repetir hasta que", "repetir N veces", "mientras"] },
+      ranger: { question: "¿Qué sensor usa el mBot Ranger para medir distancia a objetos?", correct: "Sensor ultrasónico", options: ["Sensor de línea", "Sensor ultrasónico", "Sensor de luz", "Sensor de temperatura"] }
+    };
+    let data = quizData[level];
+    let shuffled = shuffleArray([...data.options]);
+    let btnsHtml = '';
+    shuffled.forEach(opt => { btnsHtml += `<button class="q-btn" data-opt="${opt}">${opt}</button>`; });
+    return `<h3>🧠 QUIZ FINAL DEL NIVEL (obligatorio para desbloquear el siguiente)</h3><p class="quiz-question">${data.question}</p><div class="quiz-opts" id="quiz-${level}">${btnsHtml}</div><div class="quiz-feedback" id="fb-${level}"></div>`;
+  }
+
+  function attachQuizEvents(level, correctAnswer) {
+    let container = document.getElementById(`quiz-${level}`);
+    if (!container) return;
+    let btns = container.querySelectorAll('.q-btn');
+    btns.forEach(btn => {
+      btn.removeEventListener('click', quizHandler);
+      btn.addEventListener('click', quizHandler);
+    });
+    function quizHandler(e) {
+      let selected = e.currentTarget.dataset.opt;
+      let feedback = document.getElementById(`fb-${level}`);
+      if (container.dataset.done === 'true') return;
+      btns.forEach(b => b.disabled = true);
+      if (selected === correctAnswer) {
+        e.currentTarget.classList.add('correct');
+        feedback.innerHTML = '✅ ¡Correcto! Has superado el quiz. +1 estrella para el nivel. Ahora completa todos los pasos si no lo hiciste aún.';
+        feedback.style.color = 'green';
+        container.dataset.done = 'true';
+        quizDoneLevel[level] = true;
+        recalcStarsAndUnlock(level);
+        if (stepProgress[level] >= stepTotals[level]) showCompletion(level);
+      } else {
+        e.currentTarget.classList.add('wrong');
+        feedback.innerHTML = '❌ Respuesta incorrecta. Revisa el tutorial y vuelve a intentarlo.';
+        feedback.style.color = 'red';
+        setTimeout(() => { btns.forEach(b => { b.disabled = false; b.classList.remove('wrong','correct'); }); feedback.innerHTML = ''; }, 2000);
       }
     }
   }
-  function checkQuiz(level, btn, correct) {
-    let container = document.getElementById(`quiz-${level}`);
-    let feedback = document.getElementById(`fb-${level}`);
-    if (container.dataset.done === 'true') return;
-    let btns = container.querySelectorAll('.q-btn');
-    btns.forEach(b => b.disabled = true);
-    if (correct) {
-      btn.classList.add('correct');
-      feedback.innerHTML = '✅ ¡Correcto! +1 estrella (al completar nivel)';
-      feedback.className = 'quiz-feedback ok';
-      container.dataset.done = 'true';
-      quizDoneLevel[level] = true;
-      recalcStarsFromProgress(level);
-      checkCompletion(level);
-    } else {
-      btn.classList.add('wrong');
-      feedback.innerHTML = '❌ Vuelve a leer los pasos e inténtalo.';
-      feedback.className = 'quiz-feedback err';
-      setTimeout(() => {
-        btns.forEach(b => { b.disabled = false; b.classList.remove('wrong','correct'); });
-        feedback.innerHTML = '';
-      }, 1800);
-    }
-  }
-  function completeExtraChallenge(level) {
-    if (extraChallenges[level].done) return;
-    extraChallenges[level].done = true;
-    let starValue = (level === 'advanced' || level === 'ranger') ? 2 : 1;
-    userStars += starValue;
-    recalcStarsFromProgress(level);
-    renderHomeLevels();
-    renderGlobalChallenges();
-    launchConfetti();
-    alert(`🏆 ¡Reto completado! +${starValue} estrella${starValue>1?'s':''}. Sigue así.`);
-    saveToLocal();
+
+  function completeExtra(level, idx) {
+    if (extraChallenges[level][idx].done) return;
+    extraChallenges[level][idx].done = true;
+    let addStars = (level === 'advanced' || level === 'ranger') ? 2 : 1;
+    userStars += addStars;
+    recalcStarsAndUnlock(level);
+    renderHomeLevels(); renderGlobalChallenges(); launchConfetti();
+    alert(`🎉 ¡Reto ${idx+1} completado! +${addStars} estrella${addStars>1?'s':''}. Sigue así.`);
+    saveData();
   }
 
-  // Render principal home: niveles con estrellas y retos
   function renderHomeLevels() {
-    let container = document.getElementById('levelsContainer');
-    if (!container) return;
+    let container = document.getElementById('levelsContainer'); if (!container) return;
     let niveles = [
-      { id: 'beginner', name: '🌱 Principiante', desc: 'Primeros bloques y movimiento', color: 'g' },
-      { id: 'intermediate', name: '🎨 Intermedio', desc: 'Animaciones y sonidos', color: 'o' },
-      { id: 'advanced', name: '⚡ Avanzado', desc: 'Variables y condiciones', color: 'p' },
-      { id: 'ranger', name: '🤖 mBot Ranger', desc: 'Robot real y sensores', color: 't' }
+      { id: 'beginner', name: '🌱 Principiante', desc: 'Primeros bloques, movimiento y eventos' },
+      { id: 'intermediate', name: '🎨 Intermedio', desc: 'Animaciones, disfraces, sonidos' },
+      { id: 'advanced', name: '⚡ Avanzado', desc: 'Variables, condicionales y bucles' },
+      { id: 'ranger', name: '🤖 mBot Ranger', desc: 'Robot real, sensores y motores' }
     ];
     container.innerHTML = '';
-    niveles.forEach(n => {
+    for (let n of niveles) {
       let starsCount = levelStars[n.id] || 0;
-      let starHtml = '';
-      for (let i = 1; i <= 5; i++) starHtml += `<span class="${i <= starsCount ? 'star-filled' : 'star-empty'}">★</span>`;
-      let lockedHtml = (!unlocked[n.id] && n.id !== 'beginner') ? `<div class="locked-overlay"><span>🔒</span><span>Completa nivel anterior</span></div>` : '';
-      let card = document.createElement('div');
-      card.className = `level-card reveal`;
-      card.onclick = () => { if (unlocked[n.id]) openModule(n.id); };
-      card.innerHTML = `
-        <div style="display:flex; justify-content:space-between"><span class="badge" style="background:#E0E7FF">${starsCount}/5 ★</span></div>
-        <h3>${n.name}</h3>
-        <p>${n.desc}</p>
-        <div class="stars-container">${starHtml}</div>
-        ${lockedHtml}
-      `;
+      let starHtml = ''; for (let i=1;i<=5;i++) starHtml += `<span class="${i<=starsCount ? 'star-filled' : 'star-empty'}">★</span>`;
+      let lockedHtml = (!unlocked[n.id] && n.id !== 'beginner') ? `<div class="locked-overlay"><span>🔒</span><span>Completa nivel anterior (pasos + quiz)</span></div>` : '';
+      let card = document.createElement('div'); card.className = 'level-card'; card.onclick = () => { if (unlocked[n.id]) openModule(n.id); else alert("🔒 Completa el nivel anterior (todos los pasos y el quiz final) para desbloquear."); };
+      card.innerHTML = `<div style="display:flex; justify-content:space-between"><span style="background:#E0E7FF; padding:2px 8px; border-radius:20px;">${starsCount}/5 ★</span></div><h3>${n.name}</h3><p>${n.desc}</p><div class="stars-container">${starHtml}</div>${lockedHtml}`;
       container.appendChild(card);
-    });
-    let totalStarsSpan = document.getElementById('totalStarsDisplay');
-    if (!totalStarsSpan) {
-      let header = document.querySelector('.section-title');
-      if (header && !document.getElementById('totalStarsDisplay')) header.insertAdjacentHTML('afterend', `<div id="totalStarsDisplay" style="background:#fff; border-radius:60px; display:inline-block; padding:0.3rem 1rem; margin-bottom:1rem;">⭐ Estrellas Totales: ${userStars}</div>`);
-      else if (totalStarsSpan) totalStarsSpan.innerText = `⭐ Estrellas Totales: ${userStars}`;
-    } else totalStarsSpan.innerText = `⭐ Estrellas Totales: ${userStars}`;
+    }
+    let totalDiv = document.getElementById('totalStarsDisplay'); if (totalDiv) totalDiv.innerText = `⭐ Estrellas Totales: ${userStars}  (Máx: 20⭐)`;
+    let completedCount = getCompletedChallengesCount();
+    let statsDiv = document.getElementById('challengeStats');
+    if (statsDiv) statsDiv.innerHTML = `📊 Retos completados: ${completedCount} / 24`;
   }
+  
   function renderGlobalChallenges() {
-    let container = document.getElementById('globalChallengesList');
-    if (!container) return;
-    let levelsKeys = ['beginner','intermediate','advanced','ranger'];
+    let container = document.getElementById('globalChallengesList'); if (!container) return;
+    let levels = ['beginner','intermediate','advanced','ranger'];
+    let levelNames = { beginner:'🌱 Principiante', intermediate:'🎨 Intermedio', advanced:'⚡ Avanzado', ranger:'🤖 Ranger' };
     container.innerHTML = '';
-    for (let lvl of levelsKeys) {
-      let chal = extraChallenges[lvl];
-      let completed = chal.done;
-      let starReward = (lvl==='advanced'||lvl==='ranger') ? '2 ⭐' : '1 ⭐';
-      let btnDisabled = completed ? 'disabled' : '';
-      let btnText = completed ? '✅ Completado' : `Completar reto (+${starReward})`;
-      let div = document.createElement('div');
-      div.className = 'challenge-item';
-      div.innerHTML = `
-        <div><strong>${lvl === 'beginner' ? '🌱 Principiante' : lvl==='intermediate'?'🎨 Intermedio':lvl==='advanced'?'⚡ Avanzado':'🤖 Ranger'}</strong><br><span style="font-size:0.8rem;">${chal.desc}</span></div>
-        <button class="complete-challenge" data-level="${lvl}" ${completed ? 'disabled' : ''}>${btnText}</button>
-      `;
-      container.appendChild(div);
+    for (let lvl of levels) {
+      let challenges = extraChallenges[lvl];
+      for (let idx=0; idx<challenges.length; idx++) {
+        let chal = challenges[idx];
+        let starReward = (lvl==='advanced'||lvl==='ranger') ? '2 ⭐' : '1 ⭐';
+        let btnText = chal.done ? '✅ Completado' : `Completar (+${starReward})`;
+        let div = document.createElement('div'); div.className = 'challenge-item';
+        div.innerHTML = `<div><strong>${levelNames[lvl]} #${idx+1}</strong><br><span style="font-size:0.8rem;">${chal.desc}</span></div>
+                         <button class="complete-challenge" data-level="${lvl}" data-idx="${idx}" ${chal.done ? 'disabled' : ''}>${btnText}</button>`;
+        container.appendChild(div);
+      }
     }
-    document.querySelectorAll('.complete-challenge').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        let lvl = btn.dataset.level;
-        if (!extraChallenges[lvl].done) completeExtraChallenge(lvl);
-      });
-    });
+    document.querySelectorAll('.complete-challenge').forEach(btn => btn.addEventListener('click', (e) => { 
+      let lvl = btn.dataset.level; let idx = parseInt(btn.dataset.idx); 
+      if (!extraChallenges[lvl][idx].done) completeExtra(lvl, idx); 
+    }));
   }
 
-  function openModule(id) {
-    if (!unlocked[id]) return;
-    generateModuleHTML(id);
-    showView(id);
-  }
-  function showView(id) {
-    document.querySelectorAll('.module-page').forEach(v => v.classList.remove('active'));
-    let homeDiv = document.getElementById('view-home');
-    if (id === 'home') {
-      homeDiv.style.display = 'block';
-      document.querySelectorAll('.module-page').forEach(v => v.style.display = 'none');
-      homeDiv.classList.remove('module-page');
-      homeDiv.style.display = 'block';
-      renderHomeLevels();
-      renderGlobalChallenges();
-      return;
-    }
-    homeDiv.style.display = 'none';
-    let target = document.getElementById(`view-${id}`);
-    if (target) target.classList.add('active');
-    window.scrollTo(0,0);
-  }
-  function goHome() { showView('home'); }
-
-  function generateModuleHTML(level) {
+  function generateFullModule(level) {
     let container = document.getElementById(`view-${level}`);
     if (!container) return;
-    if (container.innerHTML.trim() !== '') return;
-    let titles = { beginner: 'Mis primeros bloques', intermediate: 'Animaciones y sonidos', advanced: 'Variables y bucles', ranger: 'Robot real mBot Ranger' };
-    let stepsContent = '';
-    if (level === 'beginner') {
-      stepsContent = `<div class="step" data-done="${stepProgress.beginner>=1}" onclick="markStepLevel('beginner',this)"><div class="step-num num-g">1</div><div><h4>Conoce la pantalla</h4><p>Identifica escenario y bloques.</p></div></div>
-      <div class="step" data-done="${stepProgress.beginner>=2}" onclick="markStepLevel('beginner',this)"><div class="step-num num-g">2</div><div><h4>Bloque mover 10 pasos</h4><p>Arrastra desde movimiento.</p></div></div>
-      <div class="step" data-done="${stepProgress.beginner>=3}" onclick="markStepLevel('beginner',this)"><div class="step-num num-g">3</div><div><h4>Evento bandera verde</h4><p>Une bloques.</p></div></div>
-      <div class="step" data-done="${stepProgress.beginner>=4}" onclick="markStepLevel('beginner',this)"><div class="step-num num-g">4</div><div><h4>Presiona bandera</h4><p>El Panda se mueve.</p></div></div>`;
-    } else if (level === 'intermediate') {
-      stepsContent = `<div class="step" data-done="${stepProgress.intermediate>=1}" onclick="markStepLevel('intermediate',this)"><div class="step-num num-o">1</div><div><h4>Decir mensaje</h4><p>Usa bloque decir.</p></div></div>
-      <div class="step" data-done="${stepProgress.intermediate>=2}" onclick="markStepLevel('intermediate',this)"><div class="step-num num-o">2</div><div><h4>Cambiar disfraz</h4><p>Anima al Panda.</p></div></div>
-      <div class="step" data-done="${stepProgress.intermediate>=3}" onclick="markStepLevel('intermediate',this)"><div class="step-num num-o">3</div><div><h4>Efecto color</h4><p>Colores brillantes.</p></div></div>
-      <div class="step" data-done="${stepProgress.intermediate>=4}" onclick="markStepLevel('intermediate',this)"><div class="step-num num-o">4</div><div><h4>Sonido pop</h4><p>Reproduce sonido.</p></div></div>`;
-    } else if (level === 'advanced') {
-      stepsContent = `<div class="step" data-done="${stepProgress.advanced>=1}" onclick="markStepLevel('advanced',this)"><div class="step-num num-p">1</div><div><h4>Variable 'puntos'</h4><p>Crear variable inicial 0.</p></div></div>
-      <div class="step" data-done="${stepProgress.advanced>=2}" onclick="markStepLevel('advanced',this)"><div class="step-num num-p">2</div><div><h4>Bucle repetir 10</h4><p>Sumar puntos.</p></div></div>
-      <div class="step" data-done="${stepProgress.advanced>=3}" onclick="markStepLevel('advanced',this)"><div class="step-num num-p">3</div><div><h4>Condición si puntos=10</h4><p>Ganaste.</p></div></div>
-      <div class="step" data-done="${stepProgress.advanced>=4}" onclick="markStepLevel('advanced',this)"><div class="step-num num-p">4</div><div><h4>Evento tecla espacio</h4><p>Sumar puntos manual.</p></div></div>`;
-    } else if (level === 'ranger') {
-      stepsContent = `<div class="step" data-done="${stepProgress.ranger>=1}" onclick="markStepLevel('ranger',this)"><div class="step-num num-t">1</div><div><h4>Conectar mBot Ranger</h4><p>USB y seleccionar dispositivo.</p></div></div>
-      <div class="step" data-done="${stepProgress.ranger>=2}" onclick="markStepLevel('ranger',this)"><div class="step-num num-t">2</div><div><h4>Avanzar y girar</h4><p>Control de motores.</p></div></div>
-      <div class="step" data-done="${stepProgress.ranger>=3}" onclick="markStepLevel('ranger',this)"><div class="step-num num-t">3</div><div><h4>Sensor ultrasónico</h4><p>Evitar obstáculos.</p></div></div>
-      <div class="step" data-done="${stepProgress.ranger>=4}" onclick="markStepLevel('ranger',this)"><div class="step-num num-t">4</div><div><h4>LEDs RGB</h4><p>Luces según distancia.</p></div></div>
-      <div class="step" data-done="${stepProgress.ranger>=5}" onclick="markStepLevel('ranger',this)"><div class="step-num num-t">5</div><div><h4>Seguidor línea</h4><p>Robot sigue línea negra.</p></div></div>`;
-    }
+    let titles = { beginner: '🌱 Principiante: Mis primeros bloques', intermediate: '🎨 Intermedio: Animaciones y sonidos', advanced: '⚡ Avanzado: Variables y bucles', ranger: '🤖 mBot Ranger: Robot real' };
+    let stepsHtml = '';
+    if (level === 'beginner') stepsHtml = `
+      <div class="step" onclick="markStepLevel('beginner',this)"><div class="step-num" style="background:#3CC87A;">1</div><div><h4>🔍 Conoce la interfaz de mBlock</h4><p>Escenario, Paleta de bloques y área de código.</p><div class="code-block">📌 Eventos | Movimiento | Apariencia</div></div></div>
+      <div class="step" onclick="markStepLevel('beginner',this)"><div class="step-num" style="background:#3CC87A;">2</div><div><h4>🎯 Bloque "mover 10 pasos"</h4><p>Movimiento → arrastra "mover 10 pasos".</p><div class="code-block">mover 10 pasos</div></div></div>
+      <div class="step" onclick="markStepLevel('beginner',this)"><div class="step-num" style="background:#3CC87A;">3</div><div><h4>🚩 Evento: "al presionar bandera verde"</h4><p>Eventos → arrastra y une.</p><div class="code-block">al presionar 🚩<br>  mover 10 pasos</div></div></div>
+      <div class="step" onclick="markStepLevel('beginner',this)"><div class="step-num" style="background:#3CC87A;">4</div><div><h4>▶️ Ejecuta el programa</h4><p>Presiona la bandera verde. El Panda se moverá.</p></div></div>
+      <div class="step" onclick="markStepLevel('beginner',this)"><div class="step-num" style="background:#3CC87A;">5</div><div><h4>🔄 Agrega giro y repite</h4><p>Prueba "girar 90 grados" y "repetir 4 veces".</p><div class="code-block">repetir 4 → mover 50 → girar 90</div></div></div>`;
+    if (level === 'intermediate') stepsHtml = `
+      <div class="step" onclick="markStepLevel('intermediate',this)"><div class="step-num" style="background:#FF7043;">1</div><div><h4>💬 Hacer que el Panda hable</h4><p>Apariencia → "decir [Hola] por 2 segundos".</p></div></div>
+      <div class="step" onclick="markStepLevel('intermediate',this)"><div class="step-num" style="background:#FF7043;">2</div><div><h4>🎭 Cambiar disfraces</h4><p>"cambiar disfraz al siguiente" + esperar.</p></div></div>
+      <div class="step" onclick="markStepLevel('intermediate',this)"><div class="step-num" style="background:#FF7043;">3</div><div><h4>🌈 Efecto color</h4><p>"cambiar efecto color en 25".</p></div></div>
+      <div class="step" onclick="markStepLevel('intermediate',this)"><div class="step-num" style="background:#FF7043;">4</div><div><h4>🔊 Sonidos</h4><p>"reproducir sonido Pop".</p></div></div>
+      <div class="step" onclick="markStepLevel('intermediate',this)"><div class="step-num" style="background:#FF7043;">5</div><div><h4>💃 Coreografía final</h4><p>Combina todo para un baile.</p></div></div>`;
+    if (level === 'advanced') stepsHtml = `
+      <div class="step" onclick="markStepLevel('advanced',this)"><div class="step-num" style="background:#7B5CF5;">1</div><div><h4>📦 Crear variable "puntos"</h4><p>Variables → Crear variable.</p><div class="code-block">establecer [puntos] en 0</div></div></div>
+      <div class="step" onclick="markStepLevel('advanced',this)"><div class="step-num" style="background:#7B5CF5;">2</div><div><h4>🔄 Bucle repetir</h4><p>repetir 10 → sumar 1 a puntos.</p></div></div>
+      <div class="step" onclick="markStepLevel('advanced',this)"><div class="step-num" style="background:#7B5CF5;">3</div><div><h4>⚖️ Condicional</h4><p>si (puntos = 10) entonces decir Ganaste.</p></div></div>
+      <div class="step" onclick="markStepLevel('advanced',this)"><div class="step-num" style="background:#7B5CF5;">4</div><div><h4>⌨️ Evento tecla espacio</h4><p>sumar 1 a puntos al presionar espacio.</p></div></div>
+      <div class="step" onclick="markStepLevel('advanced',this)"><div class="step-num" style="background:#7B5CF5;">5</div><div><h4>🕹️ Mini juego</h4><p>Muestra el marcador.</p></div></div>`;
+    if (level === 'ranger') stepsHtml = `
+      <div class="step" onclick="markStepLevel('ranger',this)"><div class="step-num" style="background:#00BFA5;">1</div><div><h4>🔌 Conectar mBot Ranger</h4><p>USB → Dispositivos → mBot Ranger.</p></div></div>
+      <div class="step" onclick="markStepLevel('ranger',this)"><div class="step-num" style="background:#00BFA5;">2</div><div><h4>⚙️ Mover robot</h4><p>"mover hacia adelante a velocidad 60".</p></div></div>
+      <div class="step" onclick="markStepLevel('ranger',this)"><div class="step-num" style="background:#00BFA5;">3</div><div><h4>📡 Sensor ultrasónico</h4><p>si distancia < 15 → girar.</p></div></div>
+      <div class="step" onclick="markStepLevel('ranger',this)"><div class="step-num" style="background:#00BFA5;">4</div><div><h4>💡 LEDs RGB</h4><p>Establecer LED rojo/verde.</p></div></div>
+      <div class="step" onclick="markStepLevel('ranger',this)"><div class="step-num" style="background:#00BFA5;">5</div><div><h4>🖤 Seguidor de línea</h4><p>Usar sensor línea izquierda/derecha.</p></div></div>`;
+    
+    let quizDataMap = { beginner:"al presionar bandera verde", intermediate:"decir [texto] por N segundos", advanced:"repetir N veces", ranger:"Sensor ultrasónico" };
+    let quizHtml = renderQuiz(level);
     container.innerHTML = `<button class="back-btn" onclick="goHome()">← Volver al inicio</button>
-    <div class="module-header"><div class="module-icon">${level==='beginner'?'🌱':level==='intermediate'?'🎨':level==='advanced'?'⚡':'🤖'}</div><div><h2>${titles[level]}</h2><p>Sigue los pasos y gana estrellas</p></div></div>
-    <div class="progress-wrap"><div class="progress-label"><span>Progreso</span><span id="prog-txt-${level}">${stepProgress[level]} / ${stepTotals[level]}</span></div><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${(stepProgress[level]/stepTotals[level])*100}%"></div></div></div>
-    <div class="steps">${stepsContent}</div>
-    <div class="quiz-box" id="quiz-${level}-box"><h3>🧠 Quiz: ${level==='beginner'?'¿Para qué sirve bandera verde?':level==='intermediate'?'¿Qué bloque muestra texto?':level==='advanced'?'¿Cuál bloque repite acciones fijas?':'¿Qué sensor mide distancia?'}</h3>
-    <div class="quiz-opts" id="quiz-${level}">${level==='beginner'?'<button class="q-btn" onclick="checkQuizLevel(\'beginner\',this,false)">Borrar bloques</button><button class="q-btn" onclick="checkQuizLevel(\'beginner\',this,true)">Iniciar programa ▶️</button><button class="q-btn" onclick="checkQuizLevel(\'beginner\',this,false)">Pausar</button>':level==='intermediate'?'<button class="q-btn" onclick="checkQuizLevel(\'intermediate\',this,false)">mover 10 pasos</button><button class="q-btn" onclick="checkQuizLevel(\'intermediate\',this,true)">decir [texto] por segundos</button><button class="q-btn" onclick="checkQuizLevel(\'intermediate\',this,false)">reproducir sonido</button>':level==='advanced'?'<button class="q-btn" onclick="checkQuizLevel(\'advanced\',this,false)">si entonces</button><button class="q-btn" onclick="checkQuizLevel(\'advanced\',this,true)">repetir N veces</button><button class="q-btn" onclick="checkQuizLevel(\'advanced\',this,false)">establecer variable</button>':'<button class="q-btn" onclick="checkQuizLevel(\'ranger\',this,false)">Sensor línea</button><button class="q-btn" onclick="checkQuizLevel(\'ranger\',this,true)">Sensor ultrasónico</button><button class="q-btn" onclick="checkQuizLevel(\'ranger\',this,false)">Sensor luz</button>'}</div><div class="quiz-feedback" id="fb-${level}"></div></div>
-    <div class="completion" id="comp-${level}" style="display:none;"><div class="trophy">🏆</div><h3>Nivel completado</h3><button class="btn btn-primary" onclick="goHome()">Volver a niveles</button></div>`;
+      <div class="panda-tip"><span style="font-size:2.5rem;">🐼</span><p><strong>Consejo:</strong> Completa cada paso y responde el QUIZ FINAL. Los retos extras están en la página principal.</p></div>
+      <div style="background:white; border-radius:24px; padding:1rem;"><h2>${titles[level]}</h2><p>Tutorial práctico paso a paso</p></div>
+      <div class="progress-wrap"><div class="progress-label"><span>📌 Progreso</span><span id="prog-txt-${level}">${stepProgress[level]} / ${stepTotals[level]}</span></div><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${(stepProgress[level]/stepTotals[level])*100}%"></div></div></div>
+      <div class="steps">${stepsHtml}</div>
+      <div class="quiz-box">${quizHtml}</div>
+      <div id="comp-${level}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1.5rem; margin-top:1rem;"><div style="font-size:3rem;">🏆</div><h3>¡Nivel completado!</h3><p>✅ Has completado todos los pasos y el quiz. El siguiente nivel ha sido desbloqueado.</p><button class="btn btn-primary" onclick="goHome()">Ver mi progreso</button></div>`;
+    attachQuizEvents(level, quizDataMap[level]);
     if (stepProgress[level] >= stepTotals[level] && quizDoneLevel[level]) document.getElementById(`comp-${level}`).style.display = 'block';
   }
-  window.markStepLevel = function(level, el) { markStep(level, el); };
-  window.checkQuizLevel = function(level, btn, correct) { checkQuiz(level, btn, correct); };
-  window.goHome = goHome;
-  window.openModule = openModule;
 
-  function launchConfetti() {
-    let canvas = document.getElementById('confetti-canvas');
-    canvas.style.display = 'block';
-    let ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    let pieces = [];
-    for(let i=0;i<150;i++) pieces.push({x:Math.random()*canvas.width,y:Math.random()* -canvas.height,w:8,h:5,vx:(Math.random()-0.5)*3,vy:Math.random()*5+2,c:`hsl(${Math.random()*360},70%,60%)`,r:0,rv:(Math.random()-0.5)*0.1});
-    let frame=0;
-    function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); pieces.forEach(p=>{ctx.fillStyle=p.c;ctx.fillRect(p.x,p.y,p.w,p.h); p.x+=p.vx; p.y+=p.vy; p.r+=p.rv}); frame++; if(frame<100) requestAnimationFrame(draw); else canvas.style.display='none';}
-    draw();
+  function openModule(id) { if (unlocked[id]) { generateFullModule(id); showView(id); } else alert("🔒 Nivel bloqueado. Completa el anterior (todos los pasos + quiz final)."); }
+  function showView(id) {
+    let home = document.getElementById('view-home');
+    let modules = document.querySelectorAll('.module-page');
+    if (id === 'home') { home.style.display = 'block'; modules.forEach(m => m.classList.remove('active')); renderHomeLevels(); renderGlobalChallenges(); }
+    else { home.style.display = 'none'; modules.forEach(m => m.classList.remove('active')); document.getElementById(`view-${id}`).classList.add('active'); window.scrollTo(0,0); }
   }
+  function goHome() { showView('home'); }
+  function launchConfettiMsg(msg) { alert(msg); launchConfetti(); }
+  function launchConfetti() { let canvas = document.getElementById('confetti-canvas'); canvas.style.display = 'block'; let ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight; let pieces = []; for(let i=0;i<140;i++) pieces.push({x:Math.random()*canvas.width,y:Math.random()* -canvas.height,w:8,h:6,vx:(Math.random()-0.5)*3,vy:Math.random()*5+2,c:`hsl(${Math.random()*360},70%,60%)`}); let f=0; function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); pieces.forEach(p=>{ ctx.fillStyle=p.c; ctx.fillRect(p.x,p.y,p.w,p.h); p.x+=p.vx; p.y+=p.vy; }); f++; if(f<100) requestAnimationFrame(draw); else canvas.style.display='none'; } draw(); }
 
+  window.markStepLevel = (level, el) => markStep(level, el);
   function init() {
-    loadFromLocal();
-    renderHomeLevels();
-    renderGlobalChallenges();
+    loadData(); renderHomeLevels(); renderGlobalChallenges();
     document.getElementById('btnStartTutorial').onclick = () => { document.getElementById('welcomeOverlay').style.display='none'; showView('home'); };
     document.getElementById('btnStartRetos').onclick = () => { document.getElementById('welcomeOverlay').style.display='none'; showView('home'); setTimeout(()=>document.getElementById('globalChallengesList').scrollIntoView({behavior:'smooth'}),100); };
-    document.getElementById('navHomeLink').onclick = (e) => { e.preventDefault(); showView('home'); };
-    document.getElementById('navLevelsLink').onclick = () => { showView('home'); setTimeout(()=>document.querySelector('.section-title').scrollIntoView({behavior:'smooth'}),100); };
+    document.getElementById('navHomeLink').onclick = () => showView('home');
+    document.getElementById('navLevelsLink').onclick = () => showView('home');
     document.getElementById('navChallengesLink').onclick = () => { showView('home'); setTimeout(()=>document.getElementById('globalChallengesList').scrollIntoView({behavior:'smooth'}),100); };
+    document.getElementById('navResourcesLink').onclick = () => { showView('home'); setTimeout(()=>document.querySelector('.summary-card').scrollIntoView({behavior:'smooth'}),100); };
     showView('home');
   }
   init();

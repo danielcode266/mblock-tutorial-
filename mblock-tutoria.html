@@ -49,19 +49,13 @@
   }
   
   body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: background 0.3s ease, color 0.2s ease; }
-  body::before { content: ''; position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 15% 20%, rgba(123,92,245,0.07) 0%, transparent 40%), radial-gradient(circle at 85% 70%, rgba(0,191,165,0.07) 0%, transparent 40%); pointer-events: none; transition: opacity 0.3s; }
-  body.dark-mode::before { opacity: 0.3; }
   
   @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.95) translateY(20px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
-  @keyframes fadeOutScale { 0% { opacity: 1; transform: scale(1) translateY(0); } 100% { opacity: 0; transform: scale(0.95) translateY(-20px); } }
-  @keyframes slideInRight { 0% { opacity: 0; transform: translateX(50px); } 100% { opacity: 1; transform: translateX(0); } }
   @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.95); } 100% { transform: scale(1); } }
   @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
   @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
   
   .animate-fade-in { animation: fadeInScale 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
-  .animate-fade-out { animation: fadeOutScale 0.25s ease forwards; }
-  .animate-slide-in { animation: slideInRight 0.35s ease forwards; }
   .animate-bounce { animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
   .animate-pulse { animation: pulse 0.3s ease-in-out; }
   .animate-shake { animation: shake 0.3s ease-in-out; }
@@ -70,7 +64,7 @@
   .module-page.active { display: block; }
   
   .control-buttons { display: flex; gap: 0.5rem; align-items: center; }
-  .dark-mode-toggle, .translate-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 99px; transition: all 0.2s; background: var(--card); color: var(--text); border: 1px solid var(--border); }
+  .dark-mode-toggle, .translate-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 99px; transition: all 0.2s; background: var(--card); color: var(--text); border: 1px solid var(--border); font-weight: bold; }
   .dark-mode-toggle:hover, .translate-toggle:hover { transform: scale(1.05); background: var(--purple); color: white; }
   
   .welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
@@ -80,15 +74,14 @@
   .btn-start:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(123,92,245,0.4); }
   .btn-start-outline { background: transparent; color: var(--purple); border: 2px solid var(--purple); }
   
-  nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; transition: all 0.3s ease; }
-  .nav-logo { font-family: 'Fredoka One', sans-serif; font-size: 1.4rem; color: var(--purple); cursor: pointer; transition: transform 0.2s; }
-  .nav-logo:hover { transform: scale(1.05); }
+  nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .nav-logo { font-family: 'Fredoka One', sans-serif; font-size: 1.4rem; color: var(--purple); cursor: pointer; }
   .nav-links { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
   .nav-links a { text-decoration: none; font-weight: 800; padding: 0.4rem 1rem; border-radius: 99px; color: var(--text-light); cursor: pointer; transition: all 0.2s; }
   .nav-links a:hover { background: var(--purple-l); color: var(--purple-d); transform: translateY(-2px); }
   
   main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 4rem; }
-  .section-title { font-family: 'Fredoka One', sans-serif; font-size: 1.8rem; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text); }
+  .section-title { font-family: 'Fredoka One', sans-serif; font-size: 1.8rem; margin: 2rem 0 1rem; color: var(--text); }
   
   .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
   .level-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.4rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); position: relative; color: var(--text); }
@@ -96,14 +89,12 @@
   .stars-container { display: flex; gap: 6px; margin: 12px 0 6px; font-size: 1.3rem; }
   .star-filled { color: var(--star); text-shadow: 0 0 2px gold; }
   .star-empty { color: #ddd; }
-  body.dark-mode .star-empty { color: #475569; }
-  .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.85); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px); font-weight: 800; color: white; border-radius: 20px; animation: fadeInScale 0.3s ease; }
+  .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.85); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px); font-weight: 800; color: white; border-radius: 20px; }
   
   .step { background: var(--card); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 1rem 1.2rem; margin-bottom: 0.75rem; display: flex; gap: 1rem; cursor: pointer; transition: all 0.25s ease; color: var(--text); }
-  .step:hover { transform: translateX(8px) scale(1.01); border-color: var(--purple); box-shadow: var(--shadow); }
+  .step:hover { transform: translateX(8px) scale(1.01); border-color: var(--purple); }
   .step.done { background: var(--green-l); border-color: var(--green); animation: pulse 0.3s ease; }
-  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; transition: transform 0.2s; }
-  .step:hover .step-num { transform: scale(1.1); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; }
   .progress-track { height: 12px; background: var(--progress-track); border-radius: 99px; overflow: hidden; margin: 0.5rem 0; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--sky)); width: 0%; transition: width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1); }
   .btn { font-weight: 800; padding: 0.6rem 1.5rem; border-radius: 99px; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
@@ -111,36 +102,29 @@
   .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 20px rgba(123,92,245,0.4); }
   .btn-secondary { background: var(--teal); color: white; }
   .back-btn { background: var(--card); border: 1px solid var(--border); margin-bottom: 1rem; padding: 0.4rem 1rem; border-radius: 60px; cursor: pointer; color: var(--text); transition: all 0.2s; }
-  .back-btn:hover { background: var(--purple-l); border-color: var(--purple); transform: translateX(-4px); }
+  .back-btn:hover { background: var(--purple-l); transform: translateX(-4px); }
   
-  .quiz-box { background: var(--card); border-radius: var(--radius); padding: 1.2rem; margin: 1rem 0; transition: all 0.3s; border: 1px solid var(--border); }
+  .quiz-box { background: var(--card); border-radius: var(--radius); padding: 1.2rem; margin: 1rem 0; border: 1px solid var(--border); }
   .q-btn { display: block; width: 100%; margin: 0.5rem 0; padding: 0.7rem; border-radius: 40px; border: 1px solid var(--border); background: var(--quiz-btn-bg); font-weight: 700; cursor: pointer; transition: all 0.2s ease; color: var(--text); }
   .q-btn:hover:not(:disabled) { transform: translateX(8px) scale(1.01); background: var(--purple-l); border-color: var(--purple); }
   .q-btn.correct { background: var(--green-l); border-color: var(--green); animation: bounceIn 0.4s ease; color: var(--green-d); }
   .q-btn.wrong { background: var(--orange-l); border-color: var(--orange); animation: shake 0.3s ease; color: var(--orange-d); }
-  .q-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .q-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .quiz-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 12px; font-weight: bold; text-align: center; }
   .quiz-feedback.error { background: var(--orange-l); color: var(--orange-d); border-left: 4px solid var(--orange); }
   .quiz-feedback.success { background: var(--green-l); color: var(--green-d); border-left: 4px solid var(--green); }
   .quiz-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
   
-  .code-block { background: var(--code-bg); color: var(--code-text); font-family: monospace; padding: 0.5rem 1rem; border-radius: 12px; margin-top: 0.5rem; font-size: 0.85rem; white-space: pre-wrap; }
-  .panda-tip { display: flex; gap: 1rem; background: var(--tip-bg); border-radius: 16px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--tip-border); transition: all 0.2s; animation: slideInRight 0.4s ease; color: var(--text); }
+  .panda-tip { display: flex; gap: 1rem; background: var(--tip-bg); border-radius: 16px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--tip-border); color: var(--text); }
   
-  .challenge-card { background: var(--challenge-bg); border-radius: 20px; padding: 1rem; margin: 0.5rem 0; border-left: 6px solid var(--challenge-border); cursor: pointer; transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--text); }
+  .challenge-card { background: var(--challenge-bg); border-radius: 20px; padding: 1rem; margin: 0.5rem 0; border-left: 6px solid var(--challenge-border); cursor: pointer; transition: all 0.25s; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--text); }
   .challenge-card:hover { transform: translateX(8px) scale(1.01); box-shadow: var(--shadow); }
   .challenge-badge { background: var(--teal); color: white; border-radius: 60px; padding: 0.2rem 0.8rem; font-size: 0.8rem; font-weight: bold; }
   
-  .challenge-stats { background: linear-gradient(135deg, var(--purple), var(--teal)); color: white; border-radius: 60px; padding: 0.5rem 1rem; display: inline-block; margin-bottom: 1rem; font-weight: bold; animation: fadeInScale 0.5s ease; }
+  .challenge-stats { background: linear-gradient(135deg, var(--purple), var(--teal)); color: white; border-radius: 60px; padding: 0.5rem 1rem; display: inline-block; margin-bottom: 1rem; font-weight: bold; }
   .summary-card { background: var(--card); border-radius: 24px; padding: 1.5rem; margin: 1rem 0; border: 1px solid var(--border); color: var(--text); }
   .resource-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
-  
-  #google_translate_element { display: none; }
-  .goog-te-banner-frame { display: none !important; }
-  #goog-gt-tt { display: none !important; }
-  .goog-te-menu-value { display: none !important; }
-  body { top: 0px !important; }
   
   #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 9999; display: none; }
   footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 2rem; }
@@ -154,112 +138,227 @@
 <div id="welcomeOverlay" class="welcome-overlay">
   <div class="welcome-card">
     <svg viewBox="0 0 120 120" width="100"><circle cx="26" cy="36" r="17" fill="#2C2C2A"/><circle cx="94" cy="36" r="17" fill="#2C2C2A"/><ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/><circle cx="60" cy="54" r="32" fill="#F5F5F5"/><ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/><ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/><circle cx="46" cy="46" r="4" fill="white"/><circle cx="78" cy="46" r="4" fill="white"/><ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/><path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2"/></svg>
-    <h2 style="color: var(--purple);">🐼 ¡Bienvenido! / Welcome!</h2>
-    <p>Aprende mBlock con <strong>4 niveles principales</strong> y <strong>24 retos extra</strong>. / Learn mBlock with <strong>4 main levels</strong> and <strong>24 extra challenges</strong>.</p>
-    <div class="start-buttons"><button id="btnStartTutorial" class="btn-start">📘 Comenzar / Start</button><button id="btnStartRetos" class="btn-start btn-start-outline">🏆 Ver 24 Retos / View 24 Challenges</button></div>
+    <h2 id="welcomeTitle" style="color: var(--purple);">🐼 ¡Bienvenido!</h2>
+    <p id="welcomeText">Aprende mBlock con <strong>4 niveles principales</strong> y <strong>24 retos extra</strong>. ¡Completa todo y conviértete en un experto!</p>
+    <div class="start-buttons"><button id="btnStartTutorial" class="btn-start">📘 Comenzar</button><button id="btnStartRetos" class="btn-start btn-start-outline">🏆 Ver 24 Retos</button></div>
   </div>
 </div>
 
-<nav><span id="navHomeLink" class="nav-logo">🐼 mBlock Aprende / Learn</span><div class="nav-links"><a id="navLevelsLink">📚 Niveles / Levels</a><a id="navChallengesLink">⭐ 24 Retos / Challenges</a><a id="navResourcesLink">🔗 Recursos / Resources</a><div class="control-buttons"><button id="darkModeToggle" class="dark-mode-toggle">🌙</button><button id="translateToggle" class="translate-toggle" title="English / Español">🇬🇧 EN</button></div></div></nav>
+<nav><span id="navHomeLink" class="nav-logo">🐼 mBlock Aprende</span><div class="nav-links"><a id="navLevelsLink">📚 Niveles</a><a id="navChallengesLink">⭐ 24 Retos</a><a id="navResourcesLink">🔗 Recursos</a><div class="control-buttons"><button id="darkModeToggle" class="dark-mode-toggle">🌙</button><button id="translateToggle" class="translate-toggle">🇬🇧 EN</button></div></div></nav>
 
 <main id="appMain">
   <div id="view-home">
-    <div style="background:var(--card); border-radius:60px; display:inline-block; padding:0.3rem 1.2rem; margin-bottom:1rem; border:1px solid var(--border);" id="totalStarsDisplay">⭐ Estrellas Totales / Total Stars: 0</div>
+    <div style="background:var(--card); border-radius:60px; display:inline-block; padding:0.3rem 1.2rem; margin-bottom:1rem; border:1px solid var(--border);" id="totalStarsDisplay">⭐ Estrellas Totales: 0</div>
     <div class="summary-card">
-      <h3>📖 ¿Qué es mBlock? / What is mBlock?</h3>
-      <p>mBlock es un entorno de programación visual basado en Scratch. Aprenderás desde movimientos básicos hasta programación de robots reales. / mBlock is a visual programming environment based on Scratch. You will learn from basic movements to real robot programming.</p>
+      <h3 id="whatIsTitle">📖 ¿Qué es mBlock?</h3>
+      <p id="whatIsText">mBlock es un entorno de programación visual basado en Scratch. Aprenderás desde movimientos básicos hasta programación de robots reales.</p>
       <div class="resource-buttons">
-        <a href="https://mblock.cc" target="_blank" class="btn btn-primary">🌐 Sitio Oficial / Official Site</a>
-        <a href="https://mblock.cc/download/" target="_blank" class="btn btn-primary" style="background:var(--teal);">⬇️ Descargar / Download</a>
-        <a href="https://ide.mblock.cc/" target="_blank" class="btn btn-primary" style="background:var(--orange);">☁️ Versión Online / Online Version</a>
+        <a href="https://mblock.cc" target="_blank" class="btn btn-primary" id="officialLink">🌐 Sitio Oficial</a>
+        <a href="https://mblock.cc/download/" target="_blank" class="btn btn-primary" style="background:var(--teal);" id="downloadLink">⬇️ Descargar</a>
+        <a href="https://ide.mblock.cc/" target="_blank" class="btn btn-primary" style="background:var(--orange);" id="onlineLink">☁️ Versión Online</a>
       </div>
     </div>
-    <div class="section-title">🗺️ Niveles Principales / Main Levels</div>
+    <div class="section-title" id="levelsTitle">🗺️ Niveles Principales</div>
     <div class="levels-grid" id="levelsContainer"></div>
-    <div class="section-title">🏅 24 RETOS EXTRA / 24 EXTRA CHALLENGES (Click en cada uno / Click each)</div>
-    <div id="challengeStats" class="challenge-stats">📊 Retos completados / Challenges completed: 0 / 24</div>
+    <div class="section-title" id="challengesTitle">🏅 24 RETOS EXTRA (Click en cada uno)</div>
+    <div id="challengeStats" class="challenge-stats">📊 Retos completados: 0 / 24</div>
     <div id="globalChallengesList"></div>
   </div>
   
-  <div id="view-beginner" class="module-page"></div><div id="view-intermediate" class="module-page"></div><div id="view-advanced" class="module-page"></div><div id="view-ranger" class="module-page"></div>
+  <div id="view-beginner" class="module-page"></div>
+  <div id="view-intermediate" class="module-page"></div>
+  <div id="view-advanced" class="module-page"></div>
+  <div id="view-ranger" class="module-page"></div>
   <div id="view-challenge-beginner-0" class="module-page"></div><div id="view-challenge-beginner-1" class="module-page"></div><div id="view-challenge-beginner-2" class="module-page"></div><div id="view-challenge-beginner-3" class="module-page"></div><div id="view-challenge-beginner-4" class="module-page"></div><div id="view-challenge-beginner-5" class="module-page"></div>
   <div id="view-challenge-intermediate-0" class="module-page"></div><div id="view-challenge-intermediate-1" class="module-page"></div><div id="view-challenge-intermediate-2" class="module-page"></div><div id="view-challenge-intermediate-3" class="module-page"></div><div id="view-challenge-intermediate-4" class="module-page"></div><div id="view-challenge-intermediate-5" class="module-page"></div>
   <div id="view-challenge-advanced-0" class="module-page"></div><div id="view-challenge-advanced-1" class="module-page"></div><div id="view-challenge-advanced-2" class="module-page"></div><div id="view-challenge-advanced-3" class="module-page"></div><div id="view-challenge-advanced-4" class="module-page"></div><div id="view-challenge-advanced-5" class="module-page"></div>
   <div id="view-challenge-ranger-0" class="module-page"></div><div id="view-challenge-ranger-1" class="module-page"></div><div id="view-challenge-ranger-2" class="module-page"></div><div id="view-challenge-ranger-3" class="module-page"></div><div id="view-challenge-ranger-4" class="module-page"></div><div id="view-challenge-ranger-5" class="module-page"></div>
 </main>
-<footer>🐼 4 Niveles + 24 Retos • Modo oscuro • Traducción EN/ES • Quiz con Reintento</footer>
+<footer id="footerText">🐼 4 Niveles + 24 Retos • Modo oscuro • Traducción EN/ES • Quiz con Reintento</footer>
 
 <script>
-  const challengesData = {
-    beginner: [
-      { name: "Mi primer diálogo / My first dialog", desc: "Haz que el Panda diga '¡Me encanta programar!' y avance 80 pasos. / Make the Panda say 'I love programming!' and move 80 steps.", steps: ["Agrega 'al presionar 🚩' / Add 'when 🚩 clicked'", "Agrega 'decir [¡Me encanta programar!] por 2 segundos' / Add 'say [I love programming!] for 2 seconds'", "Agrega 'mover 80 pasos' / Add 'move 80 steps'", "Ejecuta con la bandera verde / Run with green flag", "Prueba cambiando el mensaje / Try changing the message"], quiz: { question: "¿Qué bloque se usa para mostrar un mensaje? / Which block shows a message?", correct: "decir / say", options: ["pensar / think", "decir / say", "mostrar / show", "escribir / write"] } },
-      { name: "Movimiento con mensaje / Movement with message", desc: "Mueve el Panda 100 pasos y luego dice 'Llegué'. / Move Panda 100 steps and say 'I arrived'.", steps: ["Evento 'al presionar 🚩' / 'when 🚩 clicked'", "'mover 100 pasos' / 'move 100 steps'", "'decir [Llegué] por 2 segundos' / 'say [I arrived] for 2 seconds'", "Ejecuta / Run", "Cambia a 150 pasos / Change to 150 steps"], quiz: { question: "¿Qué categoría contiene el bloque 'mover'? / Which category contains 'move' block?", correct: "Movimiento / Motion", options: ["Eventos / Events", "Movimiento / Motion", "Apariencia / Looks", "Control / Control"] } },
-      { name: "Triángulo con repetición / Triangle with repeat", desc: "Usa 'repetir 3' para hacer un triángulo. / Use 'repeat 3' to make a triangle.", steps: ["Evento 'al presionar 🚩'", "'repetir 3' / 'repeat 3'", "Dentro: 'mover 100', 'girar 120°' / Inside: 'move 100', 'turn 120°'", "Ejecuta / Run", "Prueba con 4 para cuadrado / Try 4 for square"], quiz: { question: "¿Cuántos grados para triángulo equilátero? / Degrees for equilateral triangle?", correct: "120", options: ["90", "120", "60", "180"] } },
-      { name: "Cambiar fondo / Change backdrop", desc: "Cambia el fondo del escenario. / Change the stage backdrop.", steps: ["Evento 'al presionar 🚩'", "'cambiar fondo al siguiente' / 'next backdrop'", "'esperar 1 segundo' / 'wait 1 second'", "Repite / Repeat", "Usa fondo específico / Use specific backdrop"], quiz: { question: "¿En qué categoría está cambiar fondo? / Which category is change backdrop?", correct: "Apariencia / Looks", options: ["Movimiento / Motion", "Eventos / Events", "Apariencia / Looks", "Sonido / Sound"] } },
-      { name: "Sonido de aplauso / Applause sound", desc: "Agrega sonido al terminar. / Add sound when finished.", steps: ["Evento 'al presionar 🚩'", "'mover 100 pasos'", "'reproducir sonido aplauso' / 'play sound applause'", "Agrega 'decir Bien hecho' / Add 'say Well done'", "Prueba otro sonido / Try another sound"], quiz: { question: "¿Qué categoría contiene los sonidos? / Which category contains sounds?", correct: "Sonido / Sound", options: ["Música / Music", "Sonido / Sound", "Control / Control", "Eventos / Events"] } },
-      { name: "Deslizar a posición / Glide to position", desc: "Usa 'ir a' y 'deslizar'. / Use 'go to' and 'glide'.", steps: ["Evento 'al presionar 🚩'", "'ir a x:0 y:0' / 'go to x:0 y:0'", "'deslizar en 1 seg a x:200 y:0' / 'glide 1 secs to x:200 y:0'", "Agrega sonido / Add sound", "Prueba otras coordenadas / Try other coordinates"], quiz: { question: "¿Qué hace 'deslizar'? / What does 'glide' do?", correct: "Mover suavemente / Move smoothly", options: ["Teletransportar / Teleport", "Mover suavemente / Move smoothly", "Girar / Turn", "Esperar / Wait"] } }
-    ],
-    intermediate: [
-      { name: "Rutina de baile / Dance routine", desc: "Cambia disfraz 6 veces + sonido pop. / Change costume 6 times + pop sound.", steps: ["Evento 'al presionar 🚩'", "'repetir 6' / 'repeat 6'", "Dentro: 'cambiar disfraz', 'esperar 0.3s', 'pop' / Inside: 'next costume', 'wait 0.3s', 'pop'", "Ejecuta / Run", "Cambia velocidad / Change speed"], quiz: { question: "¿Qué bloque pausa la animación? / Which block pauses animation?", correct: "esperar / wait", options: ["pausar / pause", "esperar / wait", "detener / stop", "repetir / repeat"] } },
-      { name: "Arcoíris de colores / Color rainbow", desc: "Cambia efecto color en bucle. / Change color effect in loop.", steps: ["Evento 'al presionar 🚩'", "'por siempre' / 'forever'", "'cambiar efecto color en 25', 'esperar 0.1s' / 'change color effect by 25', 'wait 0.1s'"], quiz: { question: "¿Qué efecto cambia los colores? / Which effect changes colors?", correct: "color", options: ["brillo / brightness", "color", "remolino / whirl", "transparencia / transparency"] } },
-      { name: "Contar del 1 al 5 / Count 1 to 5", desc: "Cuenta usando variable. / Count using variable.", steps: ["Evento 'al presionar 🚩'", "Crear variable 'contador' / Create variable 'counter'", "'repetir 5'", "Dentro: 'decir contador', 'sumar 1', 'esperar 1s'"], quiz: { question: "¿Qué guarda números? / What stores numbers?", correct: "Variable", options: ["Lista / List", "Variable", "Operador / Operator", "Constante / Constant"] } },
-      { name: "Alternar disfraces / Alternate costumes", desc: "Alterna dos disfraces. / Alternate two costumes.", steps: ["Evento 'al presionar 🚩'", "'repetir 5'", "'cambiar disfraz a A', 'esperar 0.5s', 'cambiar a B', 'esperar 0.5s'"], quiz: { question: "¿Qué bloque cambia a disfraz específico? / Which block changes to specific costume?", correct: "cambiar disfraz a / switch costume to", options: ["cambiar al siguiente / next costume", "cambiar disfraz a / switch costume to", "siguiente / next", "elegir / choose"] } },
-      { name: "Melodía de 3 sonidos / 3 sound melody", desc: "Tres sonidos seguidos. / Three sounds in a row.", steps: ["Evento 'al presionar 🚩'", "Sonido1", "Sonido2", "Sonido3", "Agrega esperas / Add waits"], quiz: { question: "¿Qué bloque reproduce sin esperar? / Which block plays without waiting?", correct: "reproducir sonido / play sound", options: ["reproducir hasta terminar / play until done", "reproducir sonido / play sound", "tocar nota / play note", "iniciar / start"] } },
-      { name: "Efecto remolino / Whirl effect", desc: "Agrega remolino al moverse. / Add whirl effect while moving.", steps: ["Evento 'al presionar 🚩'", "'por siempre'", "'cambiar efecto remolino en 10'", "'mover 5 pasos'", "'quitar efectos'"], quiz: { question: "¿Qué bloque elimina efectos? / Which block removes effects?", correct: "quitar todos los efectos / clear graphic effects", options: ["borrar / delete", "resetear / reset", "quitar todos / clear all", "limpiar / clean"] } }
-    ],
-    advanced: [
-      { name: "Contador de puntos / Score counter", desc: "Variable score, suma con espacio. / Score variable, add with space.", steps: ["Crear 'score'", "Evento espacio: sumar 1 / Space event: add 1", "Si score=5 decir Ganaste / If score=5 say You win", "Inicializar en 0 / Initialize to 0"], quiz: { question: "¿Qué estructura decide condiciones? / Which structure decides conditions?", correct: "si entonces / if then", options: ["repetir / repeat", "si entonces / if then", "por siempre / forever", "esperar / wait"] } },
-      { name: "Cuenta regresiva / Countdown", desc: "De 10 a 0. / From 10 to 0.", steps: ["Variable cuenta=10 / Variable count=10", "'repetir hasta que cuenta=0' / 'repeat until count=0'", "Decir cuenta, restar 1, esperar / Say count, subtract 1, wait", "Decir Despegue / Say Blast off"], quiz: { question: "¿Qué bloque repite hasta condición? / Which block repeats until condition?", correct: "repetir hasta que / repeat until", options: ["repetir N / repeat N", "por siempre / forever", "repetir hasta que / repeat until", "mientras / while"] } },
-      { name: "Rebote en borde / Bounce on edge", desc: "Rebota al tocar borde. / Bounce when touching edge.", steps: ["Evento 🚩", "'por siempre'", "'mover 10'", "'si tocando borde? entonces rebotar' / 'if touching edge? then bounce'"], quiz: { question: "¿Qué bloque detecta el borde? / Which block detects edge?", correct: "¿tocando borde? / touching edge?", options: ["¿tocando? / touching?", "¿borde? / edge?", "¿tocando borde? / touching edge?", "¿colisionando? / colliding?"] } },
-      { name: "Número aleatorio / Random number", desc: "Genera número y compara. / Generate number and compare.", steps: ["Evento 🚩", "numero = aleatorio 1-10 / number = random 1-10", "Decir numero / Say number", "Si >5 decir Mayor / If >5 say Greater"], quiz: { question: "¿Qué bloque genera aleatorio? / Which block generates random?", correct: "número aleatorio entre / pick random", options: ["azar / random", "aleatorio / random", "número aleatorio entre / pick random", "random"] } },
-      { name: "Lista de nombres / Name list", desc: "Muestra nombre aleatorio. / Show random name.", steps: ["Crear lista nombres / Create list names", "Agregar Ana, Luis, Carlos / Add Ana, Luis, Carlos", "Decir elemento aleatorio / Say random item"], quiz: { question: "¿Qué bloque obtiene elemento aleatorio? / Which block gets random item?", correct: "elemento aleatorio de / random item of", options: ["primero / first", "elemento aleatorio de / random item of", "último / last", "elegir / choose"] } },
-      { name: "Seguir al mouse / Follow mouse", desc: "El Panda sigue al mouse. / Panda follows mouse.", steps: ["Evento 🚩", "'por siempre'", "'apuntar hacia mouse' / 'point towards mouse'", "'mover 5 pasos'"], quiz: { question: "¿Qué bloque apunta al mouse? / Which block points to mouse?", correct: "apuntar hacia / point towards", options: ["mirar hacia / look towards", "apuntar hacia / point towards", "seguir / follow", "dirección / direction"] } }
-    ],
-    ranger: [
-      { name: "Evitar obstáculos / Avoid obstacles", desc: "Sensor distancia <20 → girar. / Distance sensor <20 → turn.", steps: ["Evento 🚩", "'por siempre'", "Si distancia<20: girar izq, LED rojo / If distance<20: turn left, LED red", "Sino: avanzar, LED verde / Else: forward, LED green"], quiz: { question: "¿Qué sensor mide distancia? / Which sensor measures distance?", correct: "Sensor ultrasónico / Ultrasonic sensor", options: ["Sensor de línea / Line sensor", "Sensor ultrasónico / Ultrasonic sensor", "Sensor de luz / Light sensor", "Sensor infrarrojo / Infrared sensor"] } },
-      { name: "Seguidor de línea / Line follower", desc: "Sigue línea negra. / Follows black line.", steps: ["Evento 🚩", "'por siempre'", "Si línea izq=negro: girar izq / If left line=black: turn left", "Si línea der=negro: girar der / If right line=black: turn right", "Sino: avanzar / Else: forward"], quiz: { question: "¿Qué sensor detecta línea negra? / Which sensor detects black line?", correct: "Sensor de línea / Line sensor", options: ["Sensor de distancia / Distance sensor", "Sensor de línea / Line sensor", "Sensor de color / Color sensor", "Sensor de luz / Light sensor"] } },
-      { name: "LED por distancia / LED by distance", desc: "LED según distancia. / LED based on distance.", steps: ["'por siempre'", "Si <15: LED rojo / If <15: LED red", "Si 15-30: LED amarillo / If 15-30: LED yellow", "Si >30: LED verde / If >30: LED green"], quiz: { question: "¿Qué color representa peligro? / Which color represents danger?", correct: "Rojo / Red", options: ["Verde / Green", "Azul / Blue", "Rojo / Red", "Amarillo / Yellow"] } },
-      { name: "Control por teclado / Keyboard control", desc: "Flechas controlan robot. / Arrows control robot.", steps: ["↑: avanzar / up: forward", "↓: retroceder / down: backward", "←: girar izq / left: turn left", "→: girar der / right: turn right", "Espacio: detener / Space: stop"], quiz: { question: "¿Qué tecla para avanzar? / Which key for forward?", correct: "↑", options: ["↓", "→", "↑", "←"] } },
-      { name: "Baile con sensor / Dance with sensor", desc: "Baile al detectar cerca. / Dance when detects close.", steps: ["'por siempre'", "Si distancia<15: repetir 3 avanzar/retroceder/girar / If distance<15: repeat 3 forward/back/turn", "Reproducir sonido / Play sound"], quiz: { question: "¿Qué hace el robot al detectar obstáculo? / What does robot do when detecting obstacle?", correct: "Reacciona con un baile / Reacts with a dance", options: ["Se detiene / Stops", "Reacciona con un baile / Reacts with a dance", "Acelera / Speeds up", "Apaga LEDs / Turns off LEDs"] } },
-      { name: "Patrón cuadrado / Square pattern", desc: "Hace un cuadrado. / Makes a square.", steps: ["Evento 🚩", "'repetir 4' / 'repeat 4'", "'avanzar 2s' / 'forward 2s'", "'girar derecha 1s' / 'turn right 1s'"], quiz: { question: "¿Repeticiones para cuadrado? / Repetitions for square?", correct: "4", options: ["3", "4", "5", "6"] } }
-    ]
+  // Textos en español e inglés
+  const translations = {
+    es: {
+      navLogo: "🐼 mBlock Aprende", navLevels: "📚 Niveles", navChallenges: "⭐ 24 Retos", navResources: "🔗 Recursos",
+      totalStars: "⭐ Estrellas Totales:", whatIsTitle: "📖 ¿Qué es mBlock?", whatIsText: "mBlock es un entorno de programación visual basado en Scratch. Aprenderás desde movimientos básicos hasta programación de robots reales.",
+      officialLink: "🌐 Sitio Oficial", downloadLink: "⬇️ Descargar", onlineLink: "☁️ Versión Online",
+      levelsTitle: "🗺️ Niveles Principales", challengesTitle: "🏅 24 RETOS EXTRA (Click en cada uno)",
+      challengeStats: "📊 Retos completados:", welcomeTitle: "🐼 ¡Bienvenido!", welcomeText: "Aprende mBlock con <strong>4 niveles principales</strong> y <strong>24 retos extra</strong>. ¡Completa todo y conviértete en un experto!",
+      startTutorial: "📘 Comenzar", startChallenges: "🏆 Ver 24 Retos", footer: "🐼 4 Niveles + 24 Retos • Modo oscuro • Traducción EN/ES • Quiz con Reintento",
+      locked: "🔒 Completa el nivel anterior", back: "← Volver", completeToAdvance: "Completa para avanzar",
+      levelCompleted: "🏆 ¡Nivel completado!", backBtn: "Volver", challengeCompleted: "🏆 ¡Reto completado!",
+      retryQuiz: "🔄 Reintentar Quiz", backToChallenge: "📚 Volver al Reto", step: "Paso",
+      correct: "✅ ¡Correcto! Has superado el quiz.", incorrect: "❌ Respuesta incorrecta. Revisa el tutorial.",
+      correctChallenge: "✅ ¡Correcto! Reto completado correctamente.", incorrectChallenge: "❌ Respuesta incorrecta. ¡Sigue practicando! Puedes reintentar el quiz.",
+      markComplete: "✅ Marca al completar"
+    },
+    en: {
+      navLogo: "🐼 mBlock Learn", navLevels: "📚 Levels", navChallenges: "⭐ 24 Challenges", navResources: "🔗 Resources",
+      totalStars: "⭐ Total Stars:", whatIsTitle: "📖 What is mBlock?", whatIsText: "mBlock is a visual programming environment based on Scratch. You will learn from basic movements to real robot programming.",
+      officialLink: "🌐 Official Site", downloadLink: "⬇️ Download", onlineLink: "☁️ Online Version",
+      levelsTitle: "🗺️ Main Levels", challengesTitle: "🏅 24 EXTRA CHALLENGES (Click each one)",
+      challengeStats: "📊 Challenges completed:", welcomeTitle: "🐼 Welcome!", welcomeText: "Learn mBlock with <strong>4 main levels</strong> and <strong>24 extra challenges</strong>. Complete everything and become an expert!",
+      startTutorial: "📘 Start", startChallenges: "🏆 View 24 Challenges", footer: "🐼 4 Levels + 24 Challenges • Dark mode • EN/ES Translation • Quiz with Retry",
+      locked: "🔒 Complete previous level", back: "← Back", completeToAdvance: "Complete to advance",
+      levelCompleted: "🏆 Level completed!", backBtn: "Back", challengeCompleted: "🏆 Challenge completed!",
+      retryQuiz: "🔄 Retry Quiz", backToChallenge: "📚 Back to Challenge", step: "Step",
+      correct: "✅ Correct! You passed the quiz.", incorrect: "❌ Incorrect answer. Review the tutorial.",
+      correctChallenge: "✅ Correct! Challenge completed successfully!", incorrectChallenge: "❌ Incorrect answer. Keep practicing! You can retry the quiz.",
+      markComplete: "✅ Mark when completed"
+    }
   };
-
+  
+  let currentLang = 'es';
   let userStars = 0, levelStars = { beginner:0, intermediate:0, advanced:0, ranger:0 };
   let unlocked = { beginner: true, intermediate: false, advanced: false, ranger: false };
   let stepProgress = { beginner:0, intermediate:0, advanced:0, ranger:0 };
   let quizDoneLevel = { beginner:false, intermediate:false, advanced:false, ranger:false };
   let challengeProgress = {}, challengeQuizDone = {};
 
-  function initChallengeState() { for (let l of ['beginner','intermediate','advanced','ranger']) { challengeProgress[l]=challengeProgress[l]||[]; challengeQuizDone[l]=challengeQuizDone[l]||[]; for(let i=0;i<6;i++){ if(challengeProgress[l][i]===undefined) challengeProgress[l][i]=0; if(challengeQuizDone[l][i]===undefined) challengeQuizDone[l][i]=false; } } }
-  function saveData() { localStorage.setItem('mblockFullDataFinal2', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, challengeProgress, challengeQuizDone })); }
-  function loadData() { let d = localStorage.getItem('mblockFullDataFinal2'); if(d){ let p=JSON.parse(d); userStars=p.userStars||0; levelStars=p.levelStars||{beginner:0,intermediate:0,advanced:0,ranger:0}; unlocked=p.unlocked||{beginner:true,intermediate:false,advanced:false,ranger:false}; stepProgress=p.stepProgress||{beginner:0,intermediate:0,advanced:0,ranger:0}; quizDoneLevel=p.quizDoneLevel||{beginner:false,intermediate:false,advanced:false,ranger:false}; challengeProgress=p.challengeProgress||{}; challengeQuizDone=p.challengeQuizDone||{}; } initChallengeState(); }
+  // DATOS DE RETOS CON RESPUESTAS CORRECTAS CLARAS
+  const challengeData = {
+    beginner: [
+      { name_es: "Mi primer diálogo", name_en: "My first dialog", desc_es: "Haz que el Panda diga '¡Me encanta programar!' y avance 80 pasos.", desc_en: "Make the Panda say 'I love programming!' and move 80 steps.", steps_es: ["Agrega 'al presionar 🚩'", "Agrega 'decir [¡Me encanta programar!] por 2 segundos'", "Agrega 'mover 80 pasos'", "Ejecuta con la bandera verde", "Prueba cambiando el mensaje"], steps_en: ["Add 'when 🚩 clicked'", "Add 'say [I love programming!] for 2 seconds'", "Add 'move 80 steps'", "Run with green flag", "Try changing the message"], correct_es: "decir", correct_en: "say", options_es: ["pensar", "decir", "mostrar", "escribir"], options_en: ["think", "say", "show", "write"] },
+      { name_es: "Movimiento con mensaje", name_en: "Movement with message", desc_es: "Mueve el Panda 100 pasos y luego dice 'Llegué'.", desc_en: "Move Panda 100 steps and say 'I arrived'.", steps_es: ["Evento 'al presionar 🚩'", "'mover 100 pasos'", "'decir [Llegué] por 2 segundos'", "Ejecuta", "Cambia a 150 pasos"], steps_en: ["'when 🚩 clicked'", "'move 100 steps'", "'say [I arrived] for 2 seconds'", "Run", "Change to 150 steps"], correct_es: "Movimiento", correct_en: "Motion", options_es: ["Eventos", "Movimiento", "Apariencia", "Control"], options_en: ["Events", "Motion", "Looks", "Control"] },
+      { name_es: "Triángulo con repetición", name_en: "Triangle with repeat", desc_es: "Usa 'repetir 3' para hacer un triángulo.", desc_en: "Use 'repeat 3' to make a triangle.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 3'", "Dentro: 'mover 100', 'girar 120°'", "Ejecuta", "Prueba con 4 para cuadrado"], steps_en: ["'when 🚩 clicked'", "'repeat 3'", "Inside: 'move 100', 'turn 120°'", "Run", "Try 4 for square"], correct_es: "120", correct_en: "120", options_es: ["90", "120", "60", "180"], options_en: ["90", "120", "60", "180"] },
+      { name_es: "Cambiar fondo", name_en: "Change backdrop", desc_es: "Cambia el fondo del escenario.", desc_en: "Change the stage backdrop.", steps_es: ["Evento 'al presionar 🚩'", "'cambiar fondo al siguiente'", "'esperar 1 segundo'", "Repite", "Usa fondo específico"], steps_en: ["'when 🚩 clicked'", "'next backdrop'", "'wait 1 second'", "Repeat", "Use specific backdrop"], correct_es: "Apariencia", correct_en: "Looks", options_es: ["Movimiento", "Eventos", "Apariencia", "Sonido"], options_en: ["Motion", "Events", "Looks", "Sound"] },
+      { name_es: "Sonido de aplauso", name_en: "Applause sound", desc_es: "Agrega sonido al terminar.", desc_en: "Add sound when finished.", steps_es: ["Evento 'al presionar 🚩'", "'mover 100 pasos'", "'reproducir sonido aplauso'", "Agrega 'decir Bien hecho'", "Prueba otro sonido"], steps_en: ["'when 🚩 clicked'", "'move 100 steps'", "'play sound applause'", "Add 'say Well done'", "Try another sound"], correct_es: "Sonido", correct_en: "Sound", options_es: ["Música", "Sonido", "Control", "Eventos"], options_en: ["Music", "Sound", "Control", "Events"] },
+      { name_es: "Deslizar a posición", name_en: "Glide to position", desc_es: "Usa 'ir a' y 'deslizar'.", desc_en: "Use 'go to' and 'glide'.", steps_es: ["Evento 'al presionar 🚩'", "'ir a x:0 y:0'", "'deslizar en 1 seg a x:200 y:0'", "Agrega sonido", "Prueba otras coordenadas"], steps_en: ["'when 🚩 clicked'", "'go to x:0 y:0'", "'glide 1 secs to x:200 y:0'", "Add sound", "Try other coordinates"], correct_es: "Mover suavemente", correct_en: "Move smoothly", options_es: ["Teletransportar", "Mover suavemente", "Girar", "Esperar"], options_en: ["Teleport", "Move smoothly", "Turn", "Wait"] }
+    ],
+    intermediate: [
+      { name_es: "Rutina de baile", name_en: "Dance routine", desc_es: "Cambia disfraz 6 veces + sonido pop.", desc_en: "Change costume 6 times + pop sound.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 6'", "Dentro: 'cambiar disfraz', 'esperar 0.3s', 'pop'", "Ejecuta", "Cambia velocidad"], steps_en: ["'when 🚩 clicked'", "'repeat 6'", "Inside: 'next costume', 'wait 0.3s', 'pop'", "Run", "Change speed"], correct_es: "esperar", correct_en: "wait", options_es: ["pausar", "esperar", "detener", "repetir"], options_en: ["pause", "wait", "stop", "repeat"] },
+      { name_es: "Arcoíris de colores", name_en: "Color rainbow", desc_es: "Cambia efecto color en bucle.", desc_en: "Change color effect in loop.", steps_es: ["Evento 'al presionar 🚩'", "'por siempre'", "'cambiar efecto color en 25', 'esperar 0.1s'"], steps_en: ["'when 🚩 clicked'", "'forever'", "'change color effect by 25', 'wait 0.1s'"], correct_es: "color", correct_en: "color", options_es: ["brillo", "color", "remolino", "transparencia"], options_en: ["brightness", "color", "whirl", "transparency"] },
+      { name_es: "Contar del 1 al 5", name_en: "Count 1 to 5", desc_es: "Cuenta usando variable.", desc_en: "Count using variable.", steps_es: ["Evento 'al presionar 🚩'", "Crear variable 'contador'", "'repetir 5'", "Dentro: 'decir contador', 'sumar 1', 'esperar 1s'"], steps_en: ["'when 🚩 clicked'", "Create variable 'counter'", "'repeat 5'", "Inside: 'say counter', 'add 1', 'wait 1s'"], correct_es: "Variable", correct_en: "Variable", options_es: ["Lista", "Variable", "Operador", "Constante"], options_en: ["List", "Variable", "Operator", "Constant"] },
+      { name_es: "Alternar disfraces", name_en: "Alternate costumes", desc_es: "Alterna dos disfraces.", desc_en: "Alternate two costumes.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 5'", "'cambiar disfraz a A', 'esperar 0.5s', 'cambiar a B', 'esperar 0.5s'"], steps_en: ["'when 🚩 clicked'", "'repeat 5'", "'switch costume to A', 'wait 0.5s', 'switch to B', 'wait 0.5s'"], correct_es: "cambiar disfraz a", correct_en: "switch costume to", options_es: ["cambiar al siguiente", "cambiar disfraz a", "siguiente", "elegir"], options_en: ["next costume", "switch costume to", "next", "choose"] },
+      { name_es: "Melodía de 3 sonidos", name_en: "3 sound melody", desc_es: "Tres sonidos seguidos.", desc_en: "Three sounds in a row.", steps_es: ["Evento 'al presionar 🚩'", "Sonido1", "Sonido2", "Sonido3", "Agrega esperas"], steps_en: ["'when 🚩 clicked'", "Sound1", "Sound2", "Sound3", "Add waits"], correct_es: "reproducir sonido", correct_en: "play sound", options_es: ["reproducir hasta terminar", "reproducir sonido", "tocar nota", "iniciar"], options_en: ["play until done", "play sound", "play note", "start"] },
+      { name_es: "Efecto remolino", name_en: "Whirl effect", desc_es: "Agrega remolino al moverse.", desc_en: "Add whirl effect while moving.", steps_es: ["Evento 'al presionar 🚩'", "'por siempre'", "'cambiar efecto remolino en 10'", "'mover 5 pasos'", "'quitar efectos'"], steps_en: ["'when 🚩 clicked'", "'forever'", "'change whirl effect by 10'", "'move 5 steps'", "'clear effects'"], correct_es: "quitar todos los efectos", correct_en: "clear graphic effects", options_es: ["borrar", "resetear", "quitar todos", "limpiar"], options_en: ["delete", "reset", "clear all", "clean"] }
+    ],
+    advanced: [
+      { name_es: "Contador de puntos", name_en: "Score counter", desc_es: "Variable score, suma con espacio.", desc_en: "Score variable, add with space.", steps_es: ["Crear 'score'", "Evento espacio: sumar 1", "Si score=5 decir Ganaste", "Inicializar en 0"], steps_en: ["Create 'score'", "Space event: add 1", "If score=5 say You win", "Initialize to 0"], correct_es: "si entonces", correct_en: "if then", options_es: ["repetir", "si entonces", "por siempre", "esperar"], options_en: ["repeat", "if then", "forever", "wait"] },
+      { name_es: "Cuenta regresiva", name_en: "Countdown", desc_es: "De 10 a 0.", desc_en: "From 10 to 0.", steps_es: ["Variable cuenta=10", "'repetir hasta que cuenta=0'", "Decir cuenta, restar 1, esperar", "Decir Despegue"], steps_en: ["Variable count=10", "'repeat until count=0'", "Say count, subtract 1, wait", "Say Blast off"], correct_es: "repetir hasta que", correct_en: "repeat until", options_es: ["repetir N", "por siempre", "repetir hasta que", "mientras"], options_en: ["repeat N", "forever", "repeat until", "while"] },
+      { name_es: "Rebote en borde", name_en: "Bounce on edge", desc_es: "Rebota al tocar borde.", desc_en: "Bounce when touching edge.", steps_es: ["Evento 🚩", "'por siempre'", "'mover 10'", "'si tocando borde? entonces rebotar'"], steps_en: ["Event 🚩", "'forever'", "'move 10'", "'if touching edge? then bounce'"], correct_es: "¿tocando borde?", correct_en: "touching edge?", options_es: ["¿tocando?", "¿borde?", "¿tocando borde?", "¿colisionando?"], options_en: ["touching?", "edge?", "touching edge?", "colliding?"] },
+      { name_es: "Número aleatorio", name_en: "Random number", desc_es: "Genera número y compara.", desc_en: "Generate number and compare.", steps_es: ["Evento 🚩", "numero = aleatorio 1-10", "Decir numero", "Si >5 decir Mayor"], steps_en: ["Event 🚩", "number = random 1-10", "Say number", "If >5 say Greater"], correct_es: "número aleatorio entre", correct_en: "pick random", options_es: ["azar", "aleatorio", "número aleatorio entre", "random"], options_en: ["random", "random", "pick random", "random"] },
+      { name_es: "Lista de nombres", name_en: "Name list", desc_es: "Muestra nombre aleatorio.", desc_en: "Show random name.", steps_es: ["Crear lista nombres", "Agregar Ana, Luis, Carlos", "Decir elemento aleatorio"], steps_en: ["Create list names", "Add Ana, Luis, Carlos", "Say random item"], correct_es: "elemento aleatorio de", correct_en: "random item of", options_es: ["primero", "elemento aleatorio de", "último", "elegir"], options_en: ["first", "random item of", "last", "choose"] },
+      { name_es: "Seguir al mouse", name_en: "Follow mouse", desc_es: "El Panda sigue al mouse.", desc_en: "Panda follows mouse.", steps_es: ["Evento 🚩", "'por siempre'", "'apuntar hacia mouse'", "'mover 5 pasos'"], steps_en: ["Event 🚩", "'forever'", "'point towards mouse'", "'move 5 steps'"], correct_es: "apuntar hacia", correct_en: "point towards", options_es: ["mirar hacia", "apuntar hacia", "seguir", "dirección"], options_en: ["look towards", "point towards", "follow", "direction"] }
+    ],
+    ranger: [
+      { name_es: "Evitar obstáculos", name_en: "Avoid obstacles", desc_es: "Sensor distancia <20 → girar.", desc_en: "Distance sensor <20 → turn.", steps_es: ["Evento 🚩", "'por siempre'", "Si distancia<20: girar izq, LED rojo", "Sino: avanzar, LED verde"], steps_en: ["Event 🚩", "'forever'", "If distance<20: turn left, LED red", "Else: forward, LED green"], correct_es: "Sensor ultrasónico", correct_en: "Ultrasonic sensor", options_es: ["Sensor de línea", "Sensor ultrasónico", "Sensor de luz", "Sensor infrarrojo"], options_en: ["Line sensor", "Ultrasonic sensor", "Light sensor", "Infrared sensor"] },
+      { name_es: "Seguidor de línea", name_en: "Line follower", desc_es: "Sigue línea negra.", desc_en: "Follows black line.", steps_es: ["Evento 🚩", "'por siempre'", "Si línea izq=negro: girar izq", "Si línea der=negro: girar der", "Sino: avanzar"], steps_en: ["Event 🚩", "'forever'", "If left line=black: turn left", "If right line=black: turn right", "Else: forward"], correct_es: "Sensor de línea", correct_en: "Line sensor", options_es: ["Sensor de distancia", "Sensor de línea", "Sensor de color", "Sensor de luz"], options_en: ["Distance sensor", "Line sensor", "Color sensor", "Light sensor"] },
+      { name_es: "LED por distancia", name_en: "LED by distance", desc_es: "LED según distancia.", desc_en: "LED based on distance.", steps_es: ["'por siempre'", "Si <15: LED rojo", "Si 15-30: LED amarillo", "Si >30: LED verde"], steps_en: ["'forever'", "If <15: LED red", "If 15-30: LED yellow", "If >30: LED green"], correct_es: "Rojo", correct_en: "Red", options_es: ["Verde", "Azul", "Rojo", "Amarillo"], options_en: ["Green", "Blue", "Red", "Yellow"] },
+      { name_es: "Control por teclado", name_en: "Keyboard control", desc_es: "Flechas controlan robot.", desc_en: "Arrows control robot.", steps_es: ["↑: avanzar", "↓: retroceder", "←: girar izq", "→: girar der", "Espacio: detener"], steps_en: ["↑: forward", "↓: backward", "←: turn left", "→: turn right", "Space: stop"], correct_es: "↑", correct_en: "↑", options_es: ["↓", "→", "↑", "←"], options_en: ["↓", "→", "↑", "←"] },
+      { name_es: "Baile con sensor", name_en: "Dance with sensor", desc_es: "Baile al detectar cerca.", desc_en: "Dance when detects close.", steps_es: ["'por siempre'", "Si distancia<15: repetir 3 avanzar/retroceder/girar", "Reproducir sonido"], steps_en: ["'forever'", "If distance<15: repeat 3 forward/back/turn", "Play sound"], correct_es: "Reacciona con un baile", correct_en: "Reacts with a dance", options_es: ["Se detiene", "Reacciona con un baile", "Acelera", "Apaga LEDs"], options_en: ["Stops", "Reacts with a dance", "Speeds up", "Turns off LEDs"] },
+      { name_es: "Patrón cuadrado", name_en: "Square pattern", desc_es: "Hace un cuadrado.", desc_en: "Makes a square.", steps_es: ["Evento 🚩", "'repetir 4'", "'avanzar 2s'", "'girar derecha 1s'"], steps_en: ["Event 🚩", "'repeat 4'", "'forward 2s'", "'turn right 1s'"], correct_es: "4", correct_en: "4", options_es: ["3", "4", "5", "6"], options_en: ["3", "4", "5", "6"] }
+    ]
+  };
 
-  function getCompletedChallengesCount(){ let c=0; for(let l of ['beginner','intermediate','advanced','ranger']) for(let i=0;i<6;i++) if(challengeProgress[l]?.[i]>=5 && challengeQuizDone[l]?.[i]) c++; return c; }
-  function recalcStars(){ for(let l of ['beginner','intermediate','advanced','ranger']){ let s=(stepProgress[l]>=5?2:0)+(quizDoneLevel[l]?1:0); let cc=0; for(let i=0;i<6;i++) if(challengeProgress[l]?.[i]>=5 && challengeQuizDone[l]?.[i]) cc++; s+=Math.min(cc,2); s=Math.min(s,5); if(levelStars[l]!==s){ userStars+=(s-levelStars[l]); levelStars[l]=s; } } if(stepProgress.beginner>=5 && quizDoneLevel.beginner && !unlocked.intermediate) unlocked.intermediate=true; if(stepProgress.intermediate>=5 && quizDoneLevel.intermediate && !unlocked.advanced) unlocked.advanced=true; if(stepProgress.advanced>=5 && quizDoneLevel.advanced && !unlocked.ranger) unlocked.ranger=true; saveData(); renderHome(); }
+  function initChallengeState() { 
+    for (let l of ['beginner','intermediate','advanced','ranger']) { 
+      challengeProgress[l]=challengeProgress[l]||[]; 
+      challengeQuizDone[l]=challengeQuizDone[l]||[]; 
+      for(let i=0;i<6;i++){ 
+        if(challengeProgress[l][i]===undefined) challengeProgress[l][i]=0; 
+        if(challengeQuizDone[l][i]===undefined) challengeQuizDone[l][i]=false; 
+      } 
+    } 
+  }
+  
+  function saveData() { localStorage.setItem('mblockFinalData3', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, challengeProgress, challengeQuizDone, currentLang })); }
+  
+  function loadData() { 
+    let d = localStorage.getItem('mblockFinalData3'); 
+    if(d){ let p=JSON.parse(d); 
+      userStars=p.userStars||0; 
+      levelStars=p.levelStars||{beginner:0,intermediate:0,advanced:0,ranger:0}; 
+      unlocked=p.unlocked||{beginner:true,intermediate:false,advanced:false,ranger:false}; 
+      stepProgress=p.stepProgress||{beginner:0,intermediate:0,advanced:0,ranger:0}; 
+      quizDoneLevel=p.quizDoneLevel||{beginner:false,intermediate:false,advanced:false,ranger:false}; 
+      challengeProgress=p.challengeProgress||{}; 
+      challengeQuizDone=p.challengeQuizDone||{}; 
+      if(p.currentLang) currentLang=p.currentLang; 
+    } 
+    initChallengeState(); 
+  }
+
+  function getCompletedChallengesCount(){ 
+    let c=0; 
+    for(let l of ['beginner','intermediate','advanced','ranger']) 
+      for(let i=0;i<6;i++) 
+        if(challengeProgress[l]?.[i]>=5 && challengeQuizDone[l]?.[i]) c++; 
+    return c; 
+  }
+  
+  function recalcStars(){ 
+    for(let l of ['beginner','intermediate','advanced','ranger']){ 
+      let s=(stepProgress[l]>=5?2:0)+(quizDoneLevel[l]?1:0); 
+      let cc=0; 
+      for(let i=0;i<6;i++) if(challengeProgress[l]?.[i]>=5 && challengeQuizDone[l]?.[i]) cc++; 
+      s+=Math.min(cc,2); 
+      s=Math.min(s,5); 
+      if(levelStars[l]!==s){ userStars+=(s-levelStars[l]); levelStars[l]=s; } 
+    } 
+    if(stepProgress.beginner>=5 && quizDoneLevel.beginner && !unlocked.intermediate) unlocked.intermediate=true; 
+    if(stepProgress.intermediate>=5 && quizDoneLevel.intermediate && !unlocked.advanced) unlocked.advanced=true; 
+    if(stepProgress.advanced>=5 && quizDoneLevel.advanced && !unlocked.ranger) unlocked.ranger=true; 
+    saveData(); renderHome(); 
+  }
 
   function shuffleArray(a){ for(let i=a.length-1;i>0;i--){ let j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
+  function updateUILanguage() {
+    const t = translations[currentLang];
+    document.querySelector('.nav-logo').innerHTML = t.navLogo;
+    document.getElementById('navLevelsLink').innerHTML = t.navLevels;
+    document.getElementById('navChallengesLink').innerHTML = t.navChallenges;
+    document.getElementById('navResourcesLink').innerHTML = t.navResources;
+    document.getElementById('totalStarsDisplay').innerHTML = `${t.totalStars} ${userStars}`;
+    document.getElementById('whatIsTitle').innerHTML = t.whatIsTitle;
+    document.getElementById('whatIsText').innerHTML = t.whatIsText;
+    document.getElementById('officialLink').innerHTML = t.officialLink;
+    document.getElementById('downloadLink').innerHTML = t.downloadLink;
+    document.getElementById('onlineLink').innerHTML = t.onlineLink;
+    document.getElementById('levelsTitle').innerHTML = t.levelsTitle;
+    document.getElementById('challengesTitle').innerHTML = t.challengesTitle;
+    document.getElementById('challengeStats').innerHTML = `${t.challengeStats} ${getCompletedChallengesCount()} / 24`;
+    document.getElementById('welcomeTitle').innerHTML = t.welcomeTitle;
+    document.getElementById('welcomeText').innerHTML = t.welcomeText;
+    document.getElementById('btnStartTutorial').innerHTML = t.startTutorial;
+    document.getElementById('btnStartRetos').innerHTML = t.startChallenges;
+    document.getElementById('footerText').innerHTML = t.footer;
+    document.getElementById('translateToggle').innerHTML = currentLang === 'es' ? '🇬🇧 EN' : '🇪🇸 ES';
+    renderHome();
+  }
+
   function renderHome(){
     let container=document.getElementById('levelsContainer');
-    let niveles=[{id:'beginner',name:'🌱 Principiante / Beginner',desc:'Primeros bloques / First blocks'},{id:'intermediate',name:'🎨 Intermedio / Intermediate',desc:'Animaciones / Animations'},{id:'advanced',name:'⚡ Avanzado / Advanced',desc:'Variables / Variables'},{id:'ranger',name:'🤖 mBot Ranger',desc:'Robot real / Real robot'}];
+    let niveles=[
+      {id:'beginner', name_es:'🌱 Principiante', name_en:'🌱 Beginner', desc_es:'Primeros bloques', desc_en:'First blocks'},
+      {id:'intermediate', name_es:'🎨 Intermedio', name_en:'🎨 Intermediate', desc_es:'Animaciones', desc_en:'Animations'},
+      {id:'advanced', name_es:'⚡ Avanzado', name_en:'⚡ Advanced', desc_es:'Variables', desc_en:'Variables'},
+      {id:'ranger', name_es:'🤖 mBot Ranger', name_en:'🤖 mBot Ranger', desc_es:'Robot real', desc_en:'Real robot'}
+    ];
     container.innerHTML='';
     for(let n of niveles){
-      let starsCount=levelStars[n.id]||0, starHtml=''; for(let i=1;i<=5;i++) starHtml+=`<span class="${i<=starsCount?'star-filled':'star-empty'}">★</span>`;
-      let lockedHtml=(!unlocked[n.id]&&n.id!=='beginner')?`<div class="locked-overlay"><span>🔒</span><span>Completa nivel anterior / Complete previous level</span></div>`:'';
-      let card=document.createElement('div'); card.className='level-card'; card.onclick=()=>{ if(unlocked[n.id]) openLevelModule(n.id); else alert("🔒 Completa el nivel anterior / Complete previous level"); };
-      card.innerHTML=`<div><span style="background:rgba(123,92,245,0.2); padding:2px 8px; border-radius:20px;">${starsCount}/5 ★</span></div><h3>${n.name}</h3><p>${n.desc}</p><div class="stars-container">${starHtml}</div>${lockedHtml}`;
+      let starsCount=levelStars[n.id]||0, starHtml=''; 
+      for(let i=1;i<=5;i++) starHtml+=`<span class="${i<=starsCount?'star-filled':'star-empty'}">★</span>`;
+      let lockedHtml=(!unlocked[n.id]&&n.id!=='beginner')?`<div class="locked-overlay"><span>🔒</span><span>${translations[currentLang].locked}</span></div>`:'';
+      let card=document.createElement('div'); card.className='level-card'; 
+      card.onclick=()=>{ if(unlocked[n.id]) openLevelModule(n.id); else alert(translations[currentLang].locked); };
+      card.innerHTML=`<div><span style="background:rgba(123,92,245,0.2); padding:2px 8px; border-radius:20px;">${starsCount}/5 ★</span></div><h3>${currentLang==='es'?n.name_es:n.name_en}</h3><p>${currentLang==='es'?n.desc_es:n.desc_en}</p><div class="stars-container">${starHtml}</div>${lockedHtml}`;
       container.appendChild(card);
     }
-    document.getElementById('totalStarsDisplay').innerHTML=`⭐ Estrellas Totales / Total Stars: ${userStars} ✨`;
-    document.getElementById('challengeStats').innerHTML=`📊 Retos completados / Challenges completed: ${getCompletedChallengesCount()} / 24 🎯`;
-    let challengesContainer=document.getElementById('globalChallengesList'); challengesContainer.innerHTML='';
+    document.getElementById('totalStarsDisplay').innerHTML = `${translations[currentLang].totalStars} ${userStars}`;
+    document.getElementById('challengeStats').innerHTML = `${translations[currentLang].challengeStats} ${getCompletedChallengesCount()} / 24`;
+    
+    let challengesContainer=document.getElementById('globalChallengesList'); 
+    challengesContainer.innerHTML='';
     for(let lvl of ['beginner','intermediate','advanced','ranger']){
-      let levelName={beginner:'🌱 Principiante / Beginner',intermediate:'🎨 Intermedio / Intermediate',advanced:'⚡ Avanzado / Advanced',ranger:'🤖 Ranger'}[lvl];
+      let levelName = {beginner: currentLang==='es'?'🌱 Principiante':'🌱 Beginner', intermediate: currentLang==='es'?'🎨 Intermedio':'🎨 Intermediate', advanced: currentLang==='es'?'⚡ Avanzado':'⚡ Advanced', ranger:'🤖 Ranger'}[lvl];
       for(let i=0;i<6;i++){
         let completed=(challengeProgress[lvl]?.[i]>=5 && challengeQuizDone[lvl]?.[i]);
-        let card=document.createElement('div'); card.className='challenge-card'; card.onclick=()=>openChallengeModule(lvl,i);
-        card.innerHTML=`<div><strong>${levelName} - ${challengesData[lvl][i].name}</strong><br><small>${challengesData[lvl][i].desc}</small></div><div><span class="challenge-badge">${completed?'✅ Completado / Completed':'🎯 +'+(lvl==='advanced'||lvl==='ranger'?2:1)+'★'}</span></div>`;
+        let card=document.createElement('div'); card.className='challenge-card'; 
+        card.onclick=()=>openChallengeModule(lvl,i);
+        card.innerHTML=`<div><strong>${levelName} - ${currentLang==='es'?challengeData[lvl][i].name_es:challengeData[lvl][i].name_en}</strong><br><small>${currentLang==='es'?challengeData[lvl][i].desc_es:challengeData[lvl][i].desc_en}</small></div><div><span class="challenge-badge">${completed?'✅ '+(currentLang==='es'?'Completado':'Completed'):'🎯 +'+(lvl==='advanced'||lvl==='ranger'?2:1)+'★'}</span></div>`;
         challengesContainer.appendChild(card);
       }
     }
@@ -269,189 +368,192 @@
     let home=document.getElementById('view-home');
     let modules=document.querySelectorAll('.module-page');
     if(id==='home'){
-      modules.forEach(m=>{ if(m.classList.contains('active')){ m.classList.remove('active'); m.style.animation='fadeOutScale 0.25s ease forwards'; setTimeout(()=>{ m.style.animation=''; },250); } });
-      setTimeout(()=>{ home.style.display='block'; home.classList.add('animate-fade-in'); modules.forEach(m=>m.classList.remove('active')); window.scrollTo(0,0); },50);
+      modules.forEach(m=>{ if(m.classList.contains('active')){ m.classList.remove('active'); } });
+      home.style.display='block'; 
+      modules.forEach(m=>m.classList.remove('active')); 
+      window.scrollTo(0,0);
     }else{
       home.style.display='none';
-      modules.forEach(m=>{ if(m.classList.contains('active')){ m.classList.remove('active'); m.style.animation='fadeOutScale 0.25s ease forwards'; setTimeout(()=>{ m.style.animation=''; },250); } });
-      setTimeout(()=>{ let target=document.getElementById(id); if(target){ target.classList.add('active'); target.style.animation='fadeInScale 0.4s cubic-bezier(0.2,0.9,0.4,1.1) forwards'; window.scrollTo(0,0); } },50);
+      modules.forEach(m=>{ if(m.classList.contains('active')){ m.classList.remove('active'); } });
+      let target=document.getElementById(id); 
+      if(target){ target.classList.add('active'); window.scrollTo(0,0); }
     }
   }
+  
   function goHome(){ showViewWithAnimation('home'); renderHome(); }
   function openLevelModule(level){ generateLevelModule(level); showViewWithAnimation(`view-${level}`); }
   function openChallengeModule(level,idx){ generateChallengeModule(level,idx); showViewWithAnimation(`view-challenge-${level}-${idx}`); }
 
   function generateLevelModule(level){
     let container=document.getElementById(`view-${level}`); if(!container) return;
-    let titles={beginner:'🌱 Principiante / Beginner',intermediate:'🎨 Intermedio / Intermediate',advanced:'⚡ Avanzado / Advanced',ranger:'🤖 mBot Ranger'};
-    let stepsHtml=''; for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${stepProgress[level]>=i}" onclick="markLevelStep('${level}',this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>Paso ${i} / Step ${i}: ${['Conoce la interfaz / Know the interface','Primer bloque mover / First move block','Evento bandera verde / Green flag event','Ejecuta programa / Run program','Repite y gira / Repeat and turn'][i-1]}</h4><p>Completa para avanzar / Complete to advance</p></div></div>`;
-    let quizDataMap={beginner:"decir / say",intermediate:"esperar / wait",advanced:"repetir N veces / repeat N times",ranger:"Sensor ultrasónico / Ultrasonic sensor"};
-    let opts={beginner:["pensar / think","decir / say","mostrar / show","escribir / write"],intermediate:["pausar / pause","esperar / wait","detener / stop","repetir / repeat"],advanced:["por siempre / forever","repetir hasta que / repeat until","repetir N veces / repeat N times","mientras / while"],ranger:["Sensor línea / Line sensor","Sensor ultrasónico / Ultrasonic sensor","Sensor luz / Light sensor","Sensor temperatura / Temperature sensor"]};
-    let shuffledOpts=shuffleArray([...opts[level]]);
-    let quizHtml=`<h3>🧠 QUIZ FINAL DEL NIVEL / FINAL LEVEL QUIZ</h3><div class="quiz-opts" id="quiz-${level}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-${level}"></div>`;
-    container.innerHTML=`<button class="back-btn" onclick="goHome()">← Volver / Back</button><div class="panda-tip"><span>🐼</span><p>Completa los 5 pasos y responde el quiz / Complete 5 steps and answer quiz</p></div><h2>${titles[level]}</h2><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${stepProgress[level]/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-${level}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>🏆 ¡Nivel completado! / Level completed!</h3><button class="btn-primary btn" onclick="goHome()">Volver / Back</button></div>`;
-    attachLevelQuiz(level,quizDataMap[level]);
+    let titles = {beginner: currentLang==='es'?'🌱 Principiante':'🌱 Beginner', intermediate: currentLang==='es'?'🎨 Intermedio':'🎨 Intermediate', advanced: currentLang==='es'?'⚡ Avanzado':'⚡ Advanced', ranger:'🤖 mBot Ranger'};
+    let stepsTexts = currentLang==='es'?['Conoce la interfaz','Primer bloque mover','Evento bandera verde','Ejecuta programa','Repite y gira']:['Know the interface','First move block','Green flag event','Run program','Repeat and turn'];
+    let stepsHtml=''; 
+    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${stepProgress[level]>=i}" onclick="markLevelStep('${level}',this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>${translations[currentLang].step} ${i}: ${stepsTexts[i-1]}</h4><p>${translations[currentLang].completeToAdvance}</p></div></div>`;
+    
+    let opts, correctAnswer;
+    if(level==='beginner') { opts = currentLang==='es'?["al presionar tecla","al presionar bandera verde","al hacer clic","al recibir mensaje"]:["press key","when green flag clicked","when sprite clicked","when I receive"]; correctAnswer = currentLang==='es'?"al presionar bandera verde":"when green flag clicked"; }
+    else if(level==='intermediate') { opts = currentLang==='es'?["pensar","decir","mostrar","escribir"]:["think","say","show","write"]; correctAnswer = currentLang==='es'?"decir":"say"; }
+    else if(level==='advanced') { opts = currentLang==='es'?["por siempre","repetir hasta que","repetir N veces","mientras"]:["forever","repeat until","repeat N times","while"]; correctAnswer = currentLang==='es'?"repetir N veces":"repeat N times"; }
+    else { opts = currentLang==='es'?["Sensor de línea","Sensor ultrasónico","Sensor de luz","Sensor de temperatura"]:["Line sensor","Ultrasonic sensor","Light sensor","Temperature sensor"]; correctAnswer = currentLang==='es'?"Sensor ultrasónico":"Ultrasonic sensor"; }
+    
+    let shuffledOpts=shuffleArray([...opts]);
+    let quizHtml=`<h3>🧠 ${currentLang==='es'?'QUIZ FINAL DEL NIVEL':'FINAL LEVEL QUIZ'}</h3><div class="quiz-opts" id="quiz-${level}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-${level}"></div>`;
+    
+    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p>${currentLang==='es'?'Completa los 5 pasos y responde el quiz':'Complete the 5 steps and answer the quiz'}</p></div><h2>${titles[level]}</h2><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${stepProgress[level]/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-${level}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>${translations[currentLang].levelCompleted}</h3><button class="btn-primary btn" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
+    
+    attachLevelQuiz(level, correctAnswer);
     if(stepProgress[level]>=5 && quizDoneLevel[level]) document.getElementById(`comp-${level}`).style.display='block';
   }
 
   function generateChallengeModule(level,idx){
     let container=document.getElementById(`view-challenge-${level}-${idx}`); if(!container) return;
-    let ch=challengesData[level][idx];
-    let stepsHtml=''; for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${challengeProgress[level]?.[idx]>=i}" onclick="markChallengeStep('${level}',${idx},this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>${ch.steps[i-1]}</h4><p>✅ Marca al completar / Mark when completed</p></div></div>`;
-    let shuffledOpts=shuffleArray([...ch.quiz.options]);
-    let quizHtml=`<h3>🧠 QUIZ DEL RETO / CHALLENGE QUIZ</h3><div class="quiz-opts" id="quiz-challenge-${level}-${idx}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-challenge-${level}-${idx}"></div><div class="quiz-actions" id="quiz-actions-${level}-${idx}" style="display:none;"><button class="btn btn-secondary" id="retryQuizBtn">🔄 Reintentar Quiz / Retry Quiz</button><button class="btn btn-primary" id="stayInChallengeBtn">📚 Volver al Reto / Back to Challenge</button></div>`;
-    container.innerHTML=`<button class="back-btn" onclick="goHome()">← Volver / Back</button><div class="panda-tip"><span>🐼</span><p><strong>${ch.name}</strong><br>${ch.desc}</p></div><div class="progress-track"><div class="progress-fill" id="prog-challenge-${level}-${idx}" style="width:${(challengeProgress[level]?.[idx]||0)/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-challenge-${level}-${idx}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>🏆 ¡Reto completado! / Challenge completed! +${level==='advanced'||level==='ranger'?2:1} ★</h3><button class="btn-primary btn" onclick="goHome()">Volver / Back</button></div>`;
-    attachChallengeQuiz(level,idx,ch.quiz.correct.split(" / ")[0]);
+    let ch=challengeData[level][idx];
+    let steps = currentLang==='es'?ch.steps_es:ch.steps_en;
+    let stepsHtml=''; 
+    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${challengeProgress[level]?.[idx]>=i}" onclick="markChallengeStep('${level}',${idx},this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>${steps[i-1]}</h4><p>${translations[currentLang].markComplete}</p></div></div>`;
+    
+    let options = currentLang==='es'?ch.options_es:ch.options_en;
+    let correctAnswer = currentLang==='es'?ch.correct_es:ch.correct_en;
+    let shuffledOpts=shuffleArray([...options]);
+    let quizHtml=`<h3>🧠 ${currentLang==='es'?'QUIZ DEL RETO':'CHALLENGE QUIZ'}</h3><div class="quiz-opts" id="quiz-challenge-${level}-${idx}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-challenge-${level}-${idx}"></div><div class="quiz-actions" id="quiz-actions-${level}-${idx}" style="display:none;"><button class="btn btn-secondary retry-quiz-btn">${translations[currentLang].retryQuiz}</button><button class="btn btn-primary stay-challenge-btn">${translations[currentLang].backToChallenge}</button></div>`;
+    
+    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p><strong>${currentLang==='es'?ch.name_es:ch.name_en}</strong><br>${currentLang==='es'?ch.desc_es:ch.desc_en}</p></div><div class="progress-track"><div class="progress-fill" id="prog-challenge-${level}-${idx}" style="width:${(challengeProgress[level]?.[idx]||0)/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-challenge-${level}-${idx}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>${translations[currentLang].challengeCompleted} +${level==='advanced'||level==='ranger'?2:1} ★</h3><button class="btn-primary btn" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
+    
+    attachChallengeQuiz(level, idx, correctAnswer);
     if(challengeProgress[level]?.[idx]>=5 && challengeQuizDone[level]?.[idx]) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block';
   }
 
-  window.markLevelStep=(level,el,stepNum)=>{ if(el.dataset.done==='true') return; el.dataset.done='true'; el.classList.add('done','animate-pulse'); if(stepProgress[level]<stepNum) stepProgress[level]=stepNum; document.getElementById(`prog-${level}`).style.width=`${stepProgress[level]/5*100}%`; recalcStars(); if(stepProgress[level]>=5 && quizDoneLevel[level]) document.getElementById(`comp-${level}`).style.display='block'; };
-  window.markChallengeStep=(level,idx,el,stepNum)=>{ if(el.dataset.done==='true') return; el.dataset.done='true'; el.classList.add('done','animate-pulse'); if(!challengeProgress[level]) challengeProgress[level]=[]; if(challengeProgress[level][idx]<stepNum) challengeProgress[level][idx]=stepNum; document.getElementById(`prog-challenge-${level}-${idx}`).style.width=`${challengeProgress[level][idx]/5*100}%`; if(challengeProgress[level][idx]>=5 && challengeQuizDone[level][idx]) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block'; recalcStars(); };
+  window.markLevelStep=(level,el,stepNum)=>{ 
+    if(el.dataset.done==='true') return; 
+    el.dataset.done='true'; el.classList.add('done','animate-pulse'); 
+    if(stepProgress[level]<stepNum) stepProgress[level]=stepNum; 
+    document.getElementById(`prog-${level}`).style.width=`${stepProgress[level]/5*100}%`; 
+    recalcStars(); 
+    if(stepProgress[level]>=5 && quizDoneLevel[level]) document.getElementById(`comp-${level}`).style.display='block'; 
+  };
+  
+  window.markChallengeStep=(level,idx,el,stepNum)=>{ 
+    if(el.dataset.done==='true') return; 
+    el.dataset.done='true'; el.classList.add('done','animate-pulse'); 
+    if(!challengeProgress[level]) challengeProgress[level]=[]; 
+    if(challengeProgress[level][idx]<stepNum) challengeProgress[level][idx]=stepNum; 
+    document.getElementById(`prog-challenge-${level}-${idx}`).style.width=`${challengeProgress[level][idx]/5*100}%`; 
+    if(challengeProgress[level][idx]>=5 && challengeQuizDone[level][idx]) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block'; 
+    recalcStars(); 
+  };
 
-  function attachLevelQuiz(level,correct){ 
+  function attachLevelQuiz(level, correctAnswer){
     let c=document.getElementById(`quiz-${level}`); if(!c) return; 
     let btns=c.querySelectorAll('.q-btn'); 
-    btns.forEach(btn=>btn.onclick=()=>{ 
-      if(c.dataset.done) return; 
-      let s=btn.dataset.opt; 
-      btns.forEach(b=>b.disabled=true); 
-      if(s===correct){ 
-        btn.classList.add('correct','animate-bounce'); 
-        document.getElementById(`fb-${level}`).innerHTML='✅ ¡Correcto! / Correct!'; 
-        document.getElementById(`fb-${level}`).className='quiz-feedback success'; 
-        quizDoneLevel[level]=true; recalcStars(); 
-        if(stepProgress[level]>=5) document.getElementById(`comp-${level}`).style.display='block'; 
-        c.dataset.done='true'; launchConfetti(); 
-      }else{ 
-        btn.classList.add('wrong','animate-shake'); 
-        let fb=document.getElementById(`fb-${level}`); 
-        fb.innerHTML='❌ Respuesta incorrecta. / Incorrect answer. Revisa el tutorial / Review the tutorial.'; 
-        fb.className='quiz-feedback error'; 
-        setTimeout(()=>{ btns.forEach(b=>{ b.disabled=false; b.classList.remove('wrong','correct'); }); fb.innerHTML=''; fb.className='quiz-feedback'; },2500); 
-      } 
-    }); 
+    btns.forEach(btn=>{
+      btn.onclick=()=>{ 
+        if(c.dataset.done) return; 
+        let selected = btn.dataset.opt; 
+        btns.forEach(b=>b.disabled=true); 
+        if(selected === correctAnswer){ 
+          btn.classList.add('correct','animate-bounce'); 
+          let fb=document.getElementById(`fb-${level}`); 
+          fb.innerHTML=translations[currentLang].correct; 
+          fb.className='quiz-feedback success'; 
+          quizDoneLevel[level]=true; 
+          recalcStars(); 
+          if(stepProgress[level]>=5) document.getElementById(`comp-${level}`).style.display='block'; 
+          c.dataset.done='true'; 
+          launchConfetti(); 
+        }else{ 
+          btn.classList.add('wrong','animate-shake'); 
+          let fb=document.getElementById(`fb-${level}`); 
+          fb.innerHTML=translations[currentLang].incorrect; 
+          fb.className='quiz-feedback error'; 
+          setTimeout(()=>{ 
+            btns.forEach(b=>{ b.disabled=false; b.classList.remove('wrong','correct'); }); 
+            fb.innerHTML=''; fb.className='quiz-feedback'; 
+          }, 3000); 
+        } 
+      }; 
+    });
   }
 
-  function attachChallengeQuiz(level,idx,correct){ 
+  function attachChallengeQuiz(level, idx, correctAnswer){
     let c=document.getElementById(`quiz-challenge-${level}-${idx}`); if(!c) return; 
     let btns=c.querySelectorAll('.q-btn'); 
     let actionsDiv=document.getElementById(`quiz-actions-${level}-${idx}`);
-    btns.forEach(btn=>btn.onclick=()=>{ 
-      if(c.dataset.done) return; 
-      let s=btn.dataset.opt; 
-      btns.forEach(b=>b.disabled=true); 
-      if(s===correct){ 
-        btn.classList.add('correct','animate-bounce'); 
-        let fb=document.getElementById(`fb-challenge-${level}-${idx}`); 
-        fb.innerHTML='✅ ¡Correcto! Reto completado / Correct! Challenge completed!'; 
-        fb.className='quiz-feedback success'; 
-        if(!challengeQuizDone[level]) challengeQuizDone[level]=[]; 
-        challengeQuizDone[level][idx]=true; 
-        let add=(level==='advanced'||level==='ranger')?2:1; 
-        userStars+=add; recalcStars(); renderHome(); 
-        if(challengeProgress[level][idx]>=5) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block'; 
-        c.dataset.done='true'; launchConfetti(); 
-        if(actionsDiv) actionsDiv.style.display='none';
-      }else{ 
-        btn.classList.add('wrong','animate-shake'); 
-        let fb=document.getElementById(`fb-challenge-${level}-${idx}`); 
-        fb.innerHTML='❌ Respuesta incorrecta. / Incorrect answer. ¡Sigue practicando! / Keep practicing! Puedes reintentar el quiz / You can retry the quiz.'; 
-        fb.className='quiz-feedback error'; 
-        if(actionsDiv) actionsDiv.style.display='flex';
-      } 
-    }); 
-    if(actionsDiv){
-      let retryBtn=document.getElementById('retryQuizBtn');
-      let stayBtn=document.getElementById('stayInChallengeBtn');
-      if(retryBtn) retryBtn.onclick=()=>{
-        btns.forEach(b=>{ b.disabled=false; b.classList.remove('wrong','correct'); });
-        let fb=document.getElementById(`fb-challenge-${level}-${idx}`);
-        fb.innerHTML='';
-        fb.className='quiz-feedback';
-        actionsDiv.style.display='none';
-        if(c.dataset.done) c.dataset.done='';
-      };
-      if(stayBtn) stayBtn.onclick=()=>{
-        actionsDiv.style.display='none';
-        btns.forEach(b=>b.disabled=false);
-        let fb=document.getElementById(`fb-challenge-${level}-${idx}`);
-        fb.innerHTML='';
-        fb.className='quiz-feedback';
-        if(c.dataset.done) c.dataset.done='';
-      };
+    
+    // Función para resetear el quiz
+    function resetQuiz() {
+      btns.forEach(b=>{ b.disabled=false; b.classList.remove('wrong','correct'); });
+      let fb=document.getElementById(`fb-challenge-${level}-${idx}`);
+      if(fb) { fb.innerHTML=''; fb.className='quiz-feedback'; }
+      if(actionsDiv) actionsDiv.style.display='none';
+      if(c.dataset.done) c.dataset.done='';
     }
-  }
-
-  function launchConfetti(){ let canvas=document.getElementById('confetti-canvas'); canvas.style.display='block'; let ctx=canvas.getContext('2d'); canvas.width=innerWidth; canvas.height=innerHeight; let p=[]; for(let i=0;i<140;i++) p.push({x:Math.random()*canvas.width,y:Math.random()*-canvas.height,w:8,h:6,vx:(Math.random()-0.5)*3,vy:Math.random()*5+2,c:`hsl(${Math.random()*360},70%,60%)`}); let f=0; function d(){ ctx.clearRect(0,0,canvas.width,canvas.height); p.forEach(p=>{ ctx.fillStyle=p.c; ctx.fillRect(p.x,p.y,p.w,p.h); p.x+=p.vx; p.y+=p.vy; }); f++; if(f<100) requestAnimationFrame(d); else canvas.style.display='none'; } d(); }
-
-  // Traducción con Google Translate
-  let translateEnabled = false;
-  function toggleTranslation() {
-    const translateBtn = document.getElementById('translateToggle');
-    if (!translateEnabled) {
-      document.body.classList.add('translate-english');
-      var selectBox = document.querySelector('.goog-te-combo');
-      if (selectBox) {
-        selectBox.value = 'en';
-        selectBox.dispatchEvent(new Event('change'));
-      } else {
-        var checkExist = setInterval(function() {
-          var selectBox = document.querySelector('.goog-te-combo');
-          if (selectBox) {
-            selectBox.value = 'en';
-            selectBox.dispatchEvent(new Event('change'));
-            clearInterval(checkExist);
+    
+    btns.forEach(btn=>{
+      btn.onclick=()=>{ 
+        if(c.dataset.done) return; 
+        let selected = btn.dataset.opt; 
+        btns.forEach(b=>b.disabled=true); 
+        if(selected === correctAnswer){ 
+          btn.classList.add('correct','animate-bounce'); 
+          let fb=document.getElementById(`fb-challenge-${level}-${idx}`); 
+          fb.innerHTML=translations[currentLang].correctChallenge; 
+          fb.className='quiz-feedback success'; 
+          if(!challengeQuizDone[level]) challengeQuizDone[level]=[]; 
+          challengeQuizDone[level][idx]=true; 
+          let add=(level==='advanced'||level==='ranger')?2:1; 
+          userStars+=add; 
+          recalcStars(); 
+          renderHome(); 
+          if(challengeProgress[level][idx]>=5) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block'; 
+          c.dataset.done='true'; 
+          launchConfetti(); 
+          if(actionsDiv) actionsDiv.style.display='none';
+        }else{ 
+          btn.classList.add('wrong','animate-shake'); 
+          let fb=document.getElementById(`fb-challenge-${level}-${idx}`); 
+          fb.innerHTML=translations[currentLang].incorrectChallenge; 
+          fb.className='quiz-feedback error'; 
+          if(actionsDiv) actionsDiv.style.display='flex';
+          
+          // Configurar botones de reintento
+          let retryBtn = actionsDiv.querySelector('.retry-quiz-btn');
+          let stayBtn = actionsDiv.querySelector('.stay-challenge-btn');
+          
+          if(retryBtn) {
+            retryBtn.onclick = (e) => {
+              e.stopPropagation();
+              resetQuiz();
+            };
           }
-        }, 100);
-      }
-      translateEnabled = true;
-      translateBtn.textContent = '🇪🇸 ES';
-      translateBtn.title = 'Volver a Español / Back to Spanish';
-      localStorage.setItem('translateEnabled', 'true');
-    } else {
-      var selectBox = document.querySelector('.goog-te-combo');
-      if (selectBox) {
-        selectBox.value = 'es';
-        selectBox.dispatchEvent(new Event('change'));
-      } else {
-        var checkExist = setInterval(function() {
-          var selectBox = document.querySelector('.goog-te-combo');
-          if (selectBox) {
-            selectBox.value = 'es';
-            selectBox.dispatchEvent(new Event('change'));
-            clearInterval(checkExist);
+          if(stayBtn) {
+            stayBtn.onclick = (e) => {
+              e.stopPropagation();
+              resetQuiz();
+            };
           }
-        }, 100);
-      }
-      translateEnabled = false;
-      translateBtn.textContent = '🇬🇧 EN';
-      translateBtn.title = 'Traducir a Inglés / Translate to English';
-      localStorage.setItem('translateEnabled', 'false');
-    }
+        } 
+      }; 
+    });
   }
 
-  function initTranslation() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    document.body.appendChild(script);
-    var widgetDiv = document.createElement('div');
-    widgetDiv.id = 'google_translate_element';
-    widgetDiv.style.display = 'none';
-    document.body.appendChild(widgetDiv);
-    const savedTranslate = localStorage.getItem('translateEnabled');
-    if (savedTranslate === 'true') {
-      setTimeout(() => { toggleTranslation(); }, 1500);
-    }
+  function launchConfetti(){ 
+    let canvas=document.getElementById('confetti-canvas'); 
+    canvas.style.display='block'; 
+    let ctx=canvas.getContext('2d'); 
+    canvas.width=innerWidth; canvas.height=innerHeight; 
+    let p=[]; 
+    for(let i=0;i<140;i++) p.push({x:Math.random()*canvas.width,y:Math.random()*-canvas.height,w:8,h:6,vx:(Math.random()-0.5)*3,vy:Math.random()*5+2,c:`hsl(${Math.random()*360},70%,60%)`}); 
+    let f=0; 
+    function d(){ 
+      ctx.clearRect(0,0,canvas.width,canvas.height); 
+      p.forEach(p=>{ ctx.fillStyle=p.c; ctx.fillRect(p.x,p.y,p.w,p.h); p.x+=p.vx; p.y+=p.vy; }); 
+      f++; 
+      if(f<100) requestAnimationFrame(d); 
+      else canvas.style.display='none'; 
+    } 
+    d(); 
   }
-
-  window.googleTranslateElementInit = function() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'es',
-      includedLanguages: 'es,en',
-      autoDisplay: false
-    }, 'google_translate_element');
-  };
 
   function initDarkMode(){
     const savedMode = localStorage.getItem('darkMode');
@@ -461,9 +563,8 @@
   }
 
   function init(){
-    loadData(); renderHome(); initDarkMode(); initTranslation();
-    const translateBtn = document.getElementById('translateToggle');
-    if (translateBtn) translateBtn.addEventListener('click', toggleTranslation);
+    loadData(); initDarkMode(); updateUILanguage();
+    document.getElementById('translateToggle').addEventListener('click', () => { currentLang = currentLang === 'es' ? 'en' : 'es'; saveData(); updateUILanguage(); });
     document.getElementById('btnStartTutorial').onclick=()=>{ document.getElementById('welcomeOverlay').style.opacity='0'; setTimeout(()=>{ document.getElementById('welcomeOverlay').style.display='none'; goHome(); },400); };
     document.getElementById('btnStartRetos').onclick=()=>{ document.getElementById('welcomeOverlay').style.opacity='0'; setTimeout(()=>{ document.getElementById('welcomeOverlay').style.display='none'; goHome(); setTimeout(()=>document.getElementById('globalChallengesList').scrollIntoView({behavior:'smooth'}),200); },400); };
     document.getElementById('navHomeLink').onclick=()=>goHome();

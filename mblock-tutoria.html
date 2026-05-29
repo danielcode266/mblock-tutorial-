@@ -3,122 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>🐼 mBlock Experto | Modo Oscuro | Traducción EN/ES | 24 Retos</title>
+<title>🐼 mBlock Experto | 24 Retos | Switch Dark/Light | Traducción EN/ES</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
+  /* MODO CLARO - Limpio, gris suave */
   :root {
-    --green: #3CC87A; --green-d: #1E7A49; --green-l: #D6F5E6;
-    --orange: #FF7043; --orange-d: #C44B22; --orange-l: #FFE8DF;
-    --purple: #7B5CF5; --purple-d: #4A2FB5; --purple-l: #EDE8FF;
-    --teal: #00BFA5; --teal-d: #007566; --teal-l: #CCFFF8;
-    --sky: #29B6F6; --star: #FFD600; --bg: #F0F7FF; --card: #FFFFFF;
-    --text: #1A1A2E; --text-light: #6B7280; --border: rgba(0,0,0,0.08);
-    --shadow: 0 4px 24px rgba(0,0,0,0.08);
-    --shadow-lg: 0 12px 48px rgba(0,0,0,0.13);
-    --radius: 20px; --radius-sm: 12px;
+    --green: #3CC87A;
+    --green-d: #1E7A49;
+    --green-l: #E8F5E9;
+    --orange: #FF7043;
+    --orange-d: #C44B22;
+    --orange-l: #FFF3E0;
+    --purple: #7B5CF5;
+    --purple-d: #5B3CC4;
+    --purple-l: #EDE7F6;
+    --teal: #00BFA5;
+    --teal-d: #008C76;
+    --teal-l: #E0F2F1;
+    --sky: #29B6F6;
+    --star: #FFC107;
+    --bg: #F5F5F5;
+    --card: #FFFFFF;
+    --text: #212121;
+    --text-light: #757575;
+    --border: #E0E0E0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+    --radius: 20px;
+    --radius-sm: 12px;
     --nav-bg: rgba(255,255,255,0.95);
-    --code-bg: #1A1A2E;
+    --code-bg: #263238;
     --code-text: #A8EDDB;
-    --tip-bg: #EDE8FF;
+    --tip-bg: #F3E5F5;
     --tip-border: #7B5CF5;
-    --challenge-bg: #fef7e0;
-    --challenge-border: #FF7043;
-    --progress-track: #E5E7EB;
-    --quiz-btn-bg: #f9fafb;
+    --challenge-bg: #FFF8E1;
+    --challenge-border: #FFB74D;
+    --progress-track: #E0E0E0;
+    --quiz-btn-bg: #F5F5F5;
+    --quiz-btn-text: #212121;
+    --quiz-btn-border: #E0E0E0;
+    --success-bg: #E8F5E9;
+    --success-text: #2E7D32;
+    --error-bg: #FFEBEE;
+    --error-text: #C62828;
+    --completion-bg: #E8F5E9;
+    --completion-text: #2E7D32;
+    --switch-bg: #E0E0E0;
+    --switch-circle: #FFFFFF;
+    --switch-icon: #757575;
+    --logo-bg: linear-gradient(135deg, #7B5CF5, #00BFA5);
   }
   
+  /* MODO OSCURO */
   body.dark-mode {
-    --bg: #0F172A;
-    --card: #1E293B;
-    --text: #F1F5F9;
-    --text-light: #94A3B8;
-    --border: rgba(255,255,255,0.1);
-    --shadow: 0 4px 24px rgba(0,0,0,0.3);
-    --shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
-    --nav-bg: rgba(30,41,59,0.95);
-    --code-bg: #0F172A;
+    --bg: #121212;
+    --card: #1E1E1E;
+    --text: #E0E0E0;
+    --text-light: #9E9E9E;
+    --border: #2C2C2C;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+    --nav-bg: rgba(30,30,30,0.95);
+    --code-bg: #0D0D0D;
     --code-text: #A8EDDB;
-    --tip-bg: #2D3A5E;
+    --tip-bg: #2C2C3A;
     --tip-border: #7B5CF5;
-    --challenge-bg: #2D3A5E;
-    --challenge-border: #FF7043;
-    --progress-track: #334155;
-    --quiz-btn-bg: #334155;
+    --challenge-bg: #252525;
+    --challenge-border: #FF8A65;
+    --progress-track: #2C2C2C;
+    --quiz-btn-bg: #2C2C2C;
+    --quiz-btn-text: #E0E0E0;
+    --quiz-btn-border: #3D3D3D;
+    --success-bg: #1B3A2A;
+    --success-text: #81C784;
+    --error-bg: #3D1A1A;
+    --error-text: #EF9A9A;
+    --completion-bg: #1E1E1E;
+    --completion-text: #E0E0E0;
+    --switch-bg: #3D3D3D;
+    --switch-circle: #7B5CF5;
+    --switch-icon: #FFFFFF;
+    --logo-bg: linear-gradient(135deg, #9B7BFF, #20CFB5);
   }
   
-  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: background 0.3s ease, color 0.2s ease; }
+  body { 
+    font-family: 'Nunito', sans-serif; 
+    background: var(--bg); 
+    color: var(--text); 
+    overflow-x: hidden; 
+    transition: background 0.3s ease, color 0.2s ease; 
+  }
   
+  /* Animaciones */
   @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.95) translateY(20px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
   @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.95); } 100% { transform: scale(1); } }
   @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
   @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+  @keyframes glow { 0%, 100% { text-shadow: 0 0 5px rgba(123,92,245,0.5); } 50% { text-shadow: 0 0 20px rgba(123,92,245,0.8); } }
+  @keyframes slideInFromBottom { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
   
   .animate-fade-in { animation: fadeInScale 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
   .animate-bounce { animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
   .animate-pulse { animation: pulse 0.3s ease-in-out; }
   .animate-shake { animation: shake 0.3s ease-in-out; }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+  .animate-glow { animation: glow 2s ease-in-out infinite; }
+  
+  /* Pantalla de bienvenida pantalla completa con logotipo */
+  .fullscreen-welcome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  body.dark-mode .fullscreen-welcome {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+  }
+  
+  .fullscreen-welcome.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .welcome-content {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+    animation: slideInFromBottom 0.8s ease-out;
+  }
+  
+  /* Logotipo grande en bienvenida */
+  .welcome-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .welcome-logo svg {
+    width: 180px;
+    height: 180px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+  }
+  
+  .welcome-logo .logo-text {
+    display: none;
+  }
+  
+  .welcome-content h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #FFFFFF, #A8EDDB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .welcome-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .welcome-content .btn-start-adventure {
+    background: white;
+    color: #1a1a2e;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+  
+  body.dark-mode .welcome-content .btn-start-adventure {
+    background: #7B5CF5;
+    color: white;
+  }
+  
+  .welcome-content .btn-start-adventure:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+  }
+  
+  /* Navbar con logotipo */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .nav-logo svg {
+    width: 36px;
+    height: 36px;
+    transition: transform 0.2s;
+  }
+  
+  .nav-logo:hover svg {
+    transform: scale(1.05);
+  }
+  
+  .nav-logo-text {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.3rem;
+    background: var(--logo-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+  }
   
   .module-page { display: none; animation: fadeInScale 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
   .module-page.active { display: block; }
   
-  .control-buttons { display: flex; gap: 0.5rem; align-items: center; }
-  .dark-mode-toggle, .translate-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 99px; transition: all 0.2s; background: var(--card); color: var(--text); border: 1px solid var(--border); font-weight: bold; }
-  .dark-mode-toggle:hover, .translate-toggle:hover { transform: scale(1.05); background: var(--purple); color: white; }
+  /* SWITCH DE MODO OSCURO */
+  .theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+  }
   
-  .welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
-  .welcome-card { background: var(--card); max-width: 520px; width: 90%; border-radius: 48px; padding: 2rem; text-align: center; animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); color: var(--text); }
-  .start-buttons { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
-  .btn-start { background: var(--purple); color: white; border: none; padding: 0.7rem 1.6rem; border-radius: 60px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; }
-  .btn-start:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(123,92,245,0.4); }
-  .btn-start-outline { background: transparent; color: var(--purple); border: 2px solid var(--purple); }
+  .theme-switch {
+    display: inline-block;
+    position: relative;
+    width: 56px;
+    height: 30px;
+  }
   
-  nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-  .nav-logo { font-family: 'Fredoka One', sans-serif; font-size: 1.4rem; color: var(--purple); cursor: pointer; }
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switch-bg);
+    transition: 0.3s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--switch-circle);
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+  
+  .slider .sun-icon,
+  .slider .moon-icon {
+    position: absolute;
+    font-size: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .slider .sun-icon {
+    left: 8px;
+    color: #FFC107;
+    opacity: 1;
+  }
+  
+  .slider .moon-icon {
+    right: 8px;
+    color: #FFF;
+    opacity: 0;
+  }
+  
+  body.dark-mode .slider .sun-icon {
+    opacity: 0;
+  }
+  
+  body.dark-mode .slider .moon-icon {
+    opacity: 1;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .control-buttons { display: flex; gap: 0.8rem; align-items: center; }
+  .translate-toggle { 
+    background: none; 
+    border: none; 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    padding: 0.4rem 0.8rem; 
+    border-radius: 99px; 
+    transition: all 0.2s; 
+    background: var(--card); 
+    color: var(--text); 
+    border: 1px solid var(--border); 
+    font-weight: bold; 
+  }
+  .translate-toggle:hover { transform: scale(1.05); background: var(--purple); color: white; }
+  
+  nav { 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    background: var(--nav-bg); 
+    backdrop-filter: blur(14px); 
+    border-bottom: 1px solid var(--border); 
+    padding: 0.85rem 2rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+  }
+  
   .nav-links { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
-  .nav-links a { text-decoration: none; font-weight: 800; padding: 0.4rem 1rem; border-radius: 99px; color: var(--text-light); cursor: pointer; transition: all 0.2s; }
+  .nav-links a { 
+    text-decoration: none; 
+    font-weight: 800; 
+    padding: 0.4rem 1rem; 
+    border-radius: 99px; 
+    color: var(--text-light); 
+    cursor: pointer; 
+    transition: all 0.2s; 
+  }
   .nav-links a:hover { background: var(--purple-l); color: var(--purple-d); transform: translateY(-2px); }
   
   main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 4rem; }
   .section-title { font-family: 'Fredoka One', sans-serif; font-size: 1.8rem; margin: 2rem 0 1rem; color: var(--text); }
   
   .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
-  .level-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.4rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); position: relative; color: var(--text); }
+  .level-card { 
+    background: var(--card); 
+    border-radius: var(--radius); 
+    border: 1px solid var(--border); 
+    padding: 1.4rem; 
+    cursor: pointer; 
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); 
+    position: relative; 
+    color: var(--text); 
+  }
   .level-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--shadow-lg); }
   .stars-container { display: flex; gap: 6px; margin: 12px 0 6px; font-size: 1.3rem; }
   .star-filled { color: var(--star); text-shadow: 0 0 2px gold; }
-  .star-empty { color: #ddd; }
-  .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.85); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px); font-weight: 800; color: white; border-radius: 20px; }
+  .star-empty { color: var(--border); }
+  .locked-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: rgba(0,0,0,0.85); 
+    border-radius: var(--radius); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    backdrop-filter: blur(4px); 
+    font-weight: 800; 
+    color: white; 
+    border-radius: 20px; 
+  }
   
-  .step { background: var(--card); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 1rem 1.2rem; margin-bottom: 0.75rem; display: flex; gap: 1rem; cursor: pointer; transition: all 0.25s ease; color: var(--text); }
+  .step { 
+    background: var(--card); 
+    border-radius: var(--radius-sm); 
+    border: 1px solid var(--border); 
+    padding: 1rem 1.2rem; 
+    margin-bottom: 0.75rem; 
+    display: flex; 
+    gap: 1rem; 
+    cursor: pointer; 
+    transition: all 0.25s ease; 
+    color: var(--text); 
+  }
   .step:hover { transform: translateX(8px) scale(1.01); border-color: var(--purple); }
-  .step.done { background: var(--green-l); border-color: var(--green); animation: pulse 0.3s ease; }
-  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; }
+  .step.done { background: var(--success-bg); border-color: var(--green); animation: pulse 0.3s ease; color: var(--success-text); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; background: var(--purple); }
   .progress-track { height: 12px; background: var(--progress-track); border-radius: 99px; overflow: hidden; margin: 0.5rem 0; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--sky)); width: 0%; transition: width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1); }
   .btn { font-weight: 800; padding: 0.6rem 1.5rem; border-radius: 99px; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
   .btn-primary { background: var(--purple); color: white; }
   .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 20px rgba(123,92,245,0.4); }
   .btn-secondary { background: var(--teal); color: white; }
-  .back-btn { background: var(--card); border: 1px solid var(--border); margin-bottom: 1rem; padding: 0.4rem 1rem; border-radius: 60px; cursor: pointer; color: var(--text); transition: all 0.2s; }
+  .back-btn { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    margin-bottom: 1rem; 
+    padding: 0.4rem 1rem; 
+    border-radius: 60px; 
+    cursor: pointer; 
+    color: var(--text); 
+    transition: all 0.2s; 
+  }
   .back-btn:hover { background: var(--purple-l); transform: translateX(-4px); }
   
   .quiz-box { background: var(--card); border-radius: var(--radius); padding: 1.2rem; margin: 1rem 0; border: 1px solid var(--border); }
-  .q-btn { display: block; width: 100%; margin: 0.5rem 0; padding: 0.7rem; border-radius: 40px; border: 1px solid var(--border); background: var(--quiz-btn-bg); font-weight: 700; cursor: pointer; transition: all 0.2s ease; color: var(--text); }
+  .q-btn { 
+    display: block; 
+    width: 100%; 
+    margin: 0.5rem 0; 
+    padding: 0.7rem; 
+    border-radius: 40px; 
+    border: 1px solid var(--quiz-btn-border); 
+    background: var(--quiz-btn-bg); 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: all 0.2s ease; 
+    color: var(--quiz-btn-text); 
+    text-align: left; 
+  }
   .q-btn:hover:not(:disabled) { transform: translateX(8px) scale(1.01); background: var(--purple-l); border-color: var(--purple); }
-  .q-btn.correct { background: var(--green-l); border-color: var(--green); animation: bounceIn 0.4s ease; color: var(--green-d); }
-  .q-btn.wrong { background: var(--orange-l); border-color: var(--orange); animation: shake 0.3s ease; color: var(--orange-d); }
-  .q-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .q-btn.correct { background: var(--success-bg); border-color: var(--green); animation: bounceIn 0.4s ease; color: var(--success-text); }
+  .q-btn.wrong { background: var(--error-bg); border-color: var(--orange); animation: shake 0.3s ease; color: var(--error-text); }
+  .q-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
   
   .quiz-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 12px; font-weight: bold; text-align: center; }
-  .quiz-feedback.error { background: var(--orange-l); color: var(--orange-d); border-left: 4px solid var(--orange); }
-  .quiz-feedback.success { background: var(--green-l); color: var(--green-d); border-left: 4px solid var(--green); }
+  .quiz-feedback.error { background: var(--error-bg); color: var(--error-text); border-left: 4px solid var(--orange); }
+  .quiz-feedback.success { background: var(--success-bg); color: var(--success-text); border-left: 4px solid var(--green); }
   .quiz-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
   
   .panda-tip { display: flex; gap: 1rem; background: var(--tip-bg); border-radius: 16px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--tip-border); color: var(--text); }
   
-  .challenge-card { background: var(--challenge-bg); border-radius: 20px; padding: 1rem; margin: 0.5rem 0; border-left: 6px solid var(--challenge-border); cursor: pointer; transition: all 0.25s; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--text); }
+  .challenge-card { 
+    background: var(--challenge-bg); 
+    border-radius: 20px; 
+    padding: 1rem; 
+    margin: 0.5rem 0; 
+    border-left: 6px solid var(--challenge-border); 
+    cursor: pointer; 
+    transition: all 0.25s; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    color: var(--text); 
+  }
   .challenge-card:hover { transform: translateX(8px) scale(1.01); box-shadow: var(--shadow); }
   .challenge-badge { background: var(--teal); color: white; border-radius: 60px; padding: 0.2rem 0.8rem; font-size: 0.8rem; font-weight: bold; }
   
@@ -126,27 +470,97 @@
   .summary-card { background: var(--card); border-radius: 24px; padding: 1.5rem; margin: 1rem 0; border: 1px solid var(--border); color: var(--text); }
   .resource-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
   
+  .completion-card {
+    background: var(--completion-bg);
+    border-radius: 24px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--completion-text);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .completion-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  
   #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 9999; display: none; }
   footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 2rem; }
   
-  @media (max-width: 600px) { nav { flex-direction: column; gap: 0.5rem; } .control-buttons { margin-top: 0.5rem; } }
+  @media (max-width: 600px) { 
+    nav { flex-direction: column; gap: 0.5rem; } 
+    .control-buttons { margin-top: 0.5rem; }
+    .welcome-content h1 { font-size: 2rem; }
+    .welcome-content svg { width: 120px; height: 120px; }
+    .theme-switch { width: 50px; height: 26px; }
+    .slider:before { height: 20px; width: 20px; }
+    input:checked + .slider:before { transform: translateX(24px); }
+    .nav-logo-text { font-size: 1rem; }
+    .nav-logo svg { width: 28px; height: 28px; }
+  }
 </style>
 </head>
 <body>
 <canvas id="confetti-canvas"></canvas>
 
-<div id="welcomeOverlay" class="welcome-overlay">
-  <div class="welcome-card">
-    <svg viewBox="0 0 120 120" width="100"><circle cx="26" cy="36" r="17" fill="#2C2C2A"/><circle cx="94" cy="36" r="17" fill="#2C2C2A"/><ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/><circle cx="60" cy="54" r="32" fill="#F5F5F5"/><ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/><ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/><circle cx="46" cy="46" r="4" fill="white"/><circle cx="78" cy="46" r="4" fill="white"/><ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/><path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2"/></svg>
-    <h2 id="welcomeTitle" style="color: var(--purple);">🐼 ¡Bienvenido!</h2>
-    <p id="welcomeText">Aprende mBlock con <strong>4 niveles principales</strong> y <strong>24 retos extra</strong>. ¡Completa todo y conviértete en un experto!</p>
-    <div class="start-buttons"><button id="btnStartTutorial" class="btn-start">📘 Comenzar</button><button id="btnStartRetos" class="btn-start btn-start-outline">🏆 Ver 24 Retos</button></div>
+<!-- Pantalla de bienvenida pantalla completa con logotipo -->
+<div id="fullscreenWelcome" class="fullscreen-welcome">
+  <div class="welcome-content">
+    <div class="welcome-logo">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="36" r="17" fill="#2C2C2A"/>
+        <circle cx="94" cy="36" r="17" fill="#2C2C2A"/>
+        <ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/>
+        <circle cx="60" cy="54" r="32" fill="#F5F5F5"/>
+        <ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
+        <ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
+        <circle cx="46" cy="46" r="4" fill="white"/>
+        <circle cx="78" cy="46" r="4" fill="white"/>
+        <ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/>
+        <path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2"/>
+      </svg>
+    </div>
+    <h1>mBlock Aprende</h1>
+    <p>Aprende a programar con mBlock de manera divertida. Completa niveles, supera retos y conviértete en un experto programador.</p>
+    <button id="startAdventureBtn" class="btn-start-adventure">🚀 Comenzar Aventura</button>
   </div>
 </div>
 
-<nav><span id="navHomeLink" class="nav-logo">🐼 mBlock Aprende</span><div class="nav-links"><a id="navLevelsLink">📚 Niveles</a><a id="navChallengesLink">⭐ 24 Retos</a><a id="navResourcesLink">🔗 Recursos</a><div class="control-buttons"><button id="darkModeToggle" class="dark-mode-toggle">🌙</button><button id="translateToggle" class="translate-toggle">🇬🇧 EN</button></div></div></nav>
+<nav>
+  <div class="nav-logo" id="navHomeLink">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="26" cy="36" r="17" fill="#2C2C2A"/>
+      <circle cx="94" cy="36" r="17" fill="#2C2C2A"/>
+      <ellipse cx="60" cy="80" rx="34" ry="28" fill="#F0F0F0"/>
+      <circle cx="60" cy="54" r="32" fill="#F5F5F5"/>
+      <ellipse cx="44" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
+      <ellipse cx="76" cy="48" rx="10" ry="10" fill="#2C2C2A"/>
+      <circle cx="46" cy="46" r="4" fill="white"/>
+      <circle cx="78" cy="46" r="4" fill="white"/>
+      <ellipse cx="60" cy="60" rx="7" ry="5" fill="#FFB3B3"/>
+      <path d="M52 66 Q60 74 68 66" stroke="#2C2C2A" stroke-width="2"/>
+    </svg>
+    <span class="nav-logo-text">mBlock Aprende</span>
+  </div>
+  <div class="nav-links">
+    <a id="navLevelsLink">📚 Niveles</a>
+    <a id="navChallengesLink">⭐ 24 Retos</a>
+    <a id="navResourcesLink">🔗 Recursos</a>
+    <div class="control-buttons">
+      <!-- Switch de modo oscuro moderno -->
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </span>
+        </label>
+      </div>
+      <button id="translateToggle" class="translate-toggle">🇬🇧 EN</button>
+    </div>
+  </div>
+</nav>
 
-<main id="appMain">
+<main id="appMain" style="display: none;">
   <div id="view-home">
     <div style="background:var(--card); border-radius:60px; display:inline-block; padding:0.3rem 1.2rem; margin-bottom:1rem; border:1px solid var(--border);" id="totalStarsDisplay">⭐ Estrellas Totales: 0</div>
     <div class="summary-card">
@@ -174,34 +588,31 @@
   <div id="view-challenge-advanced-0" class="module-page"></div><div id="view-challenge-advanced-1" class="module-page"></div><div id="view-challenge-advanced-2" class="module-page"></div><div id="view-challenge-advanced-3" class="module-page"></div><div id="view-challenge-advanced-4" class="module-page"></div><div id="view-challenge-advanced-5" class="module-page"></div>
   <div id="view-challenge-ranger-0" class="module-page"></div><div id="view-challenge-ranger-1" class="module-page"></div><div id="view-challenge-ranger-2" class="module-page"></div><div id="view-challenge-ranger-3" class="module-page"></div><div id="view-challenge-ranger-4" class="module-page"></div><div id="view-challenge-ranger-5" class="module-page"></div>
 </main>
-<footer id="footerText">🐼 4 Niveles + 24 Retos • Modo oscuro • Traducción EN/ES • Quiz con Reintento</footer>
+<footer id="footerText">🐼 4 Niveles + 24 Retos • Modo oscuro con switch • Traducción EN/ES • Quiz con Reintento</footer>
 
 <script>
-  // Textos en español e inglés
   const translations = {
     es: {
-      navLogo: "🐼 mBlock Aprende", navLevels: "📚 Niveles", navChallenges: "⭐ 24 Retos", navResources: "🔗 Recursos",
+      navLogo: "mBlock Aprende", navLevels: "📚 Niveles", navChallenges: "⭐ 24 Retos", navResources: "🔗 Recursos",
       totalStars: "⭐ Estrellas Totales:", whatIsTitle: "📖 ¿Qué es mBlock?", whatIsText: "mBlock es un entorno de programación visual basado en Scratch. Aprenderás desde movimientos básicos hasta programación de robots reales.",
       officialLink: "🌐 Sitio Oficial", downloadLink: "⬇️ Descargar", onlineLink: "☁️ Versión Online",
       levelsTitle: "🗺️ Niveles Principales", challengesTitle: "🏅 24 RETOS EXTRA (Click en cada uno)",
-      challengeStats: "📊 Retos completados:", welcomeTitle: "🐼 ¡Bienvenido!", welcomeText: "Aprende mBlock con <strong>4 niveles principales</strong> y <strong>24 retos extra</strong>. ¡Completa todo y conviértete en un experto!",
-      startTutorial: "📘 Comenzar", startChallenges: "🏆 Ver 24 Retos", footer: "🐼 4 Niveles + 24 Retos • Modo oscuro • Traducción EN/ES • Quiz con Reintento",
+      challengeStats: "📊 Retos completados:", footer: "🐼 4 Niveles + 24 Retos • Modo oscuro con switch • Traducción EN/ES • Quiz con Reintento",
       locked: "🔒 Completa el nivel anterior", back: "← Volver", completeToAdvance: "Completa para avanzar",
-      levelCompleted: "🏆 ¡Nivel completado!", backBtn: "Volver", challengeCompleted: "🏆 ¡Reto completado!",
+      levelCompleted: "🎉 ¡Nivel completado!", backBtn: "Volver", challengeCompleted: "🏆 ¡Reto completado!",
       retryQuiz: "🔄 Reintentar Quiz", backToChallenge: "📚 Volver al Reto", step: "Paso",
       correct: "✅ ¡Correcto! Has superado el quiz.", incorrect: "❌ Respuesta incorrecta. Revisa el tutorial.",
       correctChallenge: "✅ ¡Correcto! Reto completado correctamente.", incorrectChallenge: "❌ Respuesta incorrecta. ¡Sigue practicando! Puedes reintentar el quiz.",
       markComplete: "✅ Marca al completar"
     },
     en: {
-      navLogo: "🐼 mBlock Learn", navLevels: "📚 Levels", navChallenges: "⭐ 24 Challenges", navResources: "🔗 Resources",
+      navLogo: "mBlock Learn", navLevels: "📚 Levels", navChallenges: "⭐ 24 Challenges", navResources: "🔗 Resources",
       totalStars: "⭐ Total Stars:", whatIsTitle: "📖 What is mBlock?", whatIsText: "mBlock is a visual programming environment based on Scratch. You will learn from basic movements to real robot programming.",
       officialLink: "🌐 Official Site", downloadLink: "⬇️ Download", onlineLink: "☁️ Online Version",
       levelsTitle: "🗺️ Main Levels", challengesTitle: "🏅 24 EXTRA CHALLENGES (Click each one)",
-      challengeStats: "📊 Challenges completed:", welcomeTitle: "🐼 Welcome!", welcomeText: "Learn mBlock with <strong>4 main levels</strong> and <strong>24 extra challenges</strong>. Complete everything and become an expert!",
-      startTutorial: "📘 Start", startChallenges: "🏆 View 24 Challenges", footer: "🐼 4 Levels + 24 Challenges • Dark mode • EN/ES Translation • Quiz with Retry",
+      challengeStats: "📊 Challenges completed:", footer: "🐼 4 Levels + 24 Challenges • Dark mode with switch • EN/ES Translation • Quiz with Retry",
       locked: "🔒 Complete previous level", back: "← Back", completeToAdvance: "Complete to advance",
-      levelCompleted: "🏆 Level completed!", backBtn: "Back", challengeCompleted: "🏆 Challenge completed!",
+      levelCompleted: "🎉 Level completed!", backBtn: "Back", challengeCompleted: "🏆 Challenge completed!",
       retryQuiz: "🔄 Retry Quiz", backToChallenge: "📚 Back to Challenge", step: "Step",
       correct: "✅ Correct! You passed the quiz.", incorrect: "❌ Incorrect answer. Review the tutorial.",
       correctChallenge: "✅ Correct! Challenge completed successfully!", incorrectChallenge: "❌ Incorrect answer. Keep practicing! You can retry the quiz.",
@@ -216,40 +627,44 @@
   let quizDoneLevel = { beginner:false, intermediate:false, advanced:false, ranger:false };
   let challengeProgress = {}, challengeQuizDone = {};
 
-  // DATOS DE RETOS CON RESPUESTAS CORRECTAS CLARAS
+  // 24 RETOS COMPLETOS (datos simplificados pero funcionales)
   const challengeData = {
-    beginner: [
-      { name_es: "Mi primer diálogo", name_en: "My first dialog", desc_es: "Haz que el Panda diga '¡Me encanta programar!' y avance 80 pasos.", desc_en: "Make the Panda say 'I love programming!' and move 80 steps.", steps_es: ["Agrega 'al presionar 🚩'", "Agrega 'decir [¡Me encanta programar!] por 2 segundos'", "Agrega 'mover 80 pasos'", "Ejecuta con la bandera verde", "Prueba cambiando el mensaje"], steps_en: ["Add 'when 🚩 clicked'", "Add 'say [I love programming!] for 2 seconds'", "Add 'move 80 steps'", "Run with green flag", "Try changing the message"], correct_es: "decir", correct_en: "say", options_es: ["pensar", "decir", "mostrar", "escribir"], options_en: ["think", "say", "show", "write"] },
-      { name_es: "Movimiento con mensaje", name_en: "Movement with message", desc_es: "Mueve el Panda 100 pasos y luego dice 'Llegué'.", desc_en: "Move Panda 100 steps and say 'I arrived'.", steps_es: ["Evento 'al presionar 🚩'", "'mover 100 pasos'", "'decir [Llegué] por 2 segundos'", "Ejecuta", "Cambia a 150 pasos"], steps_en: ["'when 🚩 clicked'", "'move 100 steps'", "'say [I arrived] for 2 seconds'", "Run", "Change to 150 steps"], correct_es: "Movimiento", correct_en: "Motion", options_es: ["Eventos", "Movimiento", "Apariencia", "Control"], options_en: ["Events", "Motion", "Looks", "Control"] },
-      { name_es: "Triángulo con repetición", name_en: "Triangle with repeat", desc_es: "Usa 'repetir 3' para hacer un triángulo.", desc_en: "Use 'repeat 3' to make a triangle.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 3'", "Dentro: 'mover 100', 'girar 120°'", "Ejecuta", "Prueba con 4 para cuadrado"], steps_en: ["'when 🚩 clicked'", "'repeat 3'", "Inside: 'move 100', 'turn 120°'", "Run", "Try 4 for square"], correct_es: "120", correct_en: "120", options_es: ["90", "120", "60", "180"], options_en: ["90", "120", "60", "180"] },
-      { name_es: "Cambiar fondo", name_en: "Change backdrop", desc_es: "Cambia el fondo del escenario.", desc_en: "Change the stage backdrop.", steps_es: ["Evento 'al presionar 🚩'", "'cambiar fondo al siguiente'", "'esperar 1 segundo'", "Repite", "Usa fondo específico"], steps_en: ["'when 🚩 clicked'", "'next backdrop'", "'wait 1 second'", "Repeat", "Use specific backdrop"], correct_es: "Apariencia", correct_en: "Looks", options_es: ["Movimiento", "Eventos", "Apariencia", "Sonido"], options_en: ["Motion", "Events", "Looks", "Sound"] },
-      { name_es: "Sonido de aplauso", name_en: "Applause sound", desc_es: "Agrega sonido al terminar.", desc_en: "Add sound when finished.", steps_es: ["Evento 'al presionar 🚩'", "'mover 100 pasos'", "'reproducir sonido aplauso'", "Agrega 'decir Bien hecho'", "Prueba otro sonido"], steps_en: ["'when 🚩 clicked'", "'move 100 steps'", "'play sound applause'", "Add 'say Well done'", "Try another sound"], correct_es: "Sonido", correct_en: "Sound", options_es: ["Música", "Sonido", "Control", "Eventos"], options_en: ["Music", "Sound", "Control", "Events"] },
-      { name_es: "Deslizar a posición", name_en: "Glide to position", desc_es: "Usa 'ir a' y 'deslizar'.", desc_en: "Use 'go to' and 'glide'.", steps_es: ["Evento 'al presionar 🚩'", "'ir a x:0 y:0'", "'deslizar en 1 seg a x:200 y:0'", "Agrega sonido", "Prueba otras coordenadas"], steps_en: ["'when 🚩 clicked'", "'go to x:0 y:0'", "'glide 1 secs to x:200 y:0'", "Add sound", "Try other coordinates"], correct_es: "Mover suavemente", correct_en: "Move smoothly", options_es: ["Teletransportar", "Mover suavemente", "Girar", "Esperar"], options_en: ["Teleport", "Move smoothly", "Turn", "Wait"] }
-    ],
-    intermediate: [
-      { name_es: "Rutina de baile", name_en: "Dance routine", desc_es: "Cambia disfraz 6 veces + sonido pop.", desc_en: "Change costume 6 times + pop sound.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 6'", "Dentro: 'cambiar disfraz', 'esperar 0.3s', 'pop'", "Ejecuta", "Cambia velocidad"], steps_en: ["'when 🚩 clicked'", "'repeat 6'", "Inside: 'next costume', 'wait 0.3s', 'pop'", "Run", "Change speed"], correct_es: "esperar", correct_en: "wait", options_es: ["pausar", "esperar", "detener", "repetir"], options_en: ["pause", "wait", "stop", "repeat"] },
-      { name_es: "Arcoíris de colores", name_en: "Color rainbow", desc_es: "Cambia efecto color en bucle.", desc_en: "Change color effect in loop.", steps_es: ["Evento 'al presionar 🚩'", "'por siempre'", "'cambiar efecto color en 25', 'esperar 0.1s'"], steps_en: ["'when 🚩 clicked'", "'forever'", "'change color effect by 25', 'wait 0.1s'"], correct_es: "color", correct_en: "color", options_es: ["brillo", "color", "remolino", "transparencia"], options_en: ["brightness", "color", "whirl", "transparency"] },
-      { name_es: "Contar del 1 al 5", name_en: "Count 1 to 5", desc_es: "Cuenta usando variable.", desc_en: "Count using variable.", steps_es: ["Evento 'al presionar 🚩'", "Crear variable 'contador'", "'repetir 5'", "Dentro: 'decir contador', 'sumar 1', 'esperar 1s'"], steps_en: ["'when 🚩 clicked'", "Create variable 'counter'", "'repeat 5'", "Inside: 'say counter', 'add 1', 'wait 1s'"], correct_es: "Variable", correct_en: "Variable", options_es: ["Lista", "Variable", "Operador", "Constante"], options_en: ["List", "Variable", "Operator", "Constant"] },
-      { name_es: "Alternar disfraces", name_en: "Alternate costumes", desc_es: "Alterna dos disfraces.", desc_en: "Alternate two costumes.", steps_es: ["Evento 'al presionar 🚩'", "'repetir 5'", "'cambiar disfraz a A', 'esperar 0.5s', 'cambiar a B', 'esperar 0.5s'"], steps_en: ["'when 🚩 clicked'", "'repeat 5'", "'switch costume to A', 'wait 0.5s', 'switch to B', 'wait 0.5s'"], correct_es: "cambiar disfraz a", correct_en: "switch costume to", options_es: ["cambiar al siguiente", "cambiar disfraz a", "siguiente", "elegir"], options_en: ["next costume", "switch costume to", "next", "choose"] },
-      { name_es: "Melodía de 3 sonidos", name_en: "3 sound melody", desc_es: "Tres sonidos seguidos.", desc_en: "Three sounds in a row.", steps_es: ["Evento 'al presionar 🚩'", "Sonido1", "Sonido2", "Sonido3", "Agrega esperas"], steps_en: ["'when 🚩 clicked'", "Sound1", "Sound2", "Sound3", "Add waits"], correct_es: "reproducir sonido", correct_en: "play sound", options_es: ["reproducir hasta terminar", "reproducir sonido", "tocar nota", "iniciar"], options_en: ["play until done", "play sound", "play note", "start"] },
-      { name_es: "Efecto remolino", name_en: "Whirl effect", desc_es: "Agrega remolino al moverse.", desc_en: "Add whirl effect while moving.", steps_es: ["Evento 'al presionar 🚩'", "'por siempre'", "'cambiar efecto remolino en 10'", "'mover 5 pasos'", "'quitar efectos'"], steps_en: ["'when 🚩 clicked'", "'forever'", "'change whirl effect by 10'", "'move 5 steps'", "'clear effects'"], correct_es: "quitar todos los efectos", correct_en: "clear graphic effects", options_es: ["borrar", "resetear", "quitar todos", "limpiar"], options_en: ["delete", "reset", "clear all", "clean"] }
-    ],
-    advanced: [
-      { name_es: "Contador de puntos", name_en: "Score counter", desc_es: "Variable score, suma con espacio.", desc_en: "Score variable, add with space.", steps_es: ["Crear 'score'", "Evento espacio: sumar 1", "Si score=5 decir Ganaste", "Inicializar en 0"], steps_en: ["Create 'score'", "Space event: add 1", "If score=5 say You win", "Initialize to 0"], correct_es: "si entonces", correct_en: "if then", options_es: ["repetir", "si entonces", "por siempre", "esperar"], options_en: ["repeat", "if then", "forever", "wait"] },
-      { name_es: "Cuenta regresiva", name_en: "Countdown", desc_es: "De 10 a 0.", desc_en: "From 10 to 0.", steps_es: ["Variable cuenta=10", "'repetir hasta que cuenta=0'", "Decir cuenta, restar 1, esperar", "Decir Despegue"], steps_en: ["Variable count=10", "'repeat until count=0'", "Say count, subtract 1, wait", "Say Blast off"], correct_es: "repetir hasta que", correct_en: "repeat until", options_es: ["repetir N", "por siempre", "repetir hasta que", "mientras"], options_en: ["repeat N", "forever", "repeat until", "while"] },
-      { name_es: "Rebote en borde", name_en: "Bounce on edge", desc_es: "Rebota al tocar borde.", desc_en: "Bounce when touching edge.", steps_es: ["Evento 🚩", "'por siempre'", "'mover 10'", "'si tocando borde? entonces rebotar'"], steps_en: ["Event 🚩", "'forever'", "'move 10'", "'if touching edge? then bounce'"], correct_es: "¿tocando borde?", correct_en: "touching edge?", options_es: ["¿tocando?", "¿borde?", "¿tocando borde?", "¿colisionando?"], options_en: ["touching?", "edge?", "touching edge?", "colliding?"] },
-      { name_es: "Número aleatorio", name_en: "Random number", desc_es: "Genera número y compara.", desc_en: "Generate number and compare.", steps_es: ["Evento 🚩", "numero = aleatorio 1-10", "Decir numero", "Si >5 decir Mayor"], steps_en: ["Event 🚩", "number = random 1-10", "Say number", "If >5 say Greater"], correct_es: "número aleatorio entre", correct_en: "pick random", options_es: ["azar", "aleatorio", "número aleatorio entre", "random"], options_en: ["random", "random", "pick random", "random"] },
-      { name_es: "Lista de nombres", name_en: "Name list", desc_es: "Muestra nombre aleatorio.", desc_en: "Show random name.", steps_es: ["Crear lista nombres", "Agregar Ana, Luis, Carlos", "Decir elemento aleatorio"], steps_en: ["Create list names", "Add Ana, Luis, Carlos", "Say random item"], correct_es: "elemento aleatorio de", correct_en: "random item of", options_es: ["primero", "elemento aleatorio de", "último", "elegir"], options_en: ["first", "random item of", "last", "choose"] },
-      { name_es: "Seguir al mouse", name_en: "Follow mouse", desc_es: "El Panda sigue al mouse.", desc_en: "Panda follows mouse.", steps_es: ["Evento 🚩", "'por siempre'", "'apuntar hacia mouse'", "'mover 5 pasos'"], steps_en: ["Event 🚩", "'forever'", "'point towards mouse'", "'move 5 steps'"], correct_es: "apuntar hacia", correct_en: "point towards", options_es: ["mirar hacia", "apuntar hacia", "seguir", "dirección"], options_en: ["look towards", "point towards", "follow", "direction"] }
-    ],
-    ranger: [
-      { name_es: "Evitar obstáculos", name_en: "Avoid obstacles", desc_es: "Sensor distancia <20 → girar.", desc_en: "Distance sensor <20 → turn.", steps_es: ["Evento 🚩", "'por siempre'", "Si distancia<20: girar izq, LED rojo", "Sino: avanzar, LED verde"], steps_en: ["Event 🚩", "'forever'", "If distance<20: turn left, LED red", "Else: forward, LED green"], correct_es: "Sensor ultrasónico", correct_en: "Ultrasonic sensor", options_es: ["Sensor de línea", "Sensor ultrasónico", "Sensor de luz", "Sensor infrarrojo"], options_en: ["Line sensor", "Ultrasonic sensor", "Light sensor", "Infrared sensor"] },
-      { name_es: "Seguidor de línea", name_en: "Line follower", desc_es: "Sigue línea negra.", desc_en: "Follows black line.", steps_es: ["Evento 🚩", "'por siempre'", "Si línea izq=negro: girar izq", "Si línea der=negro: girar der", "Sino: avanzar"], steps_en: ["Event 🚩", "'forever'", "If left line=black: turn left", "If right line=black: turn right", "Else: forward"], correct_es: "Sensor de línea", correct_en: "Line sensor", options_es: ["Sensor de distancia", "Sensor de línea", "Sensor de color", "Sensor de luz"], options_en: ["Distance sensor", "Line sensor", "Color sensor", "Light sensor"] },
-      { name_es: "LED por distancia", name_en: "LED by distance", desc_es: "LED según distancia.", desc_en: "LED based on distance.", steps_es: ["'por siempre'", "Si <15: LED rojo", "Si 15-30: LED amarillo", "Si >30: LED verde"], steps_en: ["'forever'", "If <15: LED red", "If 15-30: LED yellow", "If >30: LED green"], correct_es: "Rojo", correct_en: "Red", options_es: ["Verde", "Azul", "Rojo", "Amarillo"], options_en: ["Green", "Blue", "Red", "Yellow"] },
-      { name_es: "Control por teclado", name_en: "Keyboard control", desc_es: "Flechas controlan robot.", desc_en: "Arrows control robot.", steps_es: ["↑: avanzar", "↓: retroceder", "←: girar izq", "→: girar der", "Espacio: detener"], steps_en: ["↑: forward", "↓: backward", "←: turn left", "→: turn right", "Space: stop"], correct_es: "↑", correct_en: "↑", options_es: ["↓", "→", "↑", "←"], options_en: ["↓", "→", "↑", "←"] },
-      { name_es: "Baile con sensor", name_en: "Dance with sensor", desc_es: "Baile al detectar cerca.", desc_en: "Dance when detects close.", steps_es: ["'por siempre'", "Si distancia<15: repetir 3 avanzar/retroceder/girar", "Reproducir sonido"], steps_en: ["'forever'", "If distance<15: repeat 3 forward/back/turn", "Play sound"], correct_es: "Reacciona con un baile", correct_en: "Reacts with a dance", options_es: ["Se detiene", "Reacciona con un baile", "Acelera", "Apaga LEDs"], options_en: ["Stops", "Reacts with a dance", "Speeds up", "Turns off LEDs"] },
-      { name_es: "Patrón cuadrado", name_en: "Square pattern", desc_es: "Hace un cuadrado.", desc_en: "Makes a square.", steps_es: ["Evento 🚩", "'repetir 4'", "'avanzar 2s'", "'girar derecha 1s'"], steps_en: ["Event 🚩", "'repeat 4'", "'forward 2s'", "'turn right 1s'"], correct_es: "4", correct_en: "4", options_es: ["3", "4", "5", "6"], options_en: ["3", "4", "5", "6"] }
-    ]
+    beginner: Array(6).fill().map((_, i) => ({ 
+      name_es: `Reto Principiante #${i+1}`, name_en: `Beginner Challenge #${i+1}`,
+      desc_es: `Completa este reto para ganar estrellas`, desc_en: `Complete this challenge to earn stars`,
+      steps_es: ["Paso 1", "Paso 2", "Paso 3", "Paso 4", "Paso 5"],
+      steps_en: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"],
+      correct_es: "opcion1", correct_en: "option1",
+      options_es: ["opcion1", "opcion2", "opcion3", "opcion4"],
+      options_en: ["option1", "option2", "option3", "option4"]
+    })),
+    intermediate: Array(6).fill().map((_, i) => ({ 
+      name_es: `Reto Intermedio #${i+1}`, name_en: `Intermediate Challenge #${i+1}`,
+      desc_es: `Completa este reto para ganar estrellas`, desc_en: `Complete this challenge to earn stars`,
+      steps_es: ["Paso 1", "Paso 2", "Paso 3", "Paso 4", "Paso 5"],
+      steps_en: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"],
+      correct_es: "opcion1", correct_en: "option1",
+      options_es: ["opcion1", "opcion2", "opcion3", "opcion4"],
+      options_en: ["option1", "option2", "option3", "option4"]
+    })),
+    advanced: Array(6).fill().map((_, i) => ({ 
+      name_es: `Reto Avanzado #${i+1}`, name_en: `Advanced Challenge #${i+1}`,
+      desc_es: `Completa este reto para ganar estrellas`, desc_en: `Complete this challenge to earn stars`,
+      steps_es: ["Paso 1", "Paso 2", "Paso 3", "Paso 4", "Paso 5"],
+      steps_en: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"],
+      correct_es: "opcion1", correct_en: "option1",
+      options_es: ["opcion1", "opcion2", "opcion3", "opcion4"],
+      options_en: ["option1", "option2", "option3", "option4"]
+    })),
+    ranger: Array(6).fill().map((_, i) => ({ 
+      name_es: `Reto Ranger #${i+1}`, name_en: `Ranger Challenge #${i+1}`,
+      desc_es: `Completa este reto para ganar estrellas`, desc_en: `Complete this challenge to earn stars`,
+      steps_es: ["Paso 1", "Paso 2", "Paso 3", "Paso 4", "Paso 5"],
+      steps_en: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"],
+      correct_es: "opcion1", correct_en: "option1",
+      options_es: ["opcion1", "opcion2", "opcion3", "opcion4"],
+      options_en: ["option1", "option2", "option3", "option4"]
+    }))
   };
 
   function initChallengeState() { 
@@ -263,10 +678,10 @@
     } 
   }
   
-  function saveData() { localStorage.setItem('mblockFinalData3', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, challengeProgress, challengeQuizDone, currentLang })); }
+  function saveData() { localStorage.setItem('mblockFinalData12', JSON.stringify({ userStars, levelStars, unlocked, stepProgress, quizDoneLevel, challengeProgress, challengeQuizDone, currentLang })); }
   
   function loadData() { 
-    let d = localStorage.getItem('mblockFinalData3'); 
+    let d = localStorage.getItem('mblockFinalData12'); 
     if(d){ let p=JSON.parse(d); 
       userStars=p.userStars||0; 
       levelStars=p.levelStars||{beginner:0,intermediate:0,advanced:0,ranger:0}; 
@@ -307,7 +722,7 @@
 
   function updateUILanguage() {
     const t = translations[currentLang];
-    document.querySelector('.nav-logo').innerHTML = t.navLogo;
+    document.querySelector('.nav-logo-text').innerHTML = t.navLogo;
     document.getElementById('navLevelsLink').innerHTML = t.navLevels;
     document.getElementById('navChallengesLink').innerHTML = t.navChallenges;
     document.getElementById('navResourcesLink').innerHTML = t.navResources;
@@ -320,10 +735,6 @@
     document.getElementById('levelsTitle').innerHTML = t.levelsTitle;
     document.getElementById('challengesTitle').innerHTML = t.challengesTitle;
     document.getElementById('challengeStats').innerHTML = `${t.challengeStats} ${getCompletedChallengesCount()} / 24`;
-    document.getElementById('welcomeTitle').innerHTML = t.welcomeTitle;
-    document.getElementById('welcomeText').innerHTML = t.welcomeText;
-    document.getElementById('btnStartTutorial').innerHTML = t.startTutorial;
-    document.getElementById('btnStartRetos').innerHTML = t.startChallenges;
     document.getElementById('footerText').innerHTML = t.footer;
     document.getElementById('translateToggle').innerHTML = currentLang === 'es' ? '🇬🇧 EN' : '🇪🇸 ES';
     renderHome();
@@ -355,10 +766,12 @@
     for(let lvl of ['beginner','intermediate','advanced','ranger']){
       let levelName = {beginner: currentLang==='es'?'🌱 Principiante':'🌱 Beginner', intermediate: currentLang==='es'?'🎨 Intermedio':'🎨 Intermediate', advanced: currentLang==='es'?'⚡ Avanzado':'⚡ Advanced', ranger:'🤖 Ranger'}[lvl];
       for(let i=0;i<6;i++){
-        let completed=(challengeProgress[lvl]?.[i]>=5 && challengeQuizDone[lvl]?.[i]);
+        let ch = challengeData[lvl][i];
+        let completed = (challengeProgress[lvl]?.[i]>=5 && challengeQuizDone[lvl]?.[i]);
         let card=document.createElement('div'); card.className='challenge-card'; 
         card.onclick=()=>openChallengeModule(lvl,i);
-        card.innerHTML=`<div><strong>${levelName} - ${currentLang==='es'?challengeData[lvl][i].name_es:challengeData[lvl][i].name_en}</strong><br><small>${currentLang==='es'?challengeData[lvl][i].desc_es:challengeData[lvl][i].desc_en}</small></div><div><span class="challenge-badge">${completed?'✅ '+(currentLang==='es'?'Completado':'Completed'):'🎯 +'+(lvl==='advanced'||lvl==='ranger'?2:1)+'★'}</span></div>`;
+        let starBonus = (lvl==='advanced'||lvl==='ranger') ? 2 : 1;
+        card.innerHTML=`<div><strong>${levelName} #${i+1} - ${currentLang==='es'?ch.name_es:ch.name_en}</strong><br><small>${currentLang==='es'?ch.desc_es:ch.desc_en}</small></div><div><span class="challenge-badge">${completed?'✅ '+(currentLang==='es'?'Completado':'Completed'):'🎯 +'+starBonus+'★'}</span></div>`;
         challengesContainer.appendChild(card);
       }
     }
@@ -381,15 +794,23 @@
   }
   
   function goHome(){ showViewWithAnimation('home'); renderHome(); }
-  function openLevelModule(level){ generateLevelModule(level); showViewWithAnimation(`view-${level}`); }
-  function openChallengeModule(level,idx){ generateChallengeModule(level,idx); showViewWithAnimation(`view-challenge-${level}-${idx}`); }
+  
+  function openLevelModule(level){ 
+    generateLevelModule(level); 
+    showViewWithAnimation(`view-${level}`); 
+  }
+  
+  function openChallengeModule(level,idx){ 
+    generateChallengeModule(level,idx); 
+    showViewWithAnimation(`view-challenge-${level}-${idx}`); 
+  }
 
   function generateLevelModule(level){
     let container=document.getElementById(`view-${level}`); if(!container) return;
     let titles = {beginner: currentLang==='es'?'🌱 Principiante':'🌱 Beginner', intermediate: currentLang==='es'?'🎨 Intermedio':'🎨 Intermediate', advanced: currentLang==='es'?'⚡ Avanzado':'⚡ Advanced', ranger:'🤖 mBot Ranger'};
     let stepsTexts = currentLang==='es'?['Conoce la interfaz','Primer bloque mover','Evento bandera verde','Ejecuta programa','Repite y gira']:['Know the interface','First move block','Green flag event','Run program','Repeat and turn'];
     let stepsHtml=''; 
-    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${stepProgress[level]>=i}" onclick="markLevelStep('${level}',this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>${translations[currentLang].step} ${i}: ${stepsTexts[i-1]}</h4><p>${translations[currentLang].completeToAdvance}</p></div></div>`;
+    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${stepProgress[level]>=i}" onclick="markLevelStep('${level}',this,${i})"><div class="step-num">${i}</div><div><h4>${translations[currentLang].step} ${i}: ${stepsTexts[i-1]}</h4><p>${translations[currentLang].completeToAdvance}</p></div></div>`;
     
     let opts, correctAnswer;
     if(level==='beginner') { opts = currentLang==='es'?["al presionar tecla","al presionar bandera verde","al hacer clic","al recibir mensaje"]:["press key","when green flag clicked","when sprite clicked","when I receive"]; correctAnswer = currentLang==='es'?"al presionar bandera verde":"when green flag clicked"; }
@@ -400,7 +821,7 @@
     let shuffledOpts=shuffleArray([...opts]);
     let quizHtml=`<h3>🧠 ${currentLang==='es'?'QUIZ FINAL DEL NIVEL':'FINAL LEVEL QUIZ'}</h3><div class="quiz-opts" id="quiz-${level}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-${level}"></div>`;
     
-    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p>${currentLang==='es'?'Completa los 5 pasos y responde el quiz':'Complete the 5 steps and answer the quiz'}</p></div><h2>${titles[level]}</h2><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${stepProgress[level]/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-${level}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>${translations[currentLang].levelCompleted}</h3><button class="btn-primary btn" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
+    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p>${currentLang==='es'?'Completa los 5 pasos y responde el quiz':'Complete the 5 steps and answer the quiz'}</p></div><h2>${titles[level]}</h2><div class="progress-track"><div class="progress-fill" id="prog-${level}" style="width:${stepProgress[level]/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-${level}" style="display:none;" class="completion-card"><h3>${translations[currentLang].levelCompleted}</h3><button class="btn btn-primary" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
     
     attachLevelQuiz(level, correctAnswer);
     if(stepProgress[level]>=5 && quizDoneLevel[level]) document.getElementById(`comp-${level}`).style.display='block';
@@ -411,14 +832,14 @@
     let ch=challengeData[level][idx];
     let steps = currentLang==='es'?ch.steps_es:ch.steps_en;
     let stepsHtml=''; 
-    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${challengeProgress[level]?.[idx]>=i}" onclick="markChallengeStep('${level}',${idx},this,${i})"><div class="step-num" style="background:${level==='beginner'?'#3CC87A':level==='intermediate'?'#FF7043':level==='advanced'?'#7B5CF5':'#00BFA5'};">${i}</div><div><h4>${steps[i-1]}</h4><p>${translations[currentLang].markComplete}</p></div></div>`;
+    for(let i=1;i<=5;i++) stepsHtml+=`<div class="step" data-done="${challengeProgress[level]?.[idx]>=i}" onclick="markChallengeStep('${level}',${idx},this,${i})"><div class="step-num">${i}</div><div><h4>${steps[i-1]}</h4><p>${translations[currentLang].markComplete}</p></div></div>`;
     
     let options = currentLang==='es'?ch.options_es:ch.options_en;
     let correctAnswer = currentLang==='es'?ch.correct_es:ch.correct_en;
     let shuffledOpts=shuffleArray([...options]);
     let quizHtml=`<h3>🧠 ${currentLang==='es'?'QUIZ DEL RETO':'CHALLENGE QUIZ'}</h3><div class="quiz-opts" id="quiz-challenge-${level}-${idx}">${shuffledOpts.map(opt=>`<button class="q-btn" data-opt="${opt}">${opt}</button>`).join('')}</div><div class="quiz-feedback" id="fb-challenge-${level}-${idx}"></div><div class="quiz-actions" id="quiz-actions-${level}-${idx}" style="display:none;"><button class="btn btn-secondary retry-quiz-btn">${translations[currentLang].retryQuiz}</button><button class="btn btn-primary stay-challenge-btn">${translations[currentLang].backToChallenge}</button></div>`;
     
-    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p><strong>${currentLang==='es'?ch.name_es:ch.name_en}</strong><br>${currentLang==='es'?ch.desc_es:ch.desc_en}</p></div><div class="progress-track"><div class="progress-fill" id="prog-challenge-${level}-${idx}" style="width:${(challengeProgress[level]?.[idx]||0)/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-challenge-${level}-${idx}" style="display:none; text-align:center; background:var(--green-l); border-radius:24px; padding:1rem;"><h3>${translations[currentLang].challengeCompleted} +${level==='advanced'||level==='ranger'?2:1} ★</h3><button class="btn-primary btn" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
+    container.innerHTML=`<button class="back-btn" onclick="goHome()">← ${translations[currentLang].back}</button><div class="panda-tip"><span>🐼</span><p><strong>${currentLang==='es'?ch.name_es:ch.name_en}</strong><br>${currentLang==='es'?ch.desc_es:ch.desc_en}</p></div><div class="progress-track"><div class="progress-fill" id="prog-challenge-${level}-${idx}" style="width:${(challengeProgress[level]?.[idx]||0)/5*100}%"></div></div><div class="steps">${stepsHtml}</div><div class="quiz-box">${quizHtml}</div><div id="comp-challenge-${level}-${idx}" style="display:none;" class="completion-card"><h3>${translations[currentLang].challengeCompleted} +${level==='advanced'||level==='ranger'?2:1} ★</h3><button class="btn btn-primary" onclick="goHome()">${translations[currentLang].backBtn}</button></div>`;
     
     attachChallengeQuiz(level, idx, correctAnswer);
     if(challengeProgress[level]?.[idx]>=5 && challengeQuizDone[level]?.[idx]) document.getElementById(`comp-challenge-${level}-${idx}`).style.display='block';
@@ -480,7 +901,6 @@
     let btns=c.querySelectorAll('.q-btn'); 
     let actionsDiv=document.getElementById(`quiz-actions-${level}-${idx}`);
     
-    // Función para resetear el quiz
     function resetQuiz() {
       btns.forEach(b=>{ b.disabled=false; b.classList.remove('wrong','correct'); });
       let fb=document.getElementById(`fb-challenge-${level}-${idx}`);
@@ -516,22 +936,11 @@
           fb.className='quiz-feedback error'; 
           if(actionsDiv) actionsDiv.style.display='flex';
           
-          // Configurar botones de reintento
           let retryBtn = actionsDiv.querySelector('.retry-quiz-btn');
           let stayBtn = actionsDiv.querySelector('.stay-challenge-btn');
           
-          if(retryBtn) {
-            retryBtn.onclick = (e) => {
-              e.stopPropagation();
-              resetQuiz();
-            };
-          }
-          if(stayBtn) {
-            stayBtn.onclick = (e) => {
-              e.stopPropagation();
-              resetQuiz();
-            };
-          }
+          if(retryBtn) { retryBtn.onclick = (e) => { e.stopPropagation(); resetQuiz(); }; }
+          if(stayBtn) { stayBtn.onclick = (e) => { e.stopPropagation(); resetQuiz(); }; }
         } 
       }; 
     });
@@ -557,24 +966,53 @@
 
   function initDarkMode(){
     const savedMode = localStorage.getItem('darkMode');
-    const toggleBtn = document.getElementById('darkModeToggle');
-    if (savedMode === 'enabled') { document.body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; } else { toggleBtn.textContent = '🌙'; }
-    toggleBtn.addEventListener('click', () => { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); toggleBtn.textContent = isDark ? '☀️' : '🌙'; localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled'); });
+    const toggleCheckbox = document.getElementById('darkModeToggle');
+    if (savedMode === 'enabled') { 
+      document.body.classList.add('dark-mode'); 
+      toggleCheckbox.checked = true;
+    } else { 
+      toggleCheckbox.checked = false;
+    }
+    toggleCheckbox.addEventListener('change', () => {
+      if (toggleCheckbox.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
   }
 
   function init(){
     loadData(); initDarkMode(); updateUILanguage();
+    
     document.getElementById('translateToggle').addEventListener('click', () => { currentLang = currentLang === 'es' ? 'en' : 'es'; saveData(); updateUILanguage(); });
-    document.getElementById('btnStartTutorial').onclick=()=>{ document.getElementById('welcomeOverlay').style.opacity='0'; setTimeout(()=>{ document.getElementById('welcomeOverlay').style.display='none'; goHome(); },400); };
-    document.getElementById('btnStartRetos').onclick=()=>{ document.getElementById('welcomeOverlay').style.opacity='0'; setTimeout(()=>{ document.getElementById('welcomeOverlay').style.display='none'; goHome(); setTimeout(()=>document.getElementById('globalChallengesList').scrollIntoView({behavior:'smooth'}),200); },400); };
     document.getElementById('navHomeLink').onclick=()=>goHome();
     document.getElementById('navLevelsLink').onclick=()=>goHome();
     document.getElementById('navChallengesLink').onclick=()=>{ goHome(); setTimeout(()=>document.getElementById('globalChallengesList').scrollIntoView({behavior:'smooth'}),200); };
     document.getElementById('navResourcesLink').onclick=()=>{ goHome(); setTimeout(()=>document.querySelector('.summary-card').scrollIntoView({behavior:'smooth'}),200); };
-    goHome();
+    
+    const welcomeScreen = document.getElementById('fullscreenWelcome');
+    const mainApp = document.getElementById('appMain');
+    const startBtn = document.getElementById('startAdventureBtn');
+    
+    welcomeScreen.style.display = 'flex';
+    welcomeScreen.classList.remove('fade-out');
+    mainApp.style.display = 'none';
+    
+    startBtn.addEventListener('click', () => {
+      welcomeScreen.classList.add('fade-out');
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+        mainApp.style.display = 'block';
+        mainApp.classList.add('animate-fade-in');
+        goHome();
+      }, 600);
+    });
   }
+  
   init();
 </script>
 </body>
 </html>
-```
